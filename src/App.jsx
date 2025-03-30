@@ -1,10 +1,12 @@
+import React from 'react'
+import LoginPage from './LoginPage/LoginPage'
+import './App.css'
 
 function App() {
 
   return (
     <>
-      In the beginning, Mike said "Let there be a repo"
-      In the beninging, in the .... in the beningging
+      <LoginPage></LoginPage>
     </>
   )
 }
