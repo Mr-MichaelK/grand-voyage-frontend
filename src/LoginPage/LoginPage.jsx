@@ -1,5 +1,5 @@
 import React from "react"
-import './LoginPage.css'
+import './LoginPage.module.css'
 import email_img from '../assets/email.svg'
 import password_img from '../assets/password.svg'
 import GV_BonW_img from '../assets/GV_BonW.jpg'
