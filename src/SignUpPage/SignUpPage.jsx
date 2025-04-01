@@ -1,38 +1,38 @@
 import React from "react"
 import GV_BonW_img from '../assets/GV_BonW.jpg'
-import './SignUpPage.module.css'
+import style from './SignUpPage.module.css'
 
 export default function SignUpPage() {
 
     return (
         <div>
-            <div className="logo-header">
-                <img src={GV_BonW_img} alt="Company Logo" className="logo" />
-                <h1 className="company-name">Grand Voyage</h1>
+            <div className={style.logoHeader}>
+                <img src={GV_BonW_img} alt="Company Logo" className={style.logo} />
+                <h1 className={style.companyName}>Grand Voyage</h1>
             </div>
-            <div className="container">
-                <div className="header">
-                    <div className="text">Sign Up</div>
-                    <div className="underline"></div>
+            <div className={style.container}>
+                <div className={style.header}>
+                    <div className={style.text}>Sign Up</div>
+                    <div className={style.underline}></div>
                 </div>
-                <div className="inputs">
-                    <div className="input">
+                <div className={style.inputs}>
+                    <div className={style.input}>
                         <label htmlFor="fName">First Name:</label>
                         <input id="fName" type="text" placeholder="John"/>
                     </div>
-                    <div className="input">
+                    <div className={style.input}>
                         <label htmlFor="lName">Last Name:</label>
                         <input id="lName" type="text" placeholder="Doe"/>
                     </div>
-                    <div className="input">
+                    <div className={style.input}>
                         <label htmlFor="addr">Address:</label>
                         <input id="addr" type="text" placeholder="Beirut, Lebanon"/>
                     </div>
-                    <div className="input">
+                    <div className={style.input}>
                         <label htmlFor="dob">Date of Birth:</label>
                         <input id="dob" type="date" placeholder="2005/08/15"/>
                     </div>
-                    <div className="input">
+                    <div className={style.input}>
                         <label htmlFor="nationality">Nationality:</label>
                         <select id="nationality" name="nationality">
                             <option value="">--SELECT--</option>
@@ -230,7 +230,7 @@ export default function SignUpPage() {
                             <option value="zimbabwean">Zimbabwean</option>
                         </select>
                     </div>
-                    <div className="input">
+                    <div className={style.input}>
                         <label>Gender:</label>
                         <input type="radio" id="male" name="gender" value="male" />
                         <label htmlFor="male">Male</label>
@@ -241,23 +241,23 @@ export default function SignUpPage() {
                         <input type="radio" id="other" name="gender" value="other" />
                         <label htmlFor="other">Other</label>
                     </div>
-                    <div className="input">
+                    <div className={style.input}>
                         <label htmlFor="phoneNum">Phone Number:</label>
                         <input id="phoneNum" type="tel" placeholder="+777 77 777 777"/>
                     </div>
-                    <div className="input">
+                    <div className={style.input}>
                         <label htmlFor="email">Email:</label>
                         <input id="email" type="email" placeholder="Email"/>
                     </div>
-                    <div className="input">
+                    <div className={style.input}>
                         <label htmlFor="password">Password:</label>
                         <input id="password" type="password" placeholder="Password"/>
                     </div>
                 </div>
-                <div className="submitContainer">
-                    <div className="submit">Sign Up</div>
+                <div className={style.submitContainer}>
+                    <div className={style.submit}>Sign Up</div>
                 </div>
-                <div className="login">Already have an account? <span>Login here!</span></div>
+                <div className={style.login}>Already have an account? <span>Login here!</span></div>
             </div>
         </div>
     )

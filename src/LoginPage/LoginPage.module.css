@@ -99,19 +99,19 @@
     transform: translateY(-2px);
 }
 
-.sign-up { 
+.signUp { 
     text-align: center;
     margin-top: 20px;
     color: #797979;
 }
 
-.sign-up span {
+.signUp span {
     color: #1033f7;
     cursor: pointer;
     font-weight: 600;
 }
 
-.logo-header {
+.logoHeader {
     position: fixed;
     top: 30px;
     left: 30px;
@@ -126,7 +126,7 @@
     height: auto;
   }
   
-  .company-name {
+  .companyName {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-size: 1.8rem;
@@ -163,7 +163,7 @@
         font-size: 1.1rem;
     }
 
-    .logo-header {
+    .logoHeader {
         top: 15px;
         left: 15px;
     }
@@ -172,7 +172,7 @@
         width: 40px;
     }
     
-    .company-name {
+    .companyName {
         font-size: 1.4rem;
     }
 }
