@@ -7,7 +7,7 @@ function App() {
 
   return (
     <>
-      <SignUpPage></SignUpPage>
+      <SignUpPage />
     </>
   )
 }

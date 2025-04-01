@@ -230,15 +230,15 @@ export default function SignUpPage() {
                             <option value="zimbabwean">Zimbabwean</option>
                         </select>
                     </div>
-                    <div className={style.input}>
+                    <div className={style.inputGender}>
                         <label>Gender:</label>
-                        <input type="radio" id="male" name="gender" value="male" />
+                        <input type="radio" id="male" name="gender" value="male" className={style.inputGender}/>
                         <label htmlFor="male">Male</label>
 
-                        <input type="radio" id="female" name="gender" value="female" />
+                        <input type="radio" id="female" name="gender" value="female" className={style.inputGender}/>
                         <label htmlFor="female">Female</label>
 
-                        <input type="radio" id="other" name="gender" value="other" />
+                        <input type="radio" id="other" name="gender" value="other" className={style.inputGender}/>
                         <label htmlFor="other">Other</label>
                     </div>
                     <div className={style.input}>
