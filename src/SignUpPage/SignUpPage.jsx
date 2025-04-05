@@ -2,7 +2,7 @@ import React from "react"
 import GV_BonW_img from '../assets/GV_BonW.jpg'
 import style from './SignUpPage.module.css'
 
-export default function SignUpPage() {
+export default function SignUpPage(props) {
 
     return (
         <div>
@@ -257,7 +257,7 @@ export default function SignUpPage() {
                 <div className={style.submitContainer}>
                     <div className={style.submit}>Sign Up</div>
                 </div>
-                <div className={style.login}>Already have an account? <span>Login here!</span></div>
+                <div className={style.login}>Already have an account? <span onClick={props.switchToLogin}>Login here!</span></div>
             </div>
         </div>
     )

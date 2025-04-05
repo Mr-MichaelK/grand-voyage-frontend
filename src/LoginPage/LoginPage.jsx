@@ -5,7 +5,7 @@ import password_img from '../assets/password.svg'
 import GV_BonW_img from '../assets/GV_BonW.jpg'
 
 
-export default function LoginPage() {
+export default function LoginPage(props) {
 
     return (
         <div>
@@ -34,7 +34,7 @@ export default function LoginPage() {
                         Login
                     </div>
                 </div>
-                <div className={style.signUp}>Don't have an account? <span>Sign-up here!</span></div>
+                <div className={style.signUp}>Don't have an account? <span onClick={props.switchToSignUp}>Sign-up here!</span></div>
             </div>
         </div>
     )
