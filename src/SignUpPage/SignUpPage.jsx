@@ -3,6 +3,50 @@ import GV_BonW_img from '../assets/GV_BonW.jpg'
 import style from './SignUpPage.module.css'
 
 export default function SignUpPage(props) {
+    function isUserInDB() {
+
+    }
+
+    function isValidInputs() {
+
+    }
+
+    function getInputs() {
+        return {
+            firstName: getFirstName(),
+
+        }
+    }
+
+    function createAccount() {
+
+    }
+
+    function handleSignInClick() {
+        if (isUserInDB()) {
+            alert("Please choose a different username and try again!")
+        }
+    }
+
+    function getFirstName() {
+        return document.getElementById("fName").textContent;
+    }
+
+    function getLastName() {
+        return document.getElementById("lName").textContent;
+    }
+
+    function getAddr() {
+        return document.getElementById("addr").textContent;
+    }
+
+    function getDOB() {
+        return new Date(document.getElementById("dob").value);
+    }
+
+    function getNationality() {
+        return document.getElementById("nationality").value;
+    }
 
     return (
         <div>
@@ -230,15 +274,15 @@ export default function SignUpPage(props) {
                             <option value="zimbabwean">Zimbabwean</option>
                         </select>
                     </div>
-                    <div className={style.inputGender}>
+                    <div className={style.inputRadio}>
                         <label>Gender:</label>
-                        <input type="radio" id="male" name="gender" value="male" className={style.inputGender}/>
+                        <input type="radio" id="male" name="gender" value="male" className={style.inputRadio}/>
                         <label htmlFor="male">Male</label>
 
-                        <input type="radio" id="female" name="gender" value="female" className={style.inputGender}/>
+                        <input type="radio" id="female" name="gender" value="female" className={style.inputRadio}/>
                         <label htmlFor="female">Female</label>
 
-                        <input type="radio" id="other" name="gender" value="other" className={style.inputGender}/>
+                        <input type="radio" id="other" name="gender" value="other" className={style.inputRadio}/>
                         <label htmlFor="other">Other</label>
                     </div>
                     <div className={style.input}>
@@ -252,6 +296,14 @@ export default function SignUpPage(props) {
                     <div className={style.input}>
                         <label htmlFor="password">Password:</label>
                         <input id="password" type="password" placeholder="Password"/>
+                    </div>
+                    <div className={style.inputRadio}>
+                        <label>Account Type:</label>
+                        <input type="radio" id="user" name="user" value="user" className={style.inputRadio}/>
+                        <label htmlFor="user">User</label>
+
+                        <input type="radio" id="serviceProvider" name="serviceProvider" value="serviceProvider" className={style.inputRadio}/>
+                        <label htmlFor="serviceProvider">Service Provider</label>
                     </div>
                 </div>
                 <div className={style.submitContainer}>

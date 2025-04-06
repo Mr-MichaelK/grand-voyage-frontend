@@ -1,10 +1,11 @@
 import React, {useState} from 'react'
 import LoginPage from './LoginPage/LoginPage'
 import SignUpPage from './SignUpPage/SignUpPage'
+import UserPortal from './UserPortal/UserPortal'
 import './App.css'
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('login');
+  const [currentPage, setCurrentPage] = useState('userPortal');
 
   let page;
   if (currentPage === 'login') {
@@ -12,6 +13,9 @@ function App() {
   } 
   else if (currentPage === 'signup') {
     page = <SignUpPage switchToLogin={() => setCurrentPage('login')} />;
+  }
+  else if (currentPage === 'userPortal') {
+    page = <UserPortal></UserPortal>
   }
 
   return <>{page}</>;

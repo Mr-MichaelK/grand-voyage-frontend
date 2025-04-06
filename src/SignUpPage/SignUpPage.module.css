@@ -71,7 +71,7 @@
     margin: 0 auto;
 }
 
-.inputGender {
+.inputRadio {
     display: flex;
     gap: 8px;
     width: 100%;
