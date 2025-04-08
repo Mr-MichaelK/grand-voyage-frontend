@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './HotelSidebar.module.css';
+import styles from './Sidebar.module.css';
 
 export default function HotelSidebar() {
 
