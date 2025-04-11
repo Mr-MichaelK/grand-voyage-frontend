@@ -14,18 +14,19 @@ import CruiseCard from './UserPortal/Components/Cards/CruiseCard'
 import PackageCard from './UserPortal/Components/Cards/PackageCard'
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('userPortal');
+  const [currentPage, setCurrentPage] = useState('login');
 
   let page;
   if (currentPage === 'login') {
     page = <LoginPage switchToSignUp={() => setCurrentPage('signup')} />;
   } 
   else if (currentPage === 'signup') {
-    page = <SignUpPage switchToLogin={() => setCurrentPage('login')} />;
+    page = <SignUpPage switchToLogin={() => setCurrentPage('login')}
+                       goToUserPortal={() => setCurrentPage('userPortal')} />;
   }
   else if (currentPage === 'userPortal') {
     page = <UserPortal></UserPortal>
-  }
+  }  
 
   return <>{page}</>;
 }

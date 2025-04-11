@@ -3,23 +3,57 @@ import GV_BonW_img from '../assets/GV_BonW.jpg'
 import style from './SignUpPage.module.css'
 
 export default function SignUpPage(props) {
-    function isUserInDB() {
-
+    function isUserInDB(name, place) {
+        // query db to see if name is in the user / service provider table
+        // if place == null (user hasn't chosen between user and service provider)
+        // we will query both tables, else only the table selected in place
+        return true
     }
 
     function isValidInputs() {
-
+        return (
+            setFirstNameError() &&
+            setLastNameError() &&
+            setAddressError() &&
+            setDOBError() &&
+            setNationalityError() &&
+            setGenderError() &&
+            setPhoneNumberError() &&
+            setEmailError() &&
+            setPasswordError() &&
+            setAccountTypeError()
+        )
     }
 
     function getInputs() {
         return {
             firstName: getFirstName(),
-
+            lastName: getLastName(),
+            address: getAddr(),
+            dob: getDOB(),
+            nationality: getNationality(),
+            gender: getGender(),
+            phoneNumber: getPhoneNumber(),
+            email: getEmail(),
+            password: getPassword(),
+            accountType: getAccountType()
         }
     }
 
     function createAccount() {
+        const inputs = getInputs();
+        if (!isValidInputs()) {
+            return
+        }
+        // send inputs to db
 
+        if (inputs.accountType === "user") {
+            // go to user portal
+            props.goToUserPortal()
+        }
+        else {
+            // go to service provider portal
+        }
     }
 
     function handleSignInClick() {
@@ -29,15 +63,15 @@ export default function SignUpPage(props) {
     }
 
     function getFirstName() {
-        return document.getElementById("fName").textContent;
+        return document.getElementById("fName").value;
     }
 
     function getLastName() {
-        return document.getElementById("lName").textContent;
+        return document.getElementById("lName").value;
     }
 
     function getAddr() {
-        return document.getElementById("addr").textContent;
+        return document.getElementById("addr").value;
     }
 
     function getDOB() {
@@ -48,13 +82,197 @@ export default function SignUpPage(props) {
         return document.getElementById("nationality").value;
     }
 
+    function getGender() {
+        if (document.getElementById("male").checked) {
+            return "male"
+        }
+        else if (document.getElementById("female").checked) {
+            return "female"
+        }
+        else if (document.getElementById("other").checked){
+            return "other"
+        }
+        else {
+            document.getElementById("male").setCustomValidity("Gender cannot be empty!")
+            return null
+        }
+    }
+
+    function getPhoneNumber() {
+        return document.getElementById("phoneNum").value;
+    }
+
+    function getEmail() {
+        return document.getElementById("email").value;
+    }
+
+    function getPassword() {
+        return document.getElementById("password").value;
+    }
+
+    function getAccountType() {
+        if (document.getElementById("user").checked) {
+            return "user"
+        }
+        else if (document.getElementById("serviceProvider").checked) {
+            return "serviceProvider"
+        }
+        else {
+            document.getElementById("user").setCustomValidity("Account type cannot be empty!")
+            return null
+        }
+    }
+
+    function isStrongPassword() {
+        const password = getPassword();
+        const uppercaseCount = (password.match(/[A-Z]/g) || []).length;
+        const specialCharCount = (password.match(/[^a-zA-Z0-9]/g) || []).length;
+        const numberCount = (password.match(/[0-9]/g) || []).length;
+      
+        return (
+          uppercaseCount >= 2 &&
+          specialCharCount >= 2 &&
+          numberCount >= 2
+        );
+    }
+    
+    function setFirstNameError() {
+        const fName = getFirstName()
+        if (!fName) {
+            document.getElementById("fName").setCustomValidity("First name cannot be empty!")
+            return false
+        }
+        else {
+            document.getElementById("fName").setCustomValidity("")
+            return true
+        }
+    }
+
+    function setLastNameError() {
+        const lName = getLastName()
+        if (!lName) {
+            document.getElementById("lName").setCustomValidity("Last name cannot be empty!")
+            return false
+        }
+        else {
+            document.getElementById("lName").setCustomValidity("")
+            return true
+        }
+    }
+
+    function setAddressError() {
+        const addr = getAddr()
+        if (!addr) {
+            document.getElementById("addr").setCustomValidity("Address cannot be empty!")
+            return false
+        }
+        else {
+            document.getElementById("addr").setCustomValidity("")
+            return true
+        }
+    }
+
+    function setDOBError() {
+        const dob = getDOB();
+    
+        if (!dob || isNaN(dob.getTime())) {
+            document.getElementById("dob").setCustomValidity("Date of Birth cannot be empty or invalid!");
+            return false;
+        } else {
+            document.getElementById("dob").setCustomValidity("");
+            return true;
+        }
+    }    
+
+    function setNationalityError() {
+        const nationality = getNationality()
+        if (!nationality) {
+            document.getElementById("nationality").setCustomValidity("Please select a nationality!")
+            return false
+        }
+        else {
+            document.getElementById("nationality").setCustomValidity("")
+            return true
+        }
+    }
+
+    function setGenderError() {
+        const gender = getGender()
+        if (!gender) {
+            document.getElementById("male").setCustomValidity("Please select a gender!")
+            return false
+        }
+        else {
+            document.getElementById("male").setCustomValidity("")
+            return true
+        }
+    }
+
+    function setPhoneNumberError() {
+        const phoneNumber = getPhoneNumber()
+        if (!phoneNumber) {
+            document.getElementById("phoneNum").setCustomValidity("Phone number cannot be empty!")
+            return false
+        }
+        else {
+            document.getElementById("phoneNum").setCustomValidity("")
+            return true
+        }
+    }
+
+    function setAccountTypeError() {
+        const accountType = getAccountType()
+        if (!accountType) {
+            document.getElementById("user").setCustomValidity("Please select an account type!")
+            return false
+        }
+        else {
+            document.getElementById("user").setCustomValidity("")
+            return true
+        }
+    }
+
+    function setEmailError() {
+        const email = getEmail()
+        if (!email) {
+            document.getElementById("email").setCustomValidity("Email cannot be empty!")
+            return false
+        }
+        else if (isUserInDB(email, getAccountType())) {
+            document.getElementById("email").setCustomValidity("Email is in use. Please use another email!")
+            return false
+        }
+        else {
+            document.getElementById("email").setCustomValidity("")
+            return true
+        }
+    }
+
+    function setPasswordError() {
+        const password = getPassword();
+        if (!password) {
+            document.getElementById("password").setCustomValidity("Password cannot be empty!")
+            return false
+        }
+        else if (!isStrongPassword(password)) {
+            document.getElementById("password").setCustomValidity(
+            "Password must have at least 2 uppercase letters, 2 special characters, and 2 numbers."
+            );
+            return false
+        } 
+        else {
+            document.getElementById("password").setCustomValidity(""); // Clear error
+            return true
+        }
+    }
+
     return (
         <div>
             <div className={style.logoHeader}>
                 <img src={GV_BonW_img} alt="Company Logo" className={style.logo} />
                 <h1 className={style.companyName}>Grand Voyage</h1>
             </div>
-            <div className={style.container}>
+            <form className={style.container} onSubmit={handleSignInClick}>
                 <div className={style.header}>
                     <div className={style.text}>Sign Up</div>
                     <div className={style.underline}></div>
@@ -276,7 +494,7 @@ export default function SignUpPage(props) {
                     </div>
                     <div className={style.inputRadio}>
                         <label>Gender:</label>
-                        <input type="radio" id="male" name="gender" value="male" className={style.inputRadio}/>
+                        <input type="radio" id="male" name="gender" value="male" className={style.inputRadio}  />
                         <label htmlFor="male">Male</label>
 
                         <input type="radio" id="female" name="gender" value="female" className={style.inputRadio}/>
@@ -295,22 +513,22 @@ export default function SignUpPage(props) {
                     </div>
                     <div className={style.input}>
                         <label htmlFor="password">Password:</label>
-                        <input id="password" type="password" placeholder="Password"/>
+                        <input onInput={setPasswordError} id="password" type="password" placeholder="Password" required minLength={8}/>
                     </div>
                     <div className={style.inputRadio}>
                         <label>Account Type:</label>
-                        <input type="radio" id="user" name="user" value="user" className={style.inputRadio}/>
+                        <input type="radio" id="user" name="accountType" value="user" className={style.inputRadio} />
                         <label htmlFor="user">User</label>
 
-                        <input type="radio" id="serviceProvider" name="serviceProvider" value="serviceProvider" className={style.inputRadio}/>
+                        <input type="radio" id="serviceProvider" name="accountType" value="serviceProvider" className={style.inputRadio}/>
                         <label htmlFor="serviceProvider">Service Provider</label>
                     </div>
                 </div>
                 <div className={style.submitContainer}>
-                    <div className={style.submit}>Sign Up</div>
+                    <button className={style.submit}onClick={createAccount}>Sign Up</button>
                 </div>
                 <div className={style.login}>Already have an account? <span onClick={props.switchToLogin}>Login here!</span></div>
-            </div>
+            </form>
         </div>
     )
 }
