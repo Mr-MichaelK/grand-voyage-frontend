@@ -26,8 +26,5 @@ function App() {
 
   return <>{page}</>;
 }
-<UserPortal>
-  <PackageSidebar />
-</UserPortal>
 
 export default App

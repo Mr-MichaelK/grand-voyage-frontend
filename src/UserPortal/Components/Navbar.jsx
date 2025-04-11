@@ -5,7 +5,7 @@ import userProfile from '../../assets/person.svg'
 import GV_WonT_L_img from '../../assets/GV_WonT_L.png'
 
 
-export default function Navbar() {
+export default function Navbar({ switchActivity }) {
 
     return (
         <div className={style.navbar}>
@@ -14,20 +14,20 @@ export default function Navbar() {
                 <h1 className={style.companyName}>Grand Voyage</h1>
             </div>
             <div className={style.buttonContainer}>
-                <button>About Us</button>
-                <button>Services</button>
-                <button>Packages</button>
-                <button>Flights</button>
-                <button>Cruises</button>
-                <button>Contact Us</button>
+                <button onClick={() => switchActivity("aboutUs")}>About Us</button>
+                <button onClick={() => switchActivity("services")}>Services</button>
+                <button onClick={() => switchActivity("packages")}>Packages</button>
+                <button onClick={() => switchActivity("flights")}>Flights</button>
+                <button onClick={() => switchActivity("cruises")}>Cruises</button>
+                <button onClick={() => switchActivity("contactUs")}>Contact Us</button>
             </div>
             <div className={style.profileContainer}>
                 <div className={style.profileIcon}>
-                    <img className={style.travelCase} src={travelCase} alt='Travel case SVG' />
+                    <img onClick={() => switchActivity("previousBookings")} className={style.travelCase} src={travelCase} alt='Travel case SVG' />
                     <span className={style.tooltip} data-tooltip="My Bookings">My Bookings</span>
                 </div>
                 <div className={style.profileIcon}>
-                    <img className={style.userProfile} src={userProfile} alt='User profile SVG' />
+                    <img onClick={() => switchActivity("profile")} className={style.userProfile} src={userProfile} alt='User profile SVG' />
                     <span className={style.tooltip} data-tooltip="My Account">My Account</span>
                 </div>
             </div>
