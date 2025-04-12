@@ -7,7 +7,7 @@ export default function SignUpPage(props) {
         // query db to see if name is in the user / service provider table
         // if place == null (user hasn't chosen between user and service provider)
         // we will query both tables, else only the table selected in place
-        return true
+        return false
     }
 
     function isValidInputs() {

@@ -1,12 +1,13 @@
 import React from 'react';
 import styles from './Card.module.css';
+import bgImg from '../../../assets/packagesBackgroundImg.jpg'
 
 const PackageCard = (props) => {
     return (
         <div className={styles.card}>
             <div className={styles.cardImageContainer}>
                 <img
-                    src={props.imageUrl}
+                    src={bgImg}
                     alt={props.packageName}
                     className={styles.cardImage}
                 />
