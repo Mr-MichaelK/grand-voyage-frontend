@@ -1,6 +1,6 @@
 import React, {useState} from "react"
 import Navbar from "./Components/Navbar"
-import AboutUsActivity from './Components/Activities/AboutUsActivity/AboutUsActivity'
+import AboutUsActivity from "./Components/Activities/AboutUsActivity/AboutUsActivity"
 import ContactUsActivity from './Components/Activities/ContactUsActivity/ContactUsActivity'
 import CruisesActivity from './Components/Activities/CruisesActivity/CruisesActivity'
 import FlightsActivity from './Components/Activities/FlightsActivity/FlightsActivity'
@@ -17,7 +17,7 @@ import HotelCard from "./Components/Cards/HotelCard"
 import FlightCard from "./Components/Cards/FlightCard"
 import CruiseCard from "./Components/Cards/CruiseCard"
 import PackageCard from "./Components/Cards/PackageCard"
-import AboutUsPage from "./Components/AboutUsActivity"
+
 
 export default function UserPortal() {
     const [currentActivity, setCurrentActivity] = useState("packages")
@@ -50,7 +50,6 @@ export default function UserPortal() {
 
     return (
         <div>
-            <AboutUsPage />
             <Navbar switchActivity={(a) => setCurrentActivity(a)}></Navbar>
             {activity}
         </div>

@@ -7,7 +7,7 @@ const PackageCard = (props) => {
         <div className={styles.card}>
             <div className={styles.cardImageContainer}>
                 <img
-                    src={bgImg}
+                    src="assets/packagesBackgroundImg.jpg"
                     alt={props.packageName}
                     className={styles.cardImage}
                 />
