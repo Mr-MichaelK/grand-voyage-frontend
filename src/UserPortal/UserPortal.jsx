@@ -9,12 +9,13 @@ import HotelCard from "./Components/Cards/HotelCard"
 import FlightCard from "./Components/Cards/FlightCard"
 import CruiseCard from "./Components/Cards/CruiseCard"
 import PackageCard from "./Components/Cards/PackageCard"
+import AboutUsPage from "./Components/AboutUsActivity"
 
 export default function UserPortal() {
 
     return (
         <div>
-            <PackageCard />
+            <AboutUsPage />
         </div>
     )
 }
