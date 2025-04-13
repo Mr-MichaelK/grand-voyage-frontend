@@ -7,7 +7,7 @@ export default function HotelsBody() {
     <div className={styles.gridContainer}>
       <h2 className={styles.gridTitle}>Available Hotels</h2>
       <div className={styles.cardGrid}>
-        <HotelCard 
+        <HotelCard
           title="Al Murjan Palace Hotel"
           location="Jounieh, Lebanon"
           rating={8.6}
@@ -17,7 +17,27 @@ export default function HotelsBody() {
           imageUrl="/murjan-palace.jpg"
         />
 
-        <HotelCard 
+        <HotelCard
+          title="Al Murjan Palace Hotel"
+          location="Jounieh, Lebanon"
+          rating={8.6}
+          reviewCount={126}
+          price={114}
+          nights={2}
+          imageUrl="/murjan-palace.jpg"
+        />
+
+        <HotelCard
+          title="Al Murjan Palace Hotel"
+          location="Jounieh, Lebanon"
+          rating={8.6}
+          reviewCount={126}
+          price={114}
+          nights={2}
+          imageUrl="/murjan-palace.jpg"
+        />
+
+        <HotelCard
           title="Beirut Marina Suites"
           location="Beirut, Lebanon"
           rating={9.1}
@@ -27,7 +47,7 @@ export default function HotelsBody() {
           imageUrl="/beirut-marina.jpg"
         />
 
-        <HotelCard 
+        <HotelCard
           title="Paris Luxury Resort"
           location="Paris, France"
           rating={9.4}
@@ -37,7 +57,7 @@ export default function HotelsBody() {
           imageUrl="/paris-resort.jpg"
         />
 
-        <HotelCard 
+        <HotelCard
           title="Dubai Skyline Hotel"
           location="Dubai, UAE"
           rating={9.0}
