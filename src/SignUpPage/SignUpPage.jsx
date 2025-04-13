@@ -53,6 +53,7 @@ export default function SignUpPage(props) {
         }
         else {
             // go to service provider portal
+            props.goToServiceProviderPortal()
         }
     }
 

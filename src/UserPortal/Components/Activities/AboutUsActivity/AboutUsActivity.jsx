@@ -16,7 +16,7 @@ export default function AboutUsPage() {
       <section className={styles.aboutSection}>
         <article className={styles.aboutText}>
           <p>
-            GrandVoyage is a leading travel and tourism agency since 1980. 
+            Grand Voyage is a leading travel and tourism agency since 1980. 
             Through collaborations with touristic agencies worldwide and visa 
             application centers, we are able to plan and assist your trip from 
             your departure until your arrival according to your needs and budget.
