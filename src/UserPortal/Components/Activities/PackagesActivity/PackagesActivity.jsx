@@ -4,9 +4,9 @@ import PackagesBody from '../../ActivityBodies/PackagesBody'
 
 export default function PackagesActivity() {
     return (
-        <>
+        <div>
             <PackageSidebar></PackageSidebar>
             <PackagesBody></PackagesBody>
-        </>
+        </div>
     )
 }

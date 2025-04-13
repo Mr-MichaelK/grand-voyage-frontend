@@ -13,7 +13,8 @@ import FlightCard from './UserPortal/Components/Cards/FlightCard'
 import CruiseCard from './UserPortal/Components/Cards/CruiseCard'
 import PackageCard from './UserPortal/Components/Cards/PackageCard'
 import AboutUsActivity from './UserPortal/Components/Activities/AboutUsActivity/AboutUsActivity'
-
+import ServiceProviderPortal from './ServiceProviderPortal/ServiceProviderPortal'
+/*
 function App() {
   const [currentPage, setCurrentPage] = useState('login');
 
@@ -31,14 +32,15 @@ function App() {
 
   return <>{page}</>;
 }
-/*
+
+export default App
+*/
 function App() {
   return (
     <div className="App">
-      <AboutUsActivity />
+      <ServiceProviderPortal/>
     </div>
   );
 }
-  */
 
 export default App
