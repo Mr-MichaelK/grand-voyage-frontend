@@ -10,7 +10,9 @@ function App() {
 
   let page;
   if (currentPage === 'login') {
-    page = <LoginPage switchToSignUp={() => setCurrentPage('signup')} />;
+    page = <LoginPage  goToUserPortal={() => setCurrentPage('userPortal')}
+                       goToServiceProviderPortal={() => setCurrentPage('serviceProviderPortal')}
+                       switchToSignUp={() => setCurrentPage('signup')} />;
   } 
   else if (currentPage === 'signup') {
     page = <SignUpPage switchToLogin={() => setCurrentPage('login')}
