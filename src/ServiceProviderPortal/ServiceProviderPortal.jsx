@@ -5,6 +5,7 @@ import ContactUsActivity from "./Components/Activities/ContactUsActivity/Contact
 import ServicesActivity from "./Components/Activities/ServicesActivity/ServicesActivity"
 import FlightsActivity from "./Components/Activities/FlightsActivity/FlightsActivity"
 import CruisesActivity from "./Components/Activities/CruisesActivity/CruisesActivity"
+import Contract from "./Components/Contract"
 
 
 export default function ServiceProviderPortal() {
@@ -26,7 +27,9 @@ export default function ServiceProviderPortal() {
 
     return (
         <div>
-            <Navbar switchActivity={(a) => setCurrentActivity(a)}></Navbar>
+            <Navbar switchActivity={(a) => setCurrentActivity(a)}
+                    openModal={() => document.getElementById("contract").showModal()}></Navbar>
+            <Contract id="contract"></Contract>
             {activity}
         </div>
     )
