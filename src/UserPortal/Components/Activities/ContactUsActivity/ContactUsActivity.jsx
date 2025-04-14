@@ -1,9 +1,9 @@
 import React from 'react'
 import style from './ContactUsActivity.module.css'
-import twitterIcon from '../../../../assets/twitter.png'
-import InstagramIcon from '../../../../assets/instagram.jpeg'
-import FacebookIcon from '../../../../assets/facebook.jpeg'
-import LinkedInIcon from '../../../../assets/linkedIn.jpeg'
+import twitterIcon from '../../../../assets/x.svg'
+import InstagramIcon from '../../../../assets/instagram.svg'
+import FacebookIcon from '../../../../assets/facebook.svg'
+import LinkedInIcon from '../../../../assets/linkedin.svg'
 
 export default function ContactUsActivity() {
     return (

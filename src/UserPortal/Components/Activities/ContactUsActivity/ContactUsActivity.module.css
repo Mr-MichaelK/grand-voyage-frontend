@@ -1,15 +1,13 @@
-/* ContactUs.css */
 *{
     font-family: 'Poppins', sans-serif;
 }
-/* ContactUs.css */
+
 
 .contactContainer {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 60px 20px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: white;
   }
   
@@ -25,7 +23,7 @@
   
   .contactTitle {
     font-size: 32px;
-    color: #0052cc;
+    color: #1033f7;
     margin-bottom: 10px;
     text-align: center;
   }
@@ -62,7 +60,7 @@
   }
   
   .contactForm button {
-    background-color: #0052cc;
+    background-color: #1033f7;
     color: white;
     border: none;
     padding: 12px 20px;
@@ -70,13 +68,13 @@
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    font-weight: bold;
   }
   
   .contactForm button:hover {
     background-color: #003d99;
   }
   
-  /* Social Media Section */
   .socialSection {
     margin-top: 40px;
     text-align: center;
