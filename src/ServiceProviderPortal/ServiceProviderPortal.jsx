@@ -6,6 +6,7 @@ import ServicesActivity from "./Components/Activities/ServicesActivity/ServicesA
 import FlightsActivity from "./Components/Activities/FlightsActivity/FlightsActivity"
 import CruisesActivity from "./Components/Activities/CruisesActivity/CruisesActivity"
 import Contract from "./Components/Contract"
+import ServiceProviderSidebar from "./Components/Sidebar/ServiceProviderSidebar"
 
 
 export default function ServiceProviderPortal() {
@@ -30,6 +31,7 @@ export default function ServiceProviderPortal() {
             <Navbar switchActivity={(a) => setCurrentActivity(a)}
                     openModal={() => document.getElementById("contract").showModal()}></Navbar>
             <Contract id="contract"></Contract>
+            <ServiceProviderSidebar></ServiceProviderSidebar>
             {activity}
         </div>
     )

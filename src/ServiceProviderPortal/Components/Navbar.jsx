@@ -22,7 +22,7 @@ export default function Navbar({ switchActivity, openModal }) {
             <div className={style.profileContainer}>
                 <div className={style.profileIcon}>
                     <img onClick={() => openModal()} className={style.contract} src={contract} alt='Contract SVG' />
-                    <span className={style.tooltip} data-tooltip="My Bookings">My Contracts</span>
+                    <span className={style.tooltip} data-tooltip="My Bookings">Create a Contract</span>
                 </div>
                 <div className={style.profileIcon}>
                     <img onClick={() => switchActivity("profile")} className={style.userProfile} src={userProfile} alt='User profile SVG' />
