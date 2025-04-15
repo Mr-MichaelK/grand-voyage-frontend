@@ -16,7 +16,7 @@ export default function CruisesBody() {
           price={2499}
           embarkationDate="August 15, 2025"
           amenities="Pool, Spa, Fine Dining"
-          imageUrl="/med-cruise.jpg"
+          imageUrl="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
         />
 
         <CruiseCard 
@@ -28,7 +28,7 @@ export default function CruisesBody() {
           price={1899}
           embarkationDate="September 1, 2025"
           amenities="Casino, Theater, Kids Club"
-          imageUrl="/caribbean-cruise.jpg"
+          imageUrl="https://images.unsplash.com/photo-1519046904884-53103b34b206?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
         />
 
         <CruiseCard 
@@ -40,7 +40,7 @@ export default function CruisesBody() {
           price={3499}
           embarkationDate="July 20, 2025"
           amenities="Spa, Excursions, Gym"
-          imageUrl="/nordic-cruise.jpg"
+          imageUrl="https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
         />
 
         <CruiseCard 
@@ -52,7 +52,7 @@ export default function CruisesBody() {
           price={4299}
           embarkationDate="October 10, 2025"
           amenities="Cultural Tours, Pool, Cinema"
-          imageUrl="/asia-cruise.jpg"
+          imageUrl="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1473&q=80"
         />
       </div>
     </div>
