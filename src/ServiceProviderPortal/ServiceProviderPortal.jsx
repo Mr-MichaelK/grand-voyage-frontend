@@ -7,6 +7,7 @@ import FlightsActivity from "./Components/Activities/FlightsActivity/FlightsActi
 import CruisesActivity from "./Components/Activities/CruisesActivity/CruisesActivity"
 import Contract from "./Components/Contract"
 import ServiceProviderSidebar from "./Components/Sidebar/ServiceProviderSidebar"
+import CruiseBody from "./Components/ActivityBodies/CruiseBody"
 
 
 export default function ServiceProviderPortal() {
@@ -32,6 +33,7 @@ export default function ServiceProviderPortal() {
                     openModal={() => document.getElementById("contract").showModal()}></Navbar>
             <Contract id="contract"></Contract>
             <ServiceProviderSidebar></ServiceProviderSidebar>
+            <CruiseBody></CruiseBody>
             {activity}
         </div>
     )
