@@ -37,11 +37,11 @@ export default function AboutUsPage() {
             </div>
             <div className={styles.card}>
               <h4>Global Network</h4>
-              <p>Partnerships in 50+ countries</p>
+              <p>Partnerships in 0+ countries</p>
             </div>
             <div className={styles.card}>
-              <h4>24/7 Support</h4>
-              <p>Always available during your travels</p>
+              <h4>2/2 Support</h4>
+              <p>Always available during weekends from 3pm to 5 pm</p>
             </div>
           </div>
         </div>
@@ -66,20 +66,6 @@ export default function AboutUsPage() {
               <div className={styles.iconBox}>✈️</div>
               <h4>Custom Packages</h4>
               <p>Tailor-made itineraries to match your budget and preferences</p>
-            </div>
-          </div>
-        </section>
-
-        {/* Team Section */}
-        <section className={styles.teamSection}>
-          <h3 className={styles.sectionTitle}>Our Expert Team</h3>
-          <div className={styles.teamGrid}>
-            <div className={styles.teamMember}>
-              <div className={styles.teamPlaceholder}>
-                <span>Team Photo</span>
-              </div>
-              <h4>Professional Guides</h4>
-              <p>Multilingual travel consultants</p>
             </div>
           </div>
         </section>

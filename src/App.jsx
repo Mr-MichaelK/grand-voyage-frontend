@@ -32,7 +32,7 @@ function App() {
   */
 function App() {
   return (
-    UserPortal()
+    <ServiceProviderPortal></ServiceProviderPortal>
   );
 }
 
