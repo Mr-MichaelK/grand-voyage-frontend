@@ -21,7 +21,7 @@ export default function ServiceProviderPortal() {
         activity = <FlightsActivity></FlightsActivity>
     }
     else if (currentActivity === "cruises") {
-        activity =<CruisesActivity></CruisesActivity>
+        activity = <CruisesActivity></CruisesActivity>
     }
     else if (currentActivity === "contactUs") {
         activity = <ContactUsActivity></ContactUsActivity>
@@ -32,9 +32,7 @@ export default function ServiceProviderPortal() {
             <Navbar switchActivity={(a) => setCurrentActivity(a)}
                     openModal={() => document.getElementById("contract").showModal()}></Navbar>
             <Contract id="contract"></Contract>
-            <ServiceProviderSidebar></ServiceProviderSidebar>
-            <CruiseBody></CruiseBody>
-            {activity}
+            <FlightsActivity></FlightsActivity>
         </div>
     )
 }
