@@ -1,39 +1,39 @@
 import React from 'react';
-import style from './CruiseCard.module.css';
+import styles from './Card.module.css';
 
 export default function CruiseCard({ cruise, onDelete, onEdit }) {
     return (
-        <div className={style.card}>
-            <div className={style.cardImageContainer}>
+        <div className={styles.card}>
+            <div className={styles.cardImageContainer}>
                 <img 
                     src={cruise.image} 
                     alt={cruise.title} 
-                    className={style.cardImage} 
+                    className={styles.cardImage} 
                 />
             </div>
             
-            <div className={style.cardContent}>
-                <div className={style.cardInfo}>
-                    <h3 className={style.cardTitle}>{cruise.title}</h3>
-                    <p className={style.cardSubtitle}>
-                        {cruise.departurePort} → {cruise.destination}
+            <div className={styles.cardContent}>
+                <div className={styles.cardInfo}>
+                    <h3 className={styles.cardTitle}>{cruise.title}</h3>
+                    <p className={styles.cardSubtitle}>
+                        {cruise.departurePort} → {cruise.arrivalPort}
                     </p>
-                    <div className={style.cardMeta}>
-                        <span className={style.cardMetaMain}>{cruise.duration} days</span>
-                        <span className={style.cardMetaSecondary}>{cruise.cabinType}</span>
+                    <div className={styles.cardMeta}>
+                        <span className={styles.cardMetaMain}>{cruise.duration}</span>
+                        <span className={styles.cardMetaSecondary}>{cruise.cabinType}</span>
                     </div>
                 </div>
 
-                <div className={style.cardFooter}>
-                    <div className={style.cardPrice}>US${cruise.price}</div>
-                    <div className={style.cardDetails}>
+                <div className={styles.cardFooter}>
+                    <div className={styles.cardPrice}>US${cruise.price}</div>
+                    <div className={styles.cardDetails}>
                         <div>{cruise.description}</div>
                     </div>
-                    <div className={style.cardActions}>
-                        <button className={style.editButton} onClick={() => onEdit(cruise)}>
+                    <div className={styles.cardActions}>
+                        <button className={styles.editButton} onClick={() => onEdit(cruise)}>
                             Edit
                         </button>
-                        <button className={style.deleteButton} onClick={() => onDelete(cruise.id)}>
+                        <button className={styles.deleteButton} onClick={() => onDelete(cruise.id)}>
                             Delete
                         </button>
                     </div>

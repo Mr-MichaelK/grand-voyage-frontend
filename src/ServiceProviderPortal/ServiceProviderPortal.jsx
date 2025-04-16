@@ -32,7 +32,7 @@ export default function ServiceProviderPortal() {
             <Navbar switchActivity={(a) => setCurrentActivity(a)}
                     openModal={() => document.getElementById("contract").showModal()}></Navbar>
             <Contract id="contract"></Contract>
-            <CruisesActivity></CruisesActivity> 
+            <FlightsActivity></FlightsActivity>
         </div>
     )
 }

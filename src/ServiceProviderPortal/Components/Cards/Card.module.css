@@ -5,6 +5,9 @@
     transition: transform 0.3s ease;
     background: white;
     max-width: 300px;
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
 }
 
 .card:hover {
@@ -13,7 +16,8 @@
 
 .cardImageContainer {
     position: relative;
-    height: 200px;
+    height: 160px;
+    flex-shrink: 0;
 }
 
 .cardImage {
@@ -24,28 +28,26 @@
 
 .cardContent {
     padding: 16px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
 .cardInfo {
-    margin-bottom: 16px;
+    margin-bottom: 8px;
 }
 
 .cardTitle {
     font-size: 1.2rem;
     color: #333;
-    margin: 0 0 8px 0;
-}
-
-.cardSubtitle {
-    color: #666;
-    font-size: 0.9rem;
-    margin: 0 0 12px 0;
+    margin: 0;
 }
 
 .cardMeta {
     display: flex;
     align-items: center;
     gap: 8px;
+    margin-top: 8px;
 }
 
 .cardMetaMain {
@@ -61,6 +63,7 @@
 .cardFooter {
     border-top: 1px solid #eee;
     padding-top: 12px;
+    margin-top: auto;
 }
 
 .cardPrice {
@@ -70,16 +73,9 @@
     margin: 4px 0;
 }
 
-.cardDetails {
-    color: #666;
-    font-size: 0.9rem;
-    margin-bottom: 12px;
-}
-
 .cardActions {
     display: flex;
     gap: 8px;
-    margin-top: 12px;
 }
 
 .editButton, .deleteButton {
@@ -102,12 +98,12 @@
 }
 
 .deleteButton {
-    background-color: #fff0f0;
-    color: #f71010;
+    background-color: #ffe0e0;
+    color: #ff4444;
 }
 
 .deleteButton:hover {
-    background-color: #ffe0e0;
+    background-color: #ffd0d0;
 }
 
 @media (max-width: 768px) {
