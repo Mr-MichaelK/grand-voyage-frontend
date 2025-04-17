@@ -5,7 +5,7 @@ export default function AdminPortal() {
 
     return (
         <div>
-
+            <Navbar></Navbar>
         </div>
     )
 }
