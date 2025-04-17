@@ -41,6 +41,10 @@
   .trendUp {
     color: #00c853;
   }
+
+  .trendDown {
+    color: #ff3d00;
+  }
   
   .progressBar {
     height: 8px;

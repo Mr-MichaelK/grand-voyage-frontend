@@ -160,7 +160,7 @@ export default function Contract({ id }) {
         if (!isValidInputs(event)) {
             return;
         }
-        const inputs = getInputs();
+        const inputs = JSON.stringify(getInputs());
 
         // send input to db
 
