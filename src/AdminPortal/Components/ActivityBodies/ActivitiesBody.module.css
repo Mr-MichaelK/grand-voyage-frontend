@@ -1,0 +1,50 @@
+/* ActivityBody.module.css */
+
+.gridContainer {
+    background-color: white;
+    color: black;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin: 2rem;
+  }
+  
+  .gridTitle {
+    color: #007bff; /* Bootstrap-style blue for headers */
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 0.5rem;
+  }
+  
+  .cardGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .contractsTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: white;
+    color: black;
+  }
+  
+  .contractsTable th {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    text-align: left;
+    border-bottom: 2px solid #dee2e6;
+  }
+  
+  .contractsTable td {
+    padding: 10px;
+    border-bottom: 1px solid #dee2e6;
+  }
+  
+  .contractsTable tr:hover {
+    background-color: #f1f1f1;
+  }
+  
