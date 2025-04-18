@@ -1,19 +1,17 @@
-/* ContactUs.css */
 *{
     font-family: 'Poppins', sans-serif;
 }
-/* ContactUs.css */
 
-.contact-container {
+
+.contactContainer {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 60px 20px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: white;
   }
   
-  .contact-card {
+  .contactCard {
     background-color: #ffffff;
     border: 1px solid #dce5f3;
     border-radius: 12px;
@@ -23,29 +21,29 @@
     box-shadow: 0 4px 12px rgba(0, 82, 204, 0.1);
   }
   
-  .contact-title {
+  .contactTitle {
     font-size: 32px;
-    color: #0052cc;
+    color: #1033f7;
     margin-bottom: 10px;
     text-align: center;
   }
   
-  .contact-description {
+  .contactDescription {
     font-size: 16px;
     color: #333;
     margin-bottom: 30px;
     text-align: center;
   }
   
-  .contact-form label {
+  .contactForm label {
     display: block;
     margin-bottom: 20px;
     color: #003366;
     font-weight: 500;
   }
   
-  .contact-form input,
-  .contact-form textarea {
+  .contactForm input,
+  .contactForm textarea {
     width: 100%;
     padding: 12px;
     border: 1px solid #cbd6ee;
@@ -55,14 +53,14 @@
     outline: none;
   }
   
-  .contact-form input:focus,
-  .contact-form textarea:focus {
+  .contactForm input:focus,
+  .contactForm textarea:focus {
     border-color: #0052cc;
     box-shadow: 0 0 4px rgba(0, 82, 204, 0.2);
   }
   
-  .contact-form button {
-    background-color: #0052cc;
+  .contactForm button {
+    background-color: #1033f7;
     color: white;
     border: none;
     padding: 12px 20px;
@@ -70,38 +68,38 @@
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    font-weight: bold;
   }
   
-  .contact-form button:hover {
+  .contactForm button:hover {
     background-color: #003d99;
   }
   
-  /* Social Media Section */
-  .social-section {
+  .socialSection {
     margin-top: 40px;
     text-align: center;
   }
   
-  .social-section h3 {
+  .socialSection h3 {
     font-size: 18px;
     color: #003366;
     margin-bottom: 15px;
   }
   
-  .social-icons {
+  .socialIcons {
     display: flex;
     justify-content: center;
     gap: 20px;
     flex-wrap: wrap;
   }
   
-  .social-img {
+  .socialImg {
     width: 40px;
     height: 40px;
     transition: transform 0.2s ease;
   }
   
-  .social-img:hover {
+  .socialImg:hover {
     transform: scale(1.1);
   }
   

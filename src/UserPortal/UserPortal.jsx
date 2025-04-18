@@ -9,18 +9,11 @@ import PreviousBookingsActivity from './Components/Activities/PreviousBookingsAc
 import ProfileActivity from './Components/Activities/ProfileActivity/ProfileActivity'
 import ServicesActivity from './Components/Activities/ServicesActivity/ServicesActivity'
 import style from './UserPortal.module.css'
-import HotelSidebar from "./Components/Sidebar/HotelSidebar"
-import FlightSidebar from "./Components/Sidebar/FlightSidebar"
-import CruiseSidebar from "./Components/Sidebar/CruiseSidebar"
-import PackageSidebar from "./Components/Sidebar/PackageSidebar"
-import HotelCard from "./Components/Cards/HotelCard"
-import FlightCard from "./Components/Cards/FlightCard"
-import CruiseCard from "./Components/Cards/CruiseCard"
-import PackageCard from "./Components/Cards/PackageCard"
+
 
 
 export default function UserPortal() {
-    const [currentActivity, setCurrentActivity] = useState("packages")
+    const [currentActivity, setCurrentActivity] = useState("aboutUs")
     let activity
 
     if (currentActivity === "aboutUs") {

@@ -1,15 +1,19 @@
-import React from "react"
-import './ContactUs.css'
+import React from 'react'
+import style from './ContactUsActivity.module.css'
+import twitterIcon from '../../../../assets/x.svg'
+import InstagramIcon from '../../../../assets/instagram.svg'
+import FacebookIcon from '../../../../assets/facebook.svg'
+import LinkedInIcon from '../../../../assets/linkedin.svg'
 
-export default function ServiceProviderPortal() {
+export default function ContactUsActivity() {
     return (
-        <div className="contact-container">
-            <div className="contact-card">
-                <h1 className="contact-title">Contact Us</h1>
-                <p className="contact-description">
+        <div className={style.contactContainer}>
+            <div className={style.contactCard}>
+                <h1 className={style.contactTitle}>Contact Us</h1>
+                <p className={style.contactDescription}>
                     Planning your next adventure? Reach out to us with any questions or travel inquiries!
                 </p>
-                <form className="contact-form">
+                <form className={style.contactForm}>
                     <label>
                         Full Name
                         <input type="text" placeholder="Your Name" required />
@@ -25,20 +29,20 @@ export default function ServiceProviderPortal() {
                     <button type="submit">Send Message</button>
                 </form>
 
-                <div className="social-section">
+                <div className={style.socialSection}>
                     <h3>Connect with us</h3>
-                    <div className="social-icons">
+                    <div className={style.socialIcons}>
                         <a href="https://facebook.com" target="_blank" rel="noreferrer">
-                            <img src="../assets/facebook.jpeg" alt="Facebook" className="social-img" />
+                            <img src={FacebookIcon} alt="Facebook" className={style.socialImg} />
                         </a>
                         <a href="https://instagram.com" target="_blank" rel="noreferrer">
-                            <img src="../assets/instagram.jpeg" alt="Instagram" className="social-img" />
+                            <img src={InstagramIcon} alt="Instagram" className={style.socialImg} />
                         </a>
                         <a href="https://twitter.com" target="_blank" rel="noreferrer">
-                            <img src="../assets/twitter.png" alt="Twitter" className="social-img" />
+                            <img src={twitterIcon} alt="Twitter" className={style.socialImg} />
                         </a>
                         <a href="https://linkedin.com" target="_blank" rel="noreferrer">
-                            <img src="../assets/linkedin.jpeg" alt="LinkedIn" className="social-img" />
+                            <img src={LinkedInIcon} alt="LinkedIn" className={style.socialImg} />
                         </a>
                     </div>
                 </div>

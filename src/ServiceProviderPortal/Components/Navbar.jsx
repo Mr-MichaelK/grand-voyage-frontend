@@ -5,7 +5,7 @@ import userProfile from '../../assets/person.svg'
 import GV_WonT_L_img from '../../assets/GV_WonT_L.png'
 
 
-export default function Navbar({ switchActivity }) {
+export default function Navbar({ switchActivity, openModal }) {
 
     return (
         <div className={style.navbar}>
@@ -21,8 +21,8 @@ export default function Navbar({ switchActivity }) {
             </div>
             <div className={style.profileContainer}>
                 <div className={style.profileIcon}>
-                    <img onClick={() => switchActivity("previousBookings")} className={style.contract} src={contract} alt='Contract SVG' />
-                    <span className={style.tooltip} data-tooltip="My Bookings">My Contracts</span>
+                    <img onClick={() => openModal()} className={style.contract} src={contract} alt='Contract SVG' />
+                    <span className={style.tooltip} data-tooltip="My Bookings">Create a Contract</span>
                 </div>
                 <div className={style.profileIcon}>
                     <img onClick={() => switchActivity("profile")} className={style.userProfile} src={userProfile} alt='User profile SVG' />
