@@ -18,12 +18,6 @@ export default function Navbar({ switchActivity }) {
                 <button onClick={() => switchActivity("service providers")}>Service Providers</button>
                 <button onClick={() => switchActivity("packages")}>Packages</button>
             </div>
-            <div className={style.profileContainer}>
-                <div className={style.profileIcon}>
-                    <img onClick={() => switchActivity("profile")} className={style.userProfile} src={userProfile} alt='User profile SVG' />
-                    <span className={style.tooltip} data-tooltip="My Activity">My Activity</span>
-                </div>
-            </div>
         </div>
     )
 }
