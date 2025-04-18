@@ -6,8 +6,6 @@ import ServicesActivity from "./Components/Activities/ServicesActivity/ServicesA
 import FlightsActivity from "./Components/Activities/FlightsActivity/FlightsActivity"
 import CruisesActivity from "./Components/Activities/CruisesActivity/CruisesActivity"
 import Contract from "./Components/Contract"
-import ServiceProviderSidebar from "./Components/Sidebar/ServiceProviderSidebar"
-import CruiseBody from "./Components/ActivityBodies/CruiseBody"
 
 
 export default function ServiceProviderPortal() {
