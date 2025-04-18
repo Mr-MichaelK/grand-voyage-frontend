@@ -1,0 +1,10 @@
+.serviceProvidersContainer {
+    display: flex;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .serviceProvidersContainer {
+        flex-direction: column;
+    }
+}

@@ -1,0 +1,10 @@
+.packagesContainer {
+    display: flex;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .contractsContainer {
+        flex-direction: column;
+    }
+}
