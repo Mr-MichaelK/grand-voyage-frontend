@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import style from './ActivitiesBody.module.css';
 import CreateCard from '../Cards/CreateCard';
 import CruiseCard from '../Cards/CruiseCard';
+import ExpandedCreateTravelCard from '../ExpandedCards/ExpandedCreateTravelCard';
 
 export default function CruiseBody() {
     const [cruises, setCruises] = useState([
@@ -28,18 +29,21 @@ export default function CruiseBody() {
     };
 
     return (
-        <div className={style.gridContainer}>
-            <div className={style.cardGrid}>
-                <CreateCard />
-                {cruises.map(cruise => (
-                    <CruiseCard
-                        key={cruise.id}
-                        cruise={cruise}
-                        onDelete={handleDelete}
-                        onEdit={handleEdit}
-                    />
-                ))}
+        <>
+            <div className={style.gridContainer}>
+                <div className={style.cardGrid}>
+                    <div onClick={() => document.getElementById("createTravelCard").showModal()}><CreateCard type="cruise" /></div>
+                    {cruises.map(cruise => (
+                        <CruiseCard
+                            key={cruise.id}
+                            cruise={cruise}
+                            onDelete={handleDelete}
+                            onEdit={handleEdit}
+                        />
+                    ))}
+                </div>
             </div>
-        </div>
+            <ExpandedCreateTravelCard id="createTravelCard"/>
+        </>
     );
 }

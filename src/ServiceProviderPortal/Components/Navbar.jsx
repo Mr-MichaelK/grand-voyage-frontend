@@ -14,7 +14,7 @@ export default function Navbar({ switchActivity, openModal }) {
                 <h1 className={style.companyName}>Grand Voyage</h1>
             </div>
             <div className={style.buttonContainer}>
-                <button onClick={() => switchActivity("services")}>Services</button>
+                <button onClick={() => switchActivity("services")}>Housing</button>
                 <button onClick={() => switchActivity("flights")}>Flights</button>
                 <button onClick={() => switchActivity("cruises")}>Cruises</button>
                 <button onClick={() => switchActivity("contactUs")}>Contact Us</button>
