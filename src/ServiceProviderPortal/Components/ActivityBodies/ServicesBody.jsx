@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import style from './ActivitiesBody.module.css';
 import CreateCard from '../Cards/CreateCard';
 import ServiceCard from '../Cards/ServiceCard';
+import ExpandedCreateHousingCard from '../ExpandedCards/ExpandedCreateHousingCard';
 
 export default function ServicesBody() {
     const [services, setServices] = useState([
@@ -35,18 +36,22 @@ export default function ServicesBody() {
     };
 
     return (
-        <div className={style.gridContainer}>
-            <div className={style.cardGrid}>
-                <CreateCard />
-                {services.map(service => (
-                    <ServiceCard
-                        key={service.id}
-                        service={service}
-                        onDelete={handleDeleteService}
-                        onEdit={handleEditService}
-                    />
-                ))}
+        <>
+            <div className={style.gridContainer}>
+                <div className={style.cardGrid}>
+                    <div onClick={() => document.getElementById("createHousingCard").showModal()}><CreateCard type="housing"/></div>
+                    {services.map(service => (
+                        <ServiceCard
+                            key={service.id}
+                            service={service}
+                            onDelete={handleDeleteService}
+                            onEdit={handleEditService}
+                        />
+                    ))}
+                </div>
             </div>
-        </div>
+            <ExpandedCreateHousingCard id="createHousingCard"/>
+        </>
+
     );
 }

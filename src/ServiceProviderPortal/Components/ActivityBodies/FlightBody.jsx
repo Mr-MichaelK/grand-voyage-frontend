@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import style from './ActivitiesBody.module.css';
 import CreateCard from '../Cards/CreateCard';
 import FlightCard from '../Cards/FlightCard';
+import ExpandedCreateTravelCard from '../ExpandedCards/ExpandedCreateTravelCard';
 
 export default function FlightBody() {
+
     const [flights, setFlights] = useState([
         {
             id: 1,
@@ -29,6 +31,17 @@ export default function FlightBody() {
         }
     ]);
 
+    function hasContract() {
+        return true; // TODO: Implement contract check logic
+    }
+
+    function handleCreateFlight() {
+        if (hasContract()) {
+            console.log('Creating a new flight...');
+            
+        }
+    }
+
     const handleDeleteFlight = (flightId) => {
         setFlights(flights.filter(flight => flight.id !== flightId));
     };
@@ -39,18 +52,22 @@ export default function FlightBody() {
     };
 
     return (
-        <div className={style.gridContainer}>
-            <div className={style.cardGrid}>
-                <CreateCard />
-                {flights.map(flight => (
-                    <FlightCard
-                        key={flight.id}
-                        flight={flight}
-                        onDelete={handleDeleteFlight}
-                        onEdit={handleEditFlight}
-                    />
-                ))}
+        <>
+            <div className={style.gridContainer}>
+                <div className={style.cardGrid}>
+                    <div onClick={() => document.getElementById("createTravelCard").showModal()}><CreateCard type="flight"/></div>
+                    {flights.map(flight => (
+                        <FlightCard
+                            key={flight.id}
+                            flight={flight}
+                            onDelete={handleDeleteFlight}
+                            onEdit={handleEditFlight}
+                        />
+                    ))}
+                </div>
             </div>
-        </div>
+            <ExpandedCreateTravelCard id="createTravelCard"/>
+        </>
+        
     );
 }
