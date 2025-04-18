@@ -13,6 +13,7 @@ import style from './UserPortal.module.css'
 
 
 export default function UserPortal() {
+    
     const [currentActivity, setCurrentActivity] = useState("aboutUs")
     let activity
 
