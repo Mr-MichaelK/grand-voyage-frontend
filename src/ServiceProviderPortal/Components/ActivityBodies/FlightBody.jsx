@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import style from './ActivitiesBody.module.css';
 import CreateCard from '../Cards/CreateCard';
 import FlightCard from '../Cards/FlightCard';
-import ExpandedCreateTravelCard from '../ExpandedCards/ExpandedCreateTravelCard';
+import ExpandedCreateFlightCard from '../ExpandedCards/ExpandedCreateFlightCard';
 
 export default function FlightBody() {
 
@@ -35,10 +35,10 @@ export default function FlightBody() {
         return true; // TODO: Implement contract check logic
     }
 
-    function handleCreateFlight() {
+    function handleCreateFlight(newFlight) {
         if (hasContract()) {
             console.log('Creating a new flight...');
-            
+            setFlights([...flights, { ...newFlight, id: flights.length + 1 }]);
         }
     }
 
@@ -55,7 +55,9 @@ export default function FlightBody() {
         <>
             <div className={style.gridContainer}>
                 <div className={style.cardGrid}>
-                    <div onClick={() => document.getElementById("createTravelCard").showModal()}><CreateCard type="flight"/></div>
+                    <div onClick={() => document.getElementById("createFlightCard").showModal()}>
+                        <CreateCard type="flight"/>
+                    </div>
                     {flights.map(flight => (
                         <FlightCard
                             key={flight.id}
@@ -66,7 +68,7 @@ export default function FlightBody() {
                     ))}
                 </div>
             </div>
-            <ExpandedCreateTravelCard id="createTravelCard"/>
+            <ExpandedCreateFlightCard id="createFlightCard" onAddCard={handleCreateFlight} />
         </>
         
     );
