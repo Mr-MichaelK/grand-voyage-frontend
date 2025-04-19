@@ -4,7 +4,7 @@ import SignUpPage from './SignUpPage/SignUpPage'
 import UserPortal from './UserPortal/UserPortal'
 import './App.css'
 import ServiceProviderPortal from './ServiceProviderPortal/ServiceProviderPortal'
-//import AdminPortal from './AdminPortal'
+//import AdminPortal from '../src/AdminPortal'
 
 function App() {
   const [currentPage, setCurrentPage] = useState('login');

@@ -1,12 +1,12 @@
 import React from 'react';
 import style from './ServiceProvidersActivity.module.css';
-import AdminPortalSidebar from '../../Sidebar/AdminPortalSidebar';
+import ServiceProviderSidebar from '../../Sidebar/ServiceProviderSidebar';
 import ServiceProvidersBody from '../../ActivityBodies/ServiceProvidersBody';
 
 export default function ServiceProvidersActivity() {
     return (
         <div className={style.serviceProvidersContainer}>
-            <AdminPortalSidebar />
+            <ServiceProviderSidebar />
             <ServiceProvidersBody />
         </div>
     );

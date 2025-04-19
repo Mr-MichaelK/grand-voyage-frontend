@@ -12,10 +12,26 @@
     border: 2px dashed #007bff;
     padding: 20px;
     cursor: pointer;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    text-align: center;
+    color: #007bff;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .createCard:hover {
+    background-color: #e9f2ff;
+    transform: scale(1.02);
   }
   
   .createPlus {
     font-size: 2rem;
     color: #007bff;
+  }
+  
+  .label {
+    margin-top: 0.5rem;
+    font-size: 1.1rem;
+    font-weight: 500;
   }
   

@@ -17,6 +17,7 @@ import styles from './ActivitiesBody.module.css';
 import FlightsCard from '../Cards/FlightsCard';
 import CreateCard from '../Cards/CreateCard';
 import ExpandedFlights from '../ExpandedCards/ExpandedFlights';
+import paris from '../../../assets/paris.jpeg'
 
 export default function FlightsBody() {
   const [flights, setFlights] = useState([
@@ -28,7 +29,7 @@ export default function FlightsBody() {
       date: '2025-06-20',
       time: '14:30',
       price: 950,
-      image: 'https://images.unsplash.com/photo-1523012878615-2b713d1d5a1a?auto=format&fit=crop&w=1470&q=80',
+      image: paris
     },
   ]);
 

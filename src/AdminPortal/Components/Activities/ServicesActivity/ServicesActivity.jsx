@@ -1,12 +1,12 @@
 import React from 'react';
 import style from './ServicesActivity.module.css';
-import AdminPortalSidebar from '../../Sidebar/AdminPortalSidebar';
+import ServiceSidebar from '../../Sidebar/ServiceSidebar';
 import ServicesBody from '../../ActivityBodies/ServicesBody';
 
 export default function ServicesActivity() {
     return (
         <div className={style.servicesContainer}>
-            <AdminPortalSidebar />
+            <ServiceSidebar />
             <ServicesBody />
         </div>
     );
