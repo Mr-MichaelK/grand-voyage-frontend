@@ -16,20 +16,11 @@ export default function AdminPortal() {
     if (currentActivity === "contracts") {
         activity = <ContractsActivity></ContractsActivity>
     }
-    else if (currentActivity === "cruises") {
-        activity =<CruisesActivity></CruisesActivity>
-    }
-    else if (currentActivity === "flights") {
-        activity = <FlightsActivity></FlightsActivity>
-    }
     else if (currentActivity === "packages") {
         activity = <PackagesActivity></PackagesActivity>
     }
     else if (currentActivity === "serviceproviders") {
         activity = <ServiceProvidersActivity></ServiceProvidersActivity>
-    }
-    else if (currentActivity === "services") {
-        activity = <ServicesActivity></ServicesActivity>
     }
     else if (currentActivity === "users") {
         activity = <UsersActivity></UsersActivity>
