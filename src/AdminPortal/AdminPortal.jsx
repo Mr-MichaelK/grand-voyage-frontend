@@ -1,11 +1,8 @@
 import React, {useState} from "react"
 import Navbar from "./Components/Navbar"
 import ContractsActivity from "./Components/Activities/ContractsActivity/ContractsActivity"
-import CruisesActivity from './Components/Activities/CruisesActivity/CruisesActivity'
-import FlightsActivity from './Components/Activities/FlightsActivity/FlightsActivity'
 import PackagesActivity from './Components/Activities/PackagesActivity/PackagesActivity'
 import ServiceProvidersActivity from './Components/Activities/ServiceProvidersActivity/ServiceProvidersActivity'
-import ServicesActivity from './Components/Activities/ServicesActivity/ServicesActivity'
 import UsersActivity from './Components/Activities/UsersActivity/UsersActivity'
 import './AdminPortal.module.css'
 
