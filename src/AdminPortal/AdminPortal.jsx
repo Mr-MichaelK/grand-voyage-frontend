@@ -13,26 +13,20 @@ import './AdminPortal.module.css'
 
 export default function AdminPortal() {
     
-    const [currentActivity, setCurrentActivity] = useState("aboutUs")
+    const [currentActivity, setCurrentActivity] = useState("users")
     let activity
 
-    if (currentActivity === "aboutUs") {
-        activity = <AboutUsActivity></AboutUsActivity>
+    if (currentActivity === "users") {
+        activity = <UsersActivity></UsersActivity>
     }
-    else if (currentActivity === "services") {
-        activity = <ServicesActivity></ServicesActivity>
-    }
-    else if (currentActivity === "packages") {
+    else if (currentActivity === "Packages") {
         activity = <PackagesActivity></PackagesActivity>
     }
-    else if (currentActivity === "flights") {
-        activity = <FlightsActivity></FlightsActivity>
+    else if (currentActivity === "ServiceProviders") {
+        activity = <ServiceProvidersActivity></ServiceProvidersActivity>
     }
-    else if (currentActivity === "cruises") {
-        activity =<CruisesActivity></CruisesActivity>
-    }
-    else if (currentActivity === "contactUs") {
-        activity = <ContactUsActivity></ContactUsActivity>
+    else if (currentActivity === "contracts") {
+        activity = <ContractsActivity></ContractsActivity>
     }
 
 
