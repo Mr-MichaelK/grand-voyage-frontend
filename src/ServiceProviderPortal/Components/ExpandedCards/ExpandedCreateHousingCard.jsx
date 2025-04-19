@@ -1,7 +1,7 @@
 import React from "react";
 import style from './ExpandedCreateHousingCard.module.css';
 
-export default function ExpandedCreateHousingCard({ id }) {
+export default function ExpandedCreateHousingCard({ id, onAddCard }) {
 
     function cancel() {
         clearInputs();
@@ -20,10 +20,23 @@ export default function ExpandedCreateHousingCard({ id }) {
         const price = document.getElementById("price").value;
         const roomNb = document.getElementById("roomNb").value;
         const location = document.getElementById("location").value;
-        const serviceType = document.querySelector("input[name='serviceType']:checked")?.value;
+        const serviceType = document.querySelector("input[name='serviceType']:checked").value;
+        const description = document.getElementById("description").value;
 
         // Add your submit logic here
         console.log({ title, price, roomNb, location, serviceType });
+
+        const newHousing = {
+            title,
+            price,
+            roomNb,
+            location,
+            serviceType,
+            description,
+            image: "https://ik.imagekit.io/tvlk/image/imageResource/2024/06/21/1718957715688-26316a3442d27400e8a6919f75237573.jpeg?tr=q-75"
+        }
+
+        onAddCard(newHousing);
         clearInputs();
         closeDialog();
     }
@@ -58,6 +71,10 @@ export default function ExpandedCreateHousingCard({ id }) {
                 <div className={style.inputGroup}>
                     <label htmlFor="location" className={style.label}>Location:</label>
                     <input id="location" name="location" type="text" className={style.input} />
+                </div>
+                <div className={style.inputGroup}>
+                    <label htmlFor="description" className={style.label}>Description:</label>
+                    <textarea id="description" name="description" className={style.textarea}></textarea>
                 </div>
                 <div className={style.inputGroup}>
                     <label htmlFor="roomNb" className={style.label}>Number of Rooms:</label>

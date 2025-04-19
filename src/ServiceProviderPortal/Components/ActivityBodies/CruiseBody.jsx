@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import style from './ActivitiesBody.module.css';
 import CreateCard from '../Cards/CreateCard';
 import CruiseCard from '../Cards/CruiseCard';
-import ExpandedCreateTravelCard from '../ExpandedCards/ExpandedCreateTravelCard';
+import ExpandedCreateCruiseCard from '../ExpandedCards/ExpandedCreateCruiseCard';
 
 export default function CruiseBody() {
     const [cruises, setCruises] = useState([
@@ -19,6 +19,10 @@ export default function CruiseBody() {
         }
     ]);
 
+    function hasContract() {
+        return true; // TODO: Implement contract check logic
+    }
+
     const handleDelete = (id) => {
         setCruises(cruises.filter(cruise => cruise.id !== id));
     };
@@ -28,11 +32,21 @@ export default function CruiseBody() {
         console.log('Editing cruise:', cruise);
     };
 
+    const handleAddCruise = (newCruise) => {
+        if (!hasContract()) {
+            console.error("No contract found. Cannot add cruise.");
+            return;
+        }
+        setCruises([...cruises, { ...newCruise, id: cruises.length + 1 }]);
+    };
+
     return (
         <>
             <div className={style.gridContainer}>
                 <div className={style.cardGrid}>
-                    <div onClick={() => document.getElementById("createTravelCard").showModal()}><CreateCard type="cruise" /></div>
+                    <div onClick={() => document.getElementById("createCruiseCard").showModal()}>
+                        <CreateCard type="cruise" />
+                    </div>
                     {cruises.map(cruise => (
                         <CruiseCard
                             key={cruise.id}
@@ -43,7 +57,7 @@ export default function CruiseBody() {
                     ))}
                 </div>
             </div>
-            <ExpandedCreateTravelCard id="createTravelCard"/>
+            <ExpandedCreateCruiseCard id="createCruiseCard" onAddCard={handleAddCruise} />
         </>
     );
 }

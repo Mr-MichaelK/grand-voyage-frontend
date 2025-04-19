@@ -26,6 +26,10 @@ export default function ServicesBody() {
         }
     ]);
 
+    function hasContract() {
+        return true; // TODO: Implement contract check logic
+    }
+
     const handleDeleteService = (serviceId) => {
         setServices(services.filter(service => service.id !== serviceId));
     };
@@ -34,6 +38,14 @@ export default function ServicesBody() {
         // TODO: Implement edit functionality
         console.log('Editing service:', service);
     };
+
+    const handleAddService = (newService) => {
+        if (!hasContract()) {
+            console.error("No contract found. Cannot add service.");
+            return;
+        }
+        setServices([...services, { ...newService, id: services.length + 1 }]);
+    }
 
     return (
         <>
@@ -50,7 +62,7 @@ export default function ServicesBody() {
                     ))}
                 </div>
             </div>
-            <ExpandedCreateHousingCard id="createHousingCard"/>
+            <ExpandedCreateHousingCard id="createHousingCard" onAddCard={handleAddService} />
         </>
 
     );
