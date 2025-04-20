@@ -1,8 +1,10 @@
 import React from 'react';
+import Billing from '../BillingActivity/BillingActivity';
 import styles from './AboutUsActivity.module.css';
 
 export default function AboutUsPage() {
   return (
+    <>
     <div className={styles.aboutPage}>
       {/* Hero Section */}
       <section className={styles.heroSection}>
@@ -71,5 +73,7 @@ export default function AboutUsPage() {
         </section>
       </section>
     </div>
+    <Billing id="billingModal" />
+    </>
   );
 };

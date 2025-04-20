@@ -8,6 +8,7 @@ import PackagesActivity from './Components/Activities/PackagesActivity/PackagesA
 import PreviousBookingsActivity from './Components/Activities/PreviousBookingsActivity/PreviousBookingsActivity'
 import ProfileActivity from './Components/Activities/ProfileActivity/ProfileActivity'
 import ServicesActivity from './Components/Activities/ServicesActivity/ServicesActivity'
+import BillingActivity from './Components/Activities/BillingActivity/BillingActivity'
 import style from './UserPortal.module.css'
 
 
@@ -40,6 +41,9 @@ export default function UserPortal() {
     }
     else if (currentActivity === "profile") {
         activity = <ProfileActivity></ProfileActivity>
+    }
+    else {
+        activity = <AboutUsActivity></AboutUsActivity>
     }
 
     return (

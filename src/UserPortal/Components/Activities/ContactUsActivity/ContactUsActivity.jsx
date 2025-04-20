@@ -4,9 +4,11 @@ import twitterIcon from '../../../../assets/x.svg'
 import InstagramIcon from '../../../../assets/instagram.svg'
 import FacebookIcon from '../../../../assets/facebook.svg'
 import LinkedInIcon from '../../../../assets/linkedin.svg'
+import Billing from '../BillingActivity/BillingActivity'
 
 export default function ContactUsActivity() {
     return (
+        <>
         <div className={style.contactContainer}>
             <div className={style.contactCard}>
                 <h1 className={style.contactTitle}>Contact Us</h1>
@@ -48,5 +50,7 @@ export default function ContactUsActivity() {
                 </div>
             </div>
         </div>
+        <Billing id="billingModal" />
+        </>
     )
 }

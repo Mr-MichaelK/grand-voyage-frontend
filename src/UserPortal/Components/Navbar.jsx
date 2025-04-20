@@ -2,6 +2,7 @@ import React from 'react'
 import style from './Navbar.module.css'
 import travelCase from '../../assets/travelCase.svg'
 import userProfile from '../../assets/person.svg'
+import billingIcon from '../../assets/billing.svg'
 import GV_WonT_L_img from '../../assets/GV_WonT_L.png'
 
 
@@ -22,6 +23,10 @@ export default function Navbar({ switchActivity }) {
                 <button onClick={() => switchActivity("contactUs")}>Contact Us</button>
             </div>
             <div className={style.profileContainer}>
+                <div className={style.profileIcon}>
+                    <img onClick={() => document.getElementById("billingModal").showModal()} className={style.travelCase} src={billingIcon} alt='Dollar Bill SVG' />
+                    <span className={style.tooltip} data-tooltip="My Billing">My Bookings</span>
+                </div>
                 <div className={style.profileIcon}>
                     <img onClick={() => switchActivity("previousBookings")} className={style.travelCase} src={travelCase} alt='Travel case SVG' />
                     <span className={style.tooltip} data-tooltip="My Bookings">My Bookings</span>

@@ -8,7 +8,7 @@ import AdminPortal from './AdminPortal/AdminPortal'
 
 function App() {
   
-  const [currentPage, setCurrentPage] = useState('login');
+  const [currentPage, setCurrentPage] = useState('userPortal');
 
   let page;
   if (currentPage === 'login') {
