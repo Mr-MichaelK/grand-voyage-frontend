@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import style from './ActivitiesBody.module.css';
 import CreateCard from '../Cards/CreateCard';
 import CruiseCard from '../Cards/CruiseCard';
-import ExpandedCreateCruiseCard from '../ExpandedCards/ExpandedCreateCruiseCard';
+import ExpandedCruise from '../ExpandedCards/ExpandedCruise';
+import ExpandedCreateCruiseCard from '../ExpandedCards/ExpandedCreateFlightCard';
 
 export default function CruiseBody() {
     const [cruises, setCruises] = useState([
@@ -19,8 +20,26 @@ export default function CruiseBody() {
         }
     ]);
 
+    const [editingCruise, setEditingCruise] = useState(null);
+
+    useEffect(() => {
+            if (editingCruise) {
+                const modal = document.getElementById("editCruiseModal");
+                if (modal) {
+                    modal.showModal();
+                }
+            }
+        }, [editingCruise]);
+
     function hasContract() {
         return true; // TODO: Implement contract check logic
+    }
+
+    function handleCreateCruise(newCruise) {
+        if (hasContract()) {
+            console.log('Creating a new cruise...');
+            setCruises([...cruises, { ...newCruise, id: cruises.length + 1 }]);
+        }
     }
 
     const handleDelete = (id) => {
@@ -28,16 +47,12 @@ export default function CruiseBody() {
     };
 
     const handleEdit = (cruise) => {
-        // TODO: Implement edit functionality
-        console.log('Editing cruise:', cruise);
+        setEditingCruise(cruise);
     };
 
-    const handleAddCruise = (newCruise) => {
-        if (!hasContract()) {
-            console.error("No contract found. Cannot add cruise.");
-            return;
-        }
-        setCruises([...cruises, { ...newCruise, id: cruises.length + 1 }]);
+    const handleSaveEdit = (updatedCruise) => {
+        setCruises(cruises.map(cruise => cruise.id === updatedCruise.id ? updatedCruise : cruise));
+        setEditingCruise(null);
     };
 
     return (
@@ -57,7 +72,15 @@ export default function CruiseBody() {
                     ))}
                 </div>
             </div>
-            <ExpandedCreateCruiseCard id="createCruiseCard" onAddCard={handleAddCruise} />
+            <ExpandedCreateCruiseCard id="createCruiseCard" onAddCard={handleCreateCruise} />
+            {editingCruise && (
+                <ExpandedCruise
+                    id="editCruiseModal"
+                    cruise={editingCruise}
+                    onSave={handleSaveEdit}
+                    onCancel={() => setEditingCruise(null)}
+                />
+            )}
         </>
     );
 }

@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import style from './ActivitiesBody.module.css';
 import CreateCard from '../Cards/CreateCard';
 import FlightCard from '../Cards/FlightCard';
 import ExpandedCreateFlightCard from '../ExpandedCards/ExpandedCreateFlightCard';
+import ExpandedFlight from '../ExpandedCards/ExpandedFlight';
 
 export default function FlightBody() {
 
@@ -31,6 +32,17 @@ export default function FlightBody() {
         }
     ]);
 
+    const [editingFlight, setEditingFlight] = useState(null);
+
+    useEffect(() => {
+        if (editingFlight) {
+            const modal = document.getElementById("editFlightModal");
+            if (modal) {
+                modal.showModal();
+            }
+        }
+    }, [editingFlight]);
+
     function hasContract() {
         return true; // TODO: Implement contract check logic
     }
@@ -46,9 +58,13 @@ export default function FlightBody() {
         setFlights(flights.filter(flight => flight.id !== flightId));
     };
 
-    const handleEditFlight = (flight) => {
-        // TODO: Implement edit functionality
-        console.log('Editing flight:', flight);
+    const handleEdit = (flight) => {
+        setEditingFlight(flight);
+    };
+
+    const handleSaveEdit = (updatedFlight) => {
+        setFlights(flights.map(flight => flight.id === updatedFlight.id ? updatedFlight : flight));
+        setEditingFlight(null);
     };
 
     return (
@@ -63,12 +79,20 @@ export default function FlightBody() {
                             key={flight.id}
                             flight={flight}
                             onDelete={handleDeleteFlight}
-                            onEdit={handleEditFlight}
+                            onEdit={handleEdit}
                         />
                     ))}
                 </div>
             </div>
             <ExpandedCreateFlightCard id="createFlightCard" onAddCard={handleCreateFlight} />
+            {editingFlight && (
+                <ExpandedFlight
+                    id="editFlightModal"
+                    flight={editingFlight}
+                    onSave={handleSaveEdit}
+                    onCancel={() => setEditingFlight(null)}
+                />
+            )}
         </>
         
     );
