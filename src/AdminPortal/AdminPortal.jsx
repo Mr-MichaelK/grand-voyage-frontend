@@ -6,8 +6,6 @@ import ServiceProvidersActivity from './Components/Activities/ServiceProvidersAc
 import UsersActivity from './Components/Activities/UsersActivity/UsersActivity'
 import './AdminPortal.module.css'
 
-
-
 export default function AdminPortal() {
     
     const [currentActivity, setCurrentActivity] = useState("users")
