@@ -3,12 +3,6 @@ import GV_BonW_img from '../assets/GV_BonW.jpg'
 import style from './SignUpPage.module.css'
 
 export default function SignUpPage(props) {
-    function isUserInDB(name, place) {
-        // query db to see if name is in the user / service provider table
-        // if place == null (user hasn't chosen between user and service provider)
-        // we will query both tables, else only the table selected in place
-        return false
-    }
 
     function isValidInputs() {
         return (
@@ -40,27 +34,106 @@ export default function SignUpPage(props) {
         }
     }
 
+    function isUser(email, password) {
+        /*
+        return fetch('http://localhost:8080/api/isUser', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email, password })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        });
+        */
+        return Promise.resolve(false); // temp stub
+    }
+
+    function isServiceProvider(email, password) {
+        /*
+        return fetch('http://localhost:8080/api/isServiceProvider', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email, password })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        });
+        */
+        return Promise.resolve(false); // temp stub
+    }
+
+    function accountExists(email, password) {
+        return Promise.all([
+            isUser(email, password),
+            isServiceProvider(email, password)
+        ]).then(([userExists, spExists]) => userExists || spExists);
+    }
+
     function createAccount() {
         const inputs = getInputs();
-        if (!isValidInputs()) {
-            return
-        }
-        // send inputs to db
+        const inputsJSON = JSON.stringify(inputs);
 
-        if (inputs.accountType === "user") {
-            // go to user portal
-            props.goToUserPortal()
+        if (!isValidInputs()) {
+            return;
         }
-        else {
-            // go to service provider portal
-            props.goToServiceProviderPortal()
-        }
+
+        accountExists(inputs.email, inputs.password).then(exists => {
+            if (exists) {
+                alert("Account already exists!");
+                return;
+            } else {
+                // send inputs to backend to create account
+                /*
+                fetch('http://localhost:8080/api/createAccount', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: inputsJSON
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Account creation failed');
+                    }
+                    return response.json();
+                })
+                .then(() => {
+                */
+                    if (inputs.accountType === "user") {
+                        // go to user portal
+                        props.goToUserPortal();
+                    } else {
+                        // go to service provider portal
+                        props.goToServiceProviderPortal();
+                    }
+                /*
+                })
+                .catch(error => {
+                    console.error('Error creating account:', error.message);
+                    alert('Failed to create account.');
+                });
+                */
+            }
+        }).catch(error => {
+            console.error('Error checking if account exists:', error.message);
+            alert('Something went wrong while checking account.');
+        });
     }
 
     function handleSignInClick() {
-        if (isUserInDB()) {
-            alert("Please choose a different username and try again!")
-        }
+        //if (isUserInDB()) {
+        //    alert("Please choose a different username and try again!")
+        //}
     }
 
     function getFirstName() {
@@ -237,10 +310,6 @@ export default function SignUpPage(props) {
         const email = getEmail()
         if (!email) {
             document.getElementById("email").setCustomValidity("Email cannot be empty!")
-            return false
-        }
-        else if (isUserInDB(email, getAccountType())) {
-            document.getElementById("email").setCustomValidity("Email is in use. Please use another email!")
             return false
         }
         else {
