@@ -4,6 +4,7 @@ import SignUpPage from './SignUpPage/SignUpPage'
 import UserPortal from './UserPortal/UserPortal'
 import './App.css'
 import ServiceProviderPortal from './ServiceProviderPortal/ServiceProviderPortal'
+import AdminPortal from './AdminPortal/AdminPortal'
 
 function App() {
   
