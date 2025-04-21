@@ -1,8 +1,24 @@
 import React from 'react';
 import styles from './ExpandedService.module.css';
 
-export default function ExpandedService({ serviceData, onClose }) {
+export default function ExpandedService({ serviceData, onClose, onSubmit, isBooked }) {
     if (!serviceData) return null;
+
+    const submitButton = !isBooked ? <button
+                                        type="button"
+                                        className={styles.primaryButton}
+                                        onClick={onSubmit}
+                                    >
+                                        Book Now
+                                    </button> 
+                                    : 
+                                    <button
+                                        type="button"
+                                        className={styles.primaryButton}
+                                        onClick={onSubmit}
+                                    >
+                                        Cancel Booking
+                                    </button>
 
     return (
         <div className={styles.modalContainer}>
@@ -84,14 +100,10 @@ export default function ExpandedService({ serviceData, onClose }) {
                                     className={styles.secondaryButton}
                                     onClick={onClose}
                                 >
-                                    Cancel
+                                    Close
                                 </button>
-                                <button
-                                    type="submit"
-                                    className={styles.primaryButton}
-                                >
-                                    Book Now
-                                </button>
+                                
+                                {submitButton}
                             </div>
                         </form>
                     </div>
