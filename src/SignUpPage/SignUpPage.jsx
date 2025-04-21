@@ -111,9 +111,13 @@ export default function SignUpPage(props) {
                 */
                     if (inputs.accountType === "user") {
                         // go to user portal
+                        localStorage.setItem("email", getEmail())
+                        localStorage.setItem("password", getPassword())
                         props.goToUserPortal();
                     } else {
                         // go to service provider portal
+                        localStorage.setItem("email", getEmail())
+                        localStorage.setItem("password", getPassword())
                         props.goToServiceProviderPortal();
                     }
                 /*

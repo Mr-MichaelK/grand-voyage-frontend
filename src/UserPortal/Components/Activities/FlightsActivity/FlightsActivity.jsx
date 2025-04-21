@@ -7,18 +7,17 @@ export default function FlightsActivity() {
     const [flightData, setFlightData] = useState([])
 
     const fetchFlightData = (filters) => {
-        /*fetch('http://localhost:8080/api/getCruises', { // Adjust the API endpoint as needed
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(filters),
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            setFlightData(data); // Update state with the fetched data
-          })
-          .catch((error) => console.error('Error fetching flight data:', error));*/
+        /*// Convert filters object to query string
+            const queryParams = new URLSearchParams(filters).toString();
+
+            fetch(`http://localhost:8080/api/getCruises?${queryParams}`, {
+              method: 'GET',
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                setFlightData(data); // Or setCruiseData, depending on what you meant
+              })
+              .catch((error) => console.error('Error fetching cruise data:', error));*/
           let data = {
             "flights": [
             {

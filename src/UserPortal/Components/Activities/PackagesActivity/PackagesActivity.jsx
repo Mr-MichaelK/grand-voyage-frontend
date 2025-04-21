@@ -7,18 +7,15 @@ export default function PackagesActivity() {
     const [packageData, setPackageData] = useState([]); // State to store package data
 
     const fetchPackageData = (filters) => {
-        /*fetch('http://localhost:8080/api/getCruises', { // Adjust the API endpoint as needed
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(filters),
-        })
+        /*const queryParams = new URLSearchParams(filters).toString();
+
+        fetch(`http://localhost:8080/api/getCruises?${queryParams}`)
           .then((response) => response.json())
           .then((data) => {
             setPackageData(data); // Update state with the fetched data
           })
-          .catch((error) => console.error('Error fetching package data:', error));*/
+          .catch((error) => console.error('Error fetching package data:', error));
+        */
         let data = {"packages": [
              {
               "packageName": "Tropical Island Escape",

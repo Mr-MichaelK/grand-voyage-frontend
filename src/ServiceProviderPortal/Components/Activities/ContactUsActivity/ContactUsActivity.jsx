@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react';
 import style from './ContactUsActivity.module.css'
 import twitterIcon from '../../../../assets/x.svg'
 import InstagramIcon from '../../../../assets/instagram.svg'
@@ -6,14 +6,24 @@ import FacebookIcon from '../../../../assets/facebook.svg'
 import LinkedInIcon from '../../../../assets/linkedin.svg'
 
 export default function ContactUsActivity() {
+    const formRef = useRef();
+
+    const handleClearForm = () => {
+      if (formRef.current) {
+        formRef.current.reset(); // Clears all inputs and textarea
+      }
+      alert("Your message has been sent successfully!"); // Alert to confirm message sent
+    };
     return (
+        <>
         <div className={style.contactContainer}>
             <div className={style.contactCard}>
                 <h1 className={style.contactTitle}>Contact Us</h1>
                 <p className={style.contactDescription}>
                     Planning your next adventure? Reach out to us with any questions or travel inquiries!
                 </p>
-                <form className={style.contactForm}>
+                
+                <form className={style.contactForm} ref={formRef}>
                     <label>
                         Full Name
                         <input type="text" placeholder="Your Name" required />
@@ -26,7 +36,9 @@ export default function ContactUsActivity() {
                         Message
                         <textarea placeholder="Write your message here..." rows="5" required />
                     </label>
-                    <button type="submit">Send Message</button>
+                    <button type="button" onClick={handleClearForm}>
+                        Send Message
+                    </button>
                 </form>
 
                 <div className={style.socialSection}>
@@ -48,5 +60,6 @@ export default function ContactUsActivity() {
                 </div>
             </div>
         </div>
+        </>
     )
 }

@@ -7,18 +7,15 @@ export default function ServicesActivity() {
     const [serviceData, setServiceData] = useState([]); // State to store service data
 
     const fetchServiceData = (filters) => {
-        /*fetch('http://localhost:8080/api/getCruises', { // Adjust the API endpoint as needed
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(filters),
-        })
+        /*const queryParams = new URLSearchParams(filters).toString();
+
+        fetch(`http://localhost:8080/api/getCruises?${queryParams}`)
           .then((response) => response.json())
           .then((data) => {
             setServiceData(data); // Update state with the fetched data
           })
-          .catch((error) => console.error('Error fetching service data:', error));*/
+          .catch((error) => console.error('Error fetching service data:', error));
+        */
           let data = {
             "services": [
                 {

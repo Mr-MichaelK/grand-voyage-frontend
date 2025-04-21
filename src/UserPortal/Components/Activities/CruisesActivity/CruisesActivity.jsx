@@ -8,18 +8,15 @@ export default function CruisesActivity() {
 
   // Fetch cruise data based on the filters (for now, let's assume we call an API here)
   const fetchCruiseData = (filters) => {
-    /*fetch('http://localhost:8080/api/getCruises', { // Adjust the API endpoint as needed
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(filters),
-    })
+    /*const queryParams = new URLSearchParams(filters).toString();
+
+    fetch(`http://localhost:8080/api/getCruises?${queryParams}`)
       .then((response) => response.json())
       .then((data) => {
         setCruiseData(data); // Update state with the fetched data
       })
-      .catch((error) => console.error('Error fetching cruise data:', error));*/
+      .catch((error) => console.error('Error fetching cruise data:', error));
+    */
       let data = {
         "cruises": [
           {
