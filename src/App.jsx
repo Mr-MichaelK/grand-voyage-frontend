@@ -4,11 +4,10 @@ import SignUpPage from './SignUpPage/SignUpPage'
 import UserPortal from './UserPortal/UserPortal'
 import './App.css'
 import ServiceProviderPortal from './ServiceProviderPortal/ServiceProviderPortal'
-//import AdminPortal from '../src/AdminPortal'
 
 function App() {
-  /*
-  const [currentPage, setCurrentPage] = useState('login');
+  
+  const [currentPage, setCurrentPage] = useState('userPortal');
 
   let page;
   if (currentPage === 'login') {
@@ -27,12 +26,11 @@ function App() {
   else if (currentPage === 'serviceProviderPortal') {
     page = <ServiceProviderPortal></ServiceProviderPortal>
   }
+  else if (currentPage === 'adminPortal') {
+    page = <AdminPortal></AdminPortal>
+  }
 
   return <>{page}</>;
 }
-  */
- return (
-  <AdminPortal />
- )
-}
+
 export default App

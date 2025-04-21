@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import style from './ActivitiesBody.module.css';
 import CreateCard from '../Cards/CreateCard';
 import ServiceCard from '../Cards/ServiceCard';
 import ExpandedCreateHousingCard from '../ExpandedCards/ExpandedCreateHousingCard';
+import ExpandedService from '../ExpandedCards/ExpandedServices';
 
 export default function ServicesBody() {
     const [services, setServices] = useState([
@@ -26,6 +27,17 @@ export default function ServicesBody() {
         }
     ]);
 
+    const [editingService, setEditingService] = useState(null);
+    
+    useEffect(() => {
+        if (editingService) {
+            const modal = document.getElementById("editServiceModal");
+            if (modal) {
+                modal.showModal();
+            }
+        }
+    }, [editingService]);
+
     function hasContract() {
         return true; // TODO: Implement contract check logic
     }
@@ -34,9 +46,13 @@ export default function ServicesBody() {
         setServices(services.filter(service => service.id !== serviceId));
     };
 
-    const handleEditService = (service) => {
-        // TODO: Implement edit functionality
-        console.log('Editing service:', service);
+    const handleEdit = (service) => {
+        setEditingService(service);
+    };
+
+    const handleSaveEdit = (updatedService) => {
+        setServices(services.map(service => service.id === updatedService.id ? updatedService : service));
+        setEditingService(null);
     };
 
     const handleAddService = (newService) => {
@@ -57,12 +73,20 @@ export default function ServicesBody() {
                             key={service.id}
                             service={service}
                             onDelete={handleDeleteService}
-                            onEdit={handleEditService}
+                            onEdit={handleEdit}
                         />
                     ))}
                 </div>
             </div>
             <ExpandedCreateHousingCard id="createHousingCard" onAddCard={handleAddService} />
+            {editingService && (
+                <ExpandedService
+                    id="editServiceModal"
+                    service={editingService}
+                    onSave={handleSaveEdit}
+                    onCancel={() => setEditingService(null)}
+                />
+            )}
         </>
 
     );
