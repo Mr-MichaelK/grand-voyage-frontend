@@ -33,83 +33,101 @@ export default function Billing({ id }) {
 
     return (
         <dialog id={id} className={style.dialog}>
-            <div>
-                <label htmlFor="paymentType">Payment Type:</label>
-                <select
-                    id="paymentType"
-                    name="paymentType"
-                    value={formData.paymentType}
-                    onChange={handleChange}
-                >
-                    <option value="creditCard">Credit Card</option>
-                    <option value="debitCard">Debit Card</option>
-                    <option value="cash">Cash (OMT / Whish)</option>
-                </select>
-            </div>
-
-            <div>
-                <label htmlFor="currency">Currency:</label>
-                <div>
-                    <label>
-                        <input
-                            type="radio"
-                            name="currency"
-                            value="LLP"
-                            checked={formData.currency === "LLP"}
-                            onChange={handleChange}
-                        />
-                        LLP
-                    </label>
-                    <label>
-                        <input
-                            type="radio"
-                            name="currency"
-                            value="USD"
-                            checked={formData.currency === "USD"}
-                            onChange={handleChange}
-                        />
-                        USD
-                    </label>
+            <form className={style.form}>
+                <div className={style.inputGroup}>
+                    <label htmlFor="paymentType" className={style.label}>Payment Type:</label>
+                    <select
+                        id="paymentType"
+                        name="paymentType"
+                        value={formData.paymentType}
+                        onChange={handleChange}
+                        className={style.input}
+                    >
+                        <option value="creditCard">Credit Card</option>
+                        <option value="debitCard">Debit Card</option>
+                        <option value="cash">Cash (OMT / Whish)</option>
+                    </select>
                 </div>
-            </div>
 
-            <div>
-                <label htmlFor="payerName">Payer Name:</label>
-                <input
-                    type="text"
-                    id="payerName"
-                    name="payerName"
-                    value={formData.payerName}
-                    onChange={handleChange}
-                />
-            </div>
+                <div className={style.inputGroup}>
+                    <label className={style.label}>Currency:</label>
+                    <div className={style.radioGroup}>
+                        <label className={style.radioLabel}>
+                            <input
+                                type="radio"
+                                name="currency"
+                                value="LLP"
+                                checked={formData.currency === "LLP"}
+                                onChange={handleChange}
+                            />
+                            LLP
+                        </label>
+                        <label className={style.radioLabel}>
+                            <input
+                                type="radio"
+                                name="currency"
+                                value="USD"
+                                checked={formData.currency === "USD"}
+                                onChange={handleChange}
+                            />
+                            USD
+                        </label>
+                    </div>
+                </div>
 
-            <div>
-                <label htmlFor="cardNumber">Card Number:</label>
-                <input
-                    type="number"
-                    id="cardNumber"
-                    name="cardNumber"
-                    value={formData.cardNumber}
-                    onChange={handleChange}
-                />
-            </div>
+                <div className={style.inputGroup}>
+                    <label htmlFor="payerName" className={style.label}>Payer Name:</label>
+                    <input
+                        type="text"
+                        id="payerName"
+                        name="payerName"
+                        value={formData.payerName}
+                        onChange={handleChange}
+                        className={style.input}
+                    />
+                </div>
 
-            <div>
-                <label htmlFor="billingAddress">Billing Address:</label>
-                <input
-                    type="text"
-                    id="billingAddress"
-                    name="billingAddress"
-                    value={formData.billingAddress}
-                    onChange={handleChange}
-                />
-            </div>
+                <div className={style.inputGroup}>
+                    <label htmlFor="cardNumber" className={style.label}>Card Number:</label>
+                    <input
+                        type="number"
+                        id="cardNumber"
+                        name="cardNumber"
+                        value={formData.cardNumber}
+                        onChange={handleChange}
+                        className={style.input}
+                    />
+                </div>
 
-            <div>
-                <button onClick={() => document.getElementById(id).close()}>Cancel</button>
-                <button onClick={handleSave}>Save</button>
-            </div>
+                <div className={style.inputGroup}>
+                    <label htmlFor="billingAddress" className={style.label}>Billing Address:</label>
+                    <input
+                        type="text"
+                        id="billingAddress"
+                        name="billingAddress"
+                        value={formData.billingAddress}
+                        onChange={handleChange}
+                        className={style.input}
+                    />
+                </div>
+
+                <div className={style.buttonContainer}>
+                    <button 
+                        type="button"
+                        onClick={() => document.getElementById(id).close()} 
+                        className={style.cancelButton}
+                    >
+                        Cancel
+                    </button>
+                    <button 
+                        type="button"
+                        onClick={handleSave}
+                        className={style.submitButton}
+                    >
+                        Save
+                    </button>
+                </div>
+            </form>
         </dialog>
     );
 }

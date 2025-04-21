@@ -7,6 +7,7 @@ import ServiceProviderPortal from './ServiceProviderPortal/ServiceProviderPortal
 import AdminPortal from './AdminPortal/AdminPortal'
 
 function App() {
+  /*
   
   const [currentPage, setCurrentPage] = useState('login');
 
@@ -32,6 +33,10 @@ function App() {
   }
 
   return <>{page}</>;
+  */
+ return(
+  <ServiceProviderPortal></ServiceProviderPortal>
+ )
 }
 
 export default App
