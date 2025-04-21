@@ -25,7 +25,7 @@ export default function Navbar({ switchActivity }) {
             <div className={style.profileContainer}>
                 <div className={style.profileIcon}>
                     <img onClick={() => document.getElementById("billingModal").showModal()} className={style.travelCase} src={billingIcon} alt='Dollar Bill SVG' />
-                    <span className={style.tooltip} data-tooltip="My Billing">My Bookings</span>
+                    <span className={style.tooltip} data-tooltip="My Billing">My Billing</span>
                 </div>
                 <div className={style.profileIcon}>
                     <img onClick={() => switchActivity("previousBookings")} className={style.travelCase} src={travelCase} alt='Travel case SVG' />

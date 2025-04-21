@@ -28,11 +28,69 @@ export default function LoginPage(props) {
 
     function isUser() {
         // if email and pass in user table return true
+        /*
+        function isUser(email, password) {
+            // change api call
+            fetch('http://localhost:8080/api/isUser', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ email, password })
+            })
+            .then(response => {
+              if (!response.ok) {
+                throw new Error('Network response was not ok');
+              }
+              return response.json(); // expecting boolean true/false
+            })
+            .then(isValid => {
+              if (isValid) {
+                localStorage.setItem('email', email); // Store email in local storage
+                localStorage.setItem('password', password); // Store password in local storage
+              } else {
+                console.log('Invalid email or password.');
+              }
+              return isValid; // Return the boolean value
+            })
+            .catch(error => {
+              console.error('Error checking user:', error.message);
+            });
+          } */
         return false // temp value
     }
 
     function isServiceProvider() {
         // if email and pass in service provider table return true
+        /*
+        function isUser(email, password) {
+            // change api call
+            fetch('http://localhost:8080/api/isUser', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ email, password })
+            })
+            .then(response => {
+              if (!response.ok) {
+                throw new Error('Network response was not ok');
+              }
+              return response.json(); // expecting boolean true/false
+            })
+            .then(isValid => {
+              if (isValid) {
+                localStorage.setItem('email', email); // Store email in local storage
+                localStorage.setItem('password', password); // Store password in local storage
+              } else {
+                console.log('Invalid email or password.');
+              }
+              return isValid; // Return the boolean value
+            })
+            .catch(error => {
+              console.error('Error checking user:', error.message);
+            });
+          } */
         return true
     }
 

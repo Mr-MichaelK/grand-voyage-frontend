@@ -13,6 +13,13 @@ const HotelCard = (props) => {
     setShowModal(false);
   };
 
+  const handleSubmit = () => {
+    // get the id and send it to the backend
+    // to book the hotel if isBooked is false
+    // and cancel the booking if isBooked is true
+    closeModal();
+  }
+
   return (
     <>
       <div className={styles.card}>
@@ -43,6 +50,8 @@ const HotelCard = (props) => {
         <ExpandedService 
           serviceData={props}
           onClose={closeModal}
+          onSubmit={handleSubmit}
+          isBooked={props.isBooked}
         />
       )}
     </>
