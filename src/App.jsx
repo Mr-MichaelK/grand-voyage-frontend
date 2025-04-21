@@ -35,7 +35,7 @@ function App() {
   return <>{page}</>;
   */
  return(
-  <ServiceProviderPortal></ServiceProviderPortal>
+  <UserPortal></UserPortal>
  )
 }
 
