@@ -30,6 +30,14 @@ export default function PreviousBookingsActivity(props) {
                 price: 114,
                 nights: 2,
                 imageUrl: "/murjan-palace.jpg",
+            },
+            {title: "Al Murjan Palace Hotel",
+                location: "Jounieh, Lebanon",
+                rating: 8.6,
+                reviewCount: 126,
+                price: 114,
+                nights: 2,
+                imageUrl: "/murjan-palace.jpg",
             }]
     }
     return (

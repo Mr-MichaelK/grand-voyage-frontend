@@ -55,12 +55,12 @@
     display: flex;
     gap: 15px;
     align-items: center;
-    margin: 10px 0;
 }
 
 .radioLabel {
     font-weight: 500;
     color: #333333;
+    margin-top: 10px;
 }
 
 .buttonContainer {
