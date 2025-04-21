@@ -60,6 +60,11 @@ export default function PackagesActivity() {
         }
         setPackageData(data.packages); // Update state with the fetched data
     }
+
+    useEffect(() => {
+        // For now, fetch data without filters or with default ones
+        fetchPackageData({});
+      }, []); // Empty dependency array to run once when the component mounts
     
     return (
         <div>
