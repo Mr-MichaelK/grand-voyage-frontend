@@ -28,7 +28,6 @@ export default function LoginPage(props) {
 
   function isUser() {
     // if email and pass in user table return true
-    /*
     function isUser(email, password) {
     return fetch('http://localhost:8080/UserLogin/ValidCredentials', { // Updated URL
         method: 'POST',
@@ -58,13 +57,12 @@ export default function LoginPage(props) {
         console.error('Error checking user:', error.message);
         return false;
     });
-} */
+} 
     return false // temp value
   }
 
   function isServiceProvider() {
     // if email and pass in service provider table return true
-    /*
     function isServiceProvider(email, password) {
 return fetch('http://localhost:8080/SPLogin/ValidCredentials', {
     method: 'POST',
@@ -98,7 +96,7 @@ return fetch('http://localhost:8080/SPLogin/ValidCredentials', {
     console.error('Error checking user:', error.message);
     return false;
 });
-} */
+} 
     return true
   }
 

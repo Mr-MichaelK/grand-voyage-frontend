@@ -35,7 +35,7 @@ export default function SignUpPage(props) {
     }
 
     function isUser(email, password) {
-        /*
+        
         return fetch('http://localhost:8080/userAccountCreation/createNewAccount', {
         method: 'POST',
         headers: {
@@ -68,12 +68,12 @@ export default function SignUpPage(props) {
         console.error("Error checking user existence:", error);
         return false; // Fail-safe
     });
-        */
+        
         return Promise.resolve(false); // temp stub
     }
 
     function isServiceProvider(email, password) {
-        /*
+        
         return fetch('http://localhost:8080/serviceProviderAccountCreation/createAccount', {
         method: 'POST',
         headers: {
@@ -101,7 +101,7 @@ export default function SignUpPage(props) {
         console.error("Error checking service provider existence:", error);
         return false; // Fail-safe
     });
-        */
+        
         return Promise.resolve(false); // temp stub
     }
 
