@@ -10,6 +10,7 @@ export default function CruisesBody({ cruiseData }) {
         {cruiseData.map((cruise, index) => (
           <CruiseCard
             key={index}
+            id={cruise.id}
             cruiseName={cruise.cruiseName}
             departurePort={cruise.departurePort}
             arrivalPort={cruise.arrivalPort}
@@ -19,6 +20,7 @@ export default function CruisesBody({ cruiseData }) {
             embarkationDate={cruise.embarkationDate}
             amenities={cruise.amenities}
             imageUrl={cruise.imageUrl}
+            isBooked={cruise.isBooked}
           />
         ))}
       </div>

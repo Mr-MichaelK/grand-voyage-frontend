@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './Card.module.css';
 import ExpandedCruise from '../Activities/ExpandedCards/ExpandedCruise';
 
 const CruiseCard = (props) => {
   const [showModal, setShowModal] = useState(false);
-  const [isBooked, setIsBooked] = useState(props.isBooked);
+  const [isBooked, setIsBooked] = useState(false);
+
+  useEffect(() => {
+    // This effect runs on mount and when props.id or props.isBooked changes
+    setIsBooked(props.isBooked);
+  }, [props.isBooked, props.id]);
 
   const openModal = () => {
     setShowModal(true);
@@ -14,59 +19,25 @@ const CruiseCard = (props) => {
     setShowModal(false);
   };
 
-  function bookListing(cruiseId) {
-    /*
-    fetch(`http://localhost:8080/api/hotels/book/${cruiseId}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Booking failed');
-      }
-      return response.json();
-    })
-    .then(data => {
-      console.log('Booking successful:', data);
-    })
-    .catch(error => {
-      console.error('Error booking hotel:', error);
+  const updateLocalStorageBooking = (cruiseId, bookingStatus) => {
+    try {
+      const storedCruises = JSON.parse(localStorage.getItem("cruiseListings")) || [];
+      const updatedCruises = storedCruises.map(cruise =>
+        cruise.id === cruiseId ? { ...cruise, isBooked: bookingStatus } : cruise
+      );
+      localStorage.setItem("cruiseListings", JSON.stringify(updatedCruises));
       
-    })*/};
-    
-  function cancelBooking(cruiseId) {
-    /*
-      fetch(`http://localhost:8080/api/hotels/cancel/${hotelId}`, {
-          method: 'DELETE',
-          headers: {
-          'Content-Type': 'application/json'
-          }
-      })
-      .then(response => {
-          if (!response.ok) {
-          throw new Error('Cancellation failed');
-          }
-          return response.json();
-      })
-      .then(data => {
-          console.log('Cancellation successful:', data);
-      })
-      .catch(error => {
-          console.error('Error cancelling booking:', error);
-      });
-      */
-  }
+      // Manually trigger storage event for the same window
+      window.dispatchEvent(new Event('storage'));
+    } catch (error) {
+      console.error("Error updating cruise booking status:", error);
+    }
+  };
 
   const handleSubmit = () => {
-    const id = props.id;
-    if (!isBooked) {
-      bookListing(id);
-    } else {
-      cancelBooking(id);
-    }
-    setIsBooked(!isBooked);
+    const newBookingStatus = !isBooked;
+    setIsBooked(newBookingStatus);
+    updateLocalStorageBooking(props.id, newBookingStatus);
     closeModal();
   };
 
@@ -100,7 +71,7 @@ const CruiseCard = (props) => {
               <div>Amenities: {props.amenities}</div>
             </div>
             <button className={styles.cardButton} onClick={openModal}>
-              {props.buttonLabel || 'View Cruise'}
+              {isBooked ? 'Cancel' : 'Book'}
             </button>
           </div>
         </div>
