@@ -32,7 +32,7 @@ function App() {
     page = <AdminPortal></AdminPortal>
   }
 
-  return <><UserPortal></UserPortal></>;
+  return <><ServiceProviderPortal></ServiceProviderPortal></>;
   
 }
 
