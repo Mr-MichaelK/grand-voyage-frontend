@@ -4,6 +4,8 @@ import ExpandedPackage from '../Activities/ExpandedCards/ExpandedPackage';
 
 const PackageCard = (props) => {
     const [showModal, setShowModal] = useState(false);
+    const [isBooked, setIsBooked] = useState(props.isBooked);
+    
 
     const openModal = () => {
         setShowModal(true);
@@ -12,6 +14,62 @@ const PackageCard = (props) => {
     const closeModal = () => {
         setShowModal(false);
     };
+
+    function bookListing(packageId) {
+        /*
+        fetch(`http://localhost:8080/api/hotels/book/${packageId}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Booking failed');
+          }
+          return response.json();
+        })
+        .then(data => {
+          console.log('Booking successful:', data);
+        })
+        .catch(error => {
+          console.error('Error booking hotel:', error);
+          
+        })*/};
+        
+      function cancelBooking(packageId) {
+        /*
+          fetch(`http://localhost:8080/api/hotels/cancel/${packageId}`, {
+              method: 'DELETE',
+              headers: {
+              'Content-Type': 'application/json'
+              }
+          })
+          .then(response => {
+              if (!response.ok) {
+              throw new Error('Cancellation failed');
+              }
+              return response.json();
+          })
+          .then(data => {
+              console.log('Cancellation successful:', data);
+          })
+          .catch(error => {
+              console.error('Error cancelling booking:', error);
+          });
+          */
+      }
+    
+      const handleSubmit = () => {
+        const id = props.id;
+        if (!isBooked) {
+          bookListing(id);
+        } else {
+          cancelBooking(id);
+        }
+        setIsBooked(!isBooked);
+        closeModal();
+      };
 
     return (
         <>
@@ -41,7 +99,7 @@ const PackageCard = (props) => {
                             <div>Includes: {props.inclusions}</div>
                         </div>
                         <button className={styles.cardButton} onClick={openModal}>
-                            {props.buttonLabel || 'Book Package'}
+                            {props.buttonLabel || 'View Package'}
                         </button>
                     </div>
                 </div>
@@ -50,6 +108,8 @@ const PackageCard = (props) => {
                 <ExpandedPackage 
                     packageData={props}
                     onClose={closeModal}
+                    onSubmit={handleSubmit}
+                    isBooked={isBooked}
                 />
             )}
         </>

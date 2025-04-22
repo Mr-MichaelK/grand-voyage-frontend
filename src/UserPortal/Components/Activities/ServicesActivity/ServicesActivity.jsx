@@ -18,43 +18,51 @@ export default function ServicesActivity() {
         */
           let data = {
             "services": [
-                {
-                  "id": 1,
-                  "hotelName": "Marriott Downtown",
-                  "hotelChain": "Marriott",
-                  "starRating": 5,
-                  "roomType": "Suite",
-                  "pricePerNight": 250,
-                  "amenities": ["Pool", "Gym", "WiFi"],
-                  "mealPlan": "All Inclusive",
-                  "imageUrl": "https://example.com/images/marriott.jpg",
-                  "location": "New York, NY"
-                },
-                {
-                  "id": 2,
-                  "hotelName": "Hilton Garden Inn",
-                  "hotelChain": "Hilton",
-                  "starRating": 4,
-                  "roomType": "Double",
-                  "pricePerNight": 180,
-                  "amenities": ["WiFi", "Gym"],
-                  "mealPlan": "Breakfast Included",
-                  "imageUrl": "https://example.com/images/hilton.jpg",
-                  "location": "Los Angeles, CA"
-                },
-                {
-                  "id": 3,
-                  "hotelName": "Hyatt Regency",
-                  "hotelChain": "Hyatt",
-                  "starRating": 5,
-                  "roomType": "Single",
-                  "pricePerNight": 200,
-                  "amenities": ["Pool", "WiFi"],
-                  "mealPlan": "Breakfast Included",
-                  "imageUrl": "https://example.com/images/hyatt.jpg",
-                  "location": "Chicago, IL"
-                }
-              ]
+              {
+                "id": 1,
+                "hotelName": "The Grand Horizon",
+                "hotelChain": "LuxuryStays",
+                "rating": 4.5,
+                "reviewCount": 1287,
+                "nights": 3,
+                "roomType": "Deluxe King Room",
+                "pricePerNight": 210.99,
+                "amenities": [
+                  "Free WiFi",
+                  "Swimming Pool",
+                  "Spa",
+                  "Gym",
+                  "Airport Shuttle",
+                  "Breakfast Included"
+                ],
+                "mealPlan": "Half Board",
+                "imageUrl": "https://example.com/images/grand-horizon.jpg",
+                "location": "Paris, France",
+                "isBooked": false
+              },
+              {
+                "id": 2,
+                "hotelName": "Seaside Escape",
+                "hotelChain": "OceanView Resorts",
+                "rating": 4.2,
+                "reviewCount": 842,
+                "nights": 5,
+                "roomType": "Ocean View Suite",
+                "pricePerNight": 180.75,
+                "amenities": [
+                  "Private Beach",
+                  "All-Inclusive",
+                  "Outdoor Pool",
+                  "Bar",
+                  "Pet Friendly"
+                ],
+                "mealPlan": "All Inclusive",
+                "imageUrl": "https://example.com/images/seaside-escape.jpg",
+                "location": "Santorini, Greece",
+                "isBooked": true
+              }
+            ]
+            
               
           }
           setServiceData(data.services); // Update state with the fetched data

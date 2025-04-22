@@ -4,6 +4,7 @@ import ExpandedFlight from '../Activities/ExpandedCards/ExpandedFlight';
 
 const FlightCard = (props) => {
     const [showModal, setShowModal] = useState(false);
+    const [isBooked, setIsBooked] = useState(props.isBooked);
 
     const openModal = () => {
         setShowModal(true);
@@ -12,6 +13,62 @@ const FlightCard = (props) => {
     const closeModal = () => {
         setShowModal(false);
     };
+
+    function bookListing(flightId) {
+        /*
+        fetch(`http://localhost:8080/api/hotels/book/${flightId}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Booking failed');
+          }
+          return response.json();
+        })
+        .then(data => {
+          console.log('Booking successful:', data);
+        })
+        .catch(error => {
+          console.error('Error booking hotel:', error);
+          
+        })*/};
+        
+      function cancelBooking(flightId) {
+        /*
+          fetch(`http://localhost:8080/api/hotels/cancel/${flightId}`, {
+              method: 'DELETE',
+              headers: {
+              'Content-Type': 'application/json'
+              }
+          })
+          .then(response => {
+              if (!response.ok) {
+              throw new Error('Cancellation failed');
+              }
+              return response.json();
+          })
+          .then(data => {
+              console.log('Cancellation successful:', data);
+          })
+          .catch(error => {
+              console.error('Error cancelling booking:', error);
+          });
+          */
+      }
+    
+      const handleSubmit = () => {
+        const id = props.id;
+        if (!isBooked) {
+          bookListing(id);
+        } else {
+          cancelBooking(id);
+        }
+        setIsBooked(!isBooked);
+        closeModal();
+      };
 
     return (
         <>
@@ -36,7 +93,7 @@ const FlightCard = (props) => {
                         <div className={styles.cardPrice}>US${props.price}</div>
                         <div className={styles.cardDetails}>{props.date}</div>
                         <button className={styles.cardButton} onClick={openModal}>
-                            {props.buttonLabel || 'Book Now'}
+                            {props.buttonLabel || 'View Deal'}
                         </button>
                     </div>
                 </div>
@@ -45,6 +102,8 @@ const FlightCard = (props) => {
                 <ExpandedFlight 
                     flightData={props}
                     onClose={closeModal}
+                    onSubmit={handleSubmit}
+                    isBooked={isBooked}
                 />
             )}
         </>

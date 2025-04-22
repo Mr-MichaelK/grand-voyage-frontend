@@ -1,29 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './ExpandedService.module.css';
 
 export default function ExpandedService({ serviceData, onClose, onSubmit, isBooked }) {
     if (!serviceData) return null;
-
-    const submitButton = !isBooked ? <button
-                                        type="button"
-                                        className={styles.primaryButton}
-                                        onClick={onSubmit}
-                                    >
-                                        Book Now
-                                    </button> 
-                                    : 
-                                    <button
-                                        type="button"
-                                        className={styles.primaryButton}
-                                        onClick={onSubmit}
-                                    >
-                                        Cancel Booking
-                                    </button>
-
+    const [guests, setGuests] = useState(2); // default value
+    
     return (
         <div className={styles.modalContainer}>
             <dialog className={styles.contractContainer} open>
-                <h1 className={styles.contractTitle}>{serviceData.title}</h1>
+                <h1 className={styles.contractTitle}>{serviceData.hotelName} - {serviceData.hotelChain}</h1>
 
                 <div className={styles.modalContent}>
                     <div className={styles.detailsSection}>
@@ -50,10 +35,10 @@ export default function ExpandedService({ serviceData, onClose, onSubmit, isBook
                         <div className={styles.detailRow}>
                             <span className={styles.detailLabel}>Amenities:</span>
                             <div className={styles.amenitiesList}>
-                                {serviceData.amenities?.split(',').map((amenity, index) => (
-                                    <span key={index} className={styles.amenityBadge}>
-                                        {amenity.trim()}
-                                    </span>
+                                {serviceData.amenities.map((amenity, index) => (
+                                <span key={index} className={styles.amenityBadge}>
+                                    {amenity}
+                                </span>
                                 ))}
                             </div>
                         </div>
@@ -66,7 +51,8 @@ export default function ExpandedService({ serviceData, onClose, onSubmit, isBook
                                     id="guests"
                                     min="1"
                                     max="4"
-                                    defaultValue="2"
+                                    value={guests}
+                                    onChange={(e) => setGuests(Number(e.target.value))}
                                 />
                             </div>
 
@@ -90,7 +76,7 @@ export default function ExpandedService({ serviceData, onClose, onSubmit, isBook
                             </div>
 
                             <div className={styles.priceSummary}>
-                                <h3>Total Price: US${serviceData.price}</h3>
+                                <h3>Total Price: US${(serviceData.pricePerNight * guests).toFixed(2)}</h3>
                                 <small>Per night, includes all taxes and fees</small>
                             </div>
 
@@ -102,9 +88,25 @@ export default function ExpandedService({ serviceData, onClose, onSubmit, isBook
                                 >
                                     Close
                                 </button>
-                                
-                                {submitButton}
-                            </div>
+
+                                {!isBooked ? (
+                                    <button
+                                    type="button"
+                                    className={styles.primaryButton}
+                                    onClick={onSubmit}
+                                    >
+                                    Book Now
+                                    </button>
+                                ) : (
+                                    <button
+                                    type="button"
+                                    className={styles.primaryButton}
+                                    onClick={onSubmit}
+                                    >
+                                    Cancel Booking
+                                    </button>
+                                )}
+                                </div>
                         </form>
                     </div>
                 </div>

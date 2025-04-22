@@ -4,6 +4,7 @@ import ExpandedService from '../Activities/ExpandedCards/ExpandedService';
 
 const HotelCard = (props) => {
   const [showModal, setShowModal] = useState(false);
+  const [isBooked, setIsBooked] = useState(props.isBooked);
 
   const openModal = () => {
     setShowModal(true);
@@ -13,12 +14,62 @@ const HotelCard = (props) => {
     setShowModal(false);
   };
 
-  const handleSubmit = () => {
-    // get the id and send it to the backend
-    // to book the hotel if isBooked is false
-    // and cancel the booking if isBooked is true
-    closeModal();
+  function bookListing(hotelId) {
+    /*
+    fetch(`http://localhost:8080/api/hotels/book/${hotelId}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Booking failed');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('Booking successful:', data);
+    })
+    .catch(error => {
+      console.error('Error booking hotel:', error);
+      
+    })*/};
+    
+  function cancelBooking(hotelId) {
+    /*
+      fetch(`http://localhost:8080/api/hotels/cancel/${hotelId}`, {
+          method: 'DELETE',
+          headers: {
+          'Content-Type': 'application/json'
+          }
+      })
+      .then(response => {
+          if (!response.ok) {
+          throw new Error('Cancellation failed');
+          }
+          return response.json();
+      })
+      .then(data => {
+          console.log('Cancellation successful:', data);
+      })
+      .catch(error => {
+          console.error('Error cancelling booking:', error);
+      });
+      */
   }
+
+  const handleSubmit = () => {
+    const id = props.id;
+    if (!isBooked) {
+      bookListing(id);
+    } else {
+      cancelBooking(id);
+    }
+    setIsBooked(!isBooked);
+    closeModal();
+  };
+  
 
   return (
     <>
@@ -51,7 +102,7 @@ const HotelCard = (props) => {
           serviceData={props}
           onClose={closeModal}
           onSubmit={handleSubmit}
-          isBooked={props.isBooked}
+          isBooked={isBooked}
         />
       )}
     </>

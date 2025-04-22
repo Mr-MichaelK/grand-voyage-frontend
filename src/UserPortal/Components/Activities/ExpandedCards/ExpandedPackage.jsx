@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './ExpandedPackage.module.css';
 
-export default function ExpandedPackage({ packageData, onClose }) {
+export default function ExpandedPackage({ packageData, onClose, onSubmit, isBooked }) {
     if (!packageData) return null;
 
     return (
@@ -81,12 +81,23 @@ export default function ExpandedPackage({ packageData, onClose }) {
                                 >
                                     Cancel
                                 </button>
-                                <button
-                                    type="submit"
-                                    className={styles.primaryButton}
-                                >
-                                    Book Package
-                                </button>
+                                {!isBooked ? (
+                                    <button
+                                        type="button"
+                                        className={styles.primaryButton}
+                                        onClick={onSubmit}
+                                    >
+                                        Book Now
+                                    </button>
+                                        ) : (
+                                    <button
+                                        type="button"
+                                        className={styles.primaryButton}
+                                        onClick={onSubmit}
+                                    >
+                                        Cancel Booking
+                                    </button>
+                                )}
                             </div>
                         </form>
                     </div>

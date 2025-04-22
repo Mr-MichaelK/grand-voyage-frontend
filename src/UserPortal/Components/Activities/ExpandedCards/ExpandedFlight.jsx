@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './ExpandedFlight.module.css';
 
-export default function ExpandedFlight({ flightData, onClose }) {
+export default function ExpandedFlight({ flightData, onClose, onSubmit, isBooked }) {
     if (!flightData) return null;
 
     return (
@@ -77,12 +77,23 @@ export default function ExpandedFlight({ flightData, onClose }) {
                                 >
                                     Cancel
                                 </button>
-                                <button
-                                    type="submit"
-                                    className={styles.primaryButton}
-                                >
-                                    Book Flight
-                                </button>
+                                {!isBooked ? (
+                                    <button
+                                        type="button"
+                                        className={styles.primaryButton}
+                                        onClick={onSubmit}
+                                    >
+                                        Book Now
+                                    </button>
+                                            ) : (
+                                    <button
+                                        type="button"
+                                        className={styles.primaryButton}
+                                        onClick={onSubmit}
+                                    >
+                                        Cancel Booking
+                                    </button>
+                                )}
                             </div>
                         </form>
                     </div>

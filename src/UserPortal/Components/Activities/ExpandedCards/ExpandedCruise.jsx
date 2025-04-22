@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './ExpandedCruise.module.css';
 
-export default function ExpandedCruise({ cruiseData, onClose }) {
+export default function ExpandedCruise({ cruiseData, onClose, onSubmit, isBooked }) {
     if (!cruiseData) return null;
 
     return (
@@ -74,12 +74,23 @@ export default function ExpandedCruise({ cruiseData, onClose }) {
                                 >
                                     Cancel
                                 </button>
-                                <button
-                                    type="submit"
-                                    className={styles.primaryButton}
-                                >
-                                    Confirm Booking
-                                </button>
+                                {!isBooked ? (
+                                    <button
+                                        type="button"
+                                        className={styles.primaryButton}
+                                        onClick={onSubmit}
+                                    >
+                                        Book Now
+                                    </button>
+                                        ) : (
+                                    <button
+                                        type="button"
+                                        className={styles.primaryButton}
+                                        onClick={onSubmit}
+                                    >
+                                        Cancel Booking
+                                    </button>
+                                )}
                             </div>
                         </form>
                     </div>

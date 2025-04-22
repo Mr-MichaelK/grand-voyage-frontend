@@ -10,15 +10,19 @@ export default function HotelsBody({ serviceData }) {
       {serviceData.map((hotel, index) => (
         <HotelCard
           key={index}
+          id={hotel.id}
           hotelName={hotel.hotelName}
           hotelChain={hotel.hotelChain}
-          starRating={hotel.starRating}
+          rating={hotel.rating}
+          reviewCount={hotel.reviewCount}
+          nights={hotel.nights}
           roomType={hotel.roomType}
           pricePerNight={hotel.pricePerNight}
           amenities={hotel.amenities}
           mealPlan={hotel.mealPlan}
           imageUrl={hotel.imageUrl}
           location={hotel.location}
+          isBooked={hotel.isBooked}
         />
       ))}
 
