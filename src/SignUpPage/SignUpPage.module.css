@@ -10,20 +10,20 @@
     display: flex;
     align-items: center;
     gap: 1rem;
-    z-index: 1000; 
-  }
-  
-  .logo {
+    z-index: 1000;
+}
+
+.logo {
     width: 100px;
     height: auto;
-  }
-  
-  .companyName {
+}
+
+.companyName {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-size: 1.8rem;
     margin: 0;
-  }
+}
 
 .container {
     background-color: #fff;
@@ -77,7 +77,7 @@
     width: 100%;
     max-width: 480px;
     margin: 0 auto;
-    margin-top: 4px;
+    margin-top: 1px;
 }
 
 .input label {
@@ -98,6 +98,13 @@
     color: #797979;
 }
 
+.input input:focus,
+.input select:focus {
+    outline: none;
+    background-color: #fff;
+    box-shadow: 0 0 0 2px rgba(16, 51, 247, 0.2);
+}
+
 .radio-group {
     display: flex;
     gap: 20px;
@@ -111,7 +118,6 @@
     gap: 8px;
     font-weight: 400;
     margin: 0;
-
 }
 
 input[type="radio"] {
@@ -158,6 +164,11 @@ input[type="radio"] {
     color: #1033f7;
     cursor: pointer;
     font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.login span:hover {
+    color: #0a25b5;
 }
 
 @media (max-width: 480px) {
@@ -182,7 +193,7 @@ input[type="radio"] {
         font-size: 1.1rem;
     }
 
-    .logo-header {
+    .logoHeader {
         top: 15px;
         left: 15px;
     }
@@ -191,7 +202,7 @@ input[type="radio"] {
         width: 40px;
     }
 
-    .company-name {
+    .companyName {
         font-size: 1.4rem;
     }
 

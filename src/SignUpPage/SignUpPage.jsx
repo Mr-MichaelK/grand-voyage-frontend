@@ -3,6 +3,15 @@ import GV_BonW_img from '../assets/GV_BonW.jpg'
 import style from './SignUpPage.module.css'
 
 export default function SignUpPage(props) {
+    // Initialize users in localStorage if not exists
+    React.useEffect(() => {
+        if (!localStorage.getItem('users')) {
+            localStorage.setItem('users', JSON.stringify([]));
+        }
+        if (!localStorage.getItem('serviceProviders')) {
+            localStorage.setItem('serviceProviders', JSON.stringify([]));
+        }
+    }, []);
 
     function isValidInputs() {
         return (
@@ -34,134 +43,49 @@ export default function SignUpPage(props) {
         }
     }
 
-    function isUser(email, password) {
+    function accountExists(email) {
+        const users = JSON.parse(localStorage.getItem('users') || '[]');
+        const serviceProviders = JSON.parse(localStorage.getItem('serviceProviders') || '[]');
         
-        return fetch('http://localhost:8080/userAccountCreation/createNewAccount', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            username: "temp_check",
-            first_name: "temp",
-            last_name: "check",
-            phone_number: 0,
-            email: email,
-            password: password,
-            address: "temp",
-            registration_date: new Date().toISOString(),
-            gender: "U",
-            nationality: "temp"
-        }),
-    })
-    .then(response => {
-        // Successful creation (shouldn't happen with dummy data)
-        if (response.ok) return false;
-        
-        // Account exists (409 Conflict) or other client error (4XX)
-        if (response.status >= 400 && response.status < 500) {
-            return true;
-        }
-        throw new Error('Server error during user check');
-    })
-    .catch(error => {
-        console.error("Error checking user existence:", error);
-        return false; // Fail-safe
-    });
-        
-        return Promise.resolve(false); // temp stub
-    }
-
-    function isServiceProvider(email, password) {
-        
-        return fetch('http://localhost:8080/serviceProviderAccountCreation/createAccount', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            company_name: "TEMP_CHECK",
-            company_email: "temp@check.com",
-            company_number: 0,
-            email: email,
-            password: password
-        }),
-    })
-    .then(response => {
-        // Successful creation (shouldn't happen with dummy data)
-        if (response.ok) return false;
-        
-        // Account exists (409 Conflict) or other client error (4XX)
-        if (response.status >= 400 && response.status < 500) {
-            return true;
-        }
-        throw new Error('Server error during service provider check');
-    })
-    .catch(error => {
-        console.error("Error checking service provider existence:", error);
-        return false; // Fail-safe
-    });
-        
-        return Promise.resolve(false); // temp stub
-    }
-
-    function accountExists(email, password) {
-        return Promise.all([
-            isUser(email, password),
-            isServiceProvider(email, password)
-        ]).then(([userExists, spExists]) => userExists || spExists);
+        return users.some(user => user.email === email) || 
+               serviceProviders.some(sp => sp.email === email);
     }
 
     function createAccount() {
         const inputs = getInputs();
-        const inputsJSON = JSON.stringify(inputs);
     
         if (!isValidInputs()) {
             return;
         }
     
-        accountExists(inputs.email, inputs.password).then(exists => {
-            if (exists) {
-                alert("Account already exists!");
-                return;
-            }
+        if (accountExists(inputs.email)) {
+            alert("Account already exists!");
+            return;
+        }
     
-            // Determine which endpoint to use based on account type
-            const endpoint = inputs.accountType === "user" 
-                ? 'http://localhost:8080/userAccountCreation/createNewAccount'
-                : 'http://localhost:8080/serviceProviderAccountCreation/createAccount';
+        const newAccount = {
+            ...inputs,
+            registration_date: new Date().toISOString()
+        };
     
-            fetch(endpoint, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: inputsJSON
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Account creation failed');
-                }
-                return response.json();
-            })
-            .then(() => {
-                localStorage.setItem("email", inputs.email);
-                localStorage.setItem("password", inputs.password);
-                
-                if (inputs.accountType === "user") {
-                    props.goToUserPortal();
-                } else {
-                    props.goToServiceProviderPortal();
-                }
-            })
-            .catch(error => {
-                console.error('Error creating account:', error.message);
-                alert('Failed to create account. Please try again.');
-            });
-        }).catch(error => {
-            console.error('Error checking if account exists:', error.message);
-            alert('Something went wrong while checking account.');
-        });
+        if (inputs.accountType === "user") {
+            const users = JSON.parse(localStorage.getItem('users') || '[]');
+            users.push(newAccount);
+            localStorage.setItem('users', JSON.stringify(users));
+        } else {
+            const serviceProviders = JSON.parse(localStorage.getItem('serviceProviders') || '[]');
+            serviceProviders.push(newAccount);
+            localStorage.setItem('serviceProviders', JSON.stringify(serviceProviders));
+        }
+    
+        localStorage.setItem("email", inputs.email);
+        localStorage.setItem("password", inputs.password);
+        
+        if (inputs.accountType === "user") {
+            props.goToUserPortal();
+        } else {
+            props.goToServiceProviderPortal();
+        }
     }
 
 function handleSignInClick() {
