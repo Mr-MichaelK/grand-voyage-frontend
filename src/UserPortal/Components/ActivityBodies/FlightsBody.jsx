@@ -10,6 +10,7 @@ export default function FlightsBody({ flightData }) {
       {flightData.map((flight, index) => (
         <FlightCard
           key={index}
+          id={flight.id}
           airline={flight.airline}
           departureAirport={flight.departureAirport}
           arrivalAirport={flight.arrivalAirport}
@@ -22,6 +23,7 @@ export default function FlightsBody({ flightData }) {
           mealsIncluded={flight.mealsIncluded}
           noLayover={flight.noLayover}
           flightNumber={flight.flightNumber}
+          isBooked={flight.isBooked} // Assuming this is part of the flight data
         />
       ))}
 

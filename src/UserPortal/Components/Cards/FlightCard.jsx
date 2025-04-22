@@ -1,74 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './Card.module.css';
 import ExpandedFlight from '../Activities/ExpandedCards/ExpandedFlight';
 
 const FlightCard = (props) => {
     const [showModal, setShowModal] = useState(false);
-    const [isBooked, setIsBooked] = useState(props.isBooked);
+    const [isBooked, setIsBooked] = useState(false);
 
-    const openModal = () => {
-        setShowModal(true);
-    };
-
-    const closeModal = () => {
-        setShowModal(false);
-    };
-
-    function bookListing(flightId) {
-        /*
-        fetch(`http://localhost:8080/api/hotels/book/${flightId}`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        })
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Booking failed');
-          }
-          return response.json();
-        })
-        .then(data => {
-          console.log('Booking successful:', data);
-        })
-        .catch(error => {
-          console.error('Error booking hotel:', error);
-          
-        })*/};
-        
-      function cancelBooking(flightId) {
-        /*
-          fetch(`http://localhost:8080/api/hotels/cancel/${flightId}`, {
-              method: 'DELETE',
-              headers: {
-              'Content-Type': 'application/json'
-              }
-          })
-          .then(response => {
-              if (!response.ok) {
-              throw new Error('Cancellation failed');
-              }
-              return response.json();
-          })
-          .then(data => {
-              console.log('Cancellation successful:', data);
-          })
-          .catch(error => {
-              console.error('Error cancelling booking:', error);
-          });
-          */
-      }
-    
-      const handleSubmit = () => {
-        const id = props.id;
-        if (!isBooked) {
-          bookListing(id);
-        } else {
-          cancelBooking(id);
+    useEffect(() => {
+        // On mount, check if there's local storage data for this flight
+        const storedFlights = JSON.parse(localStorage.getItem("flightListings")) || [];
+        const flight = storedFlights.find(flight => flight.id === props.id);
+        if (flight) {
+          setIsBooked(flight.isBooked);
         }
-        setIsBooked(!isBooked);
-        closeModal();
-      };
+      }, [props.id]);
+
+    const openModal = () => setShowModal(true);
+    const closeModal = () => setShowModal(false);
+
+    const updateLocalStorageBooking = (flightId, bookingStatus) => {
+      const storedFlights = JSON.parse(localStorage.getItem("flightListings")) || [];
+      const updatedFlights = storedFlights.map(flight =>
+        flight.id === flightId ? { ...flight, isBooked: bookingStatus } : flight
+      );
+      localStorage.setItem("flightListings", JSON.stringify(updatedFlights));
+    };
+
+    const handleSubmit = () => {
+      const newBookingStatus = !isBooked;
+      updateLocalStorageBooking(props.id, newBookingStatus);
+      setIsBooked(newBookingStatus);
+      closeModal();
+    };
 
     return (
         <>
@@ -93,7 +56,7 @@ const FlightCard = (props) => {
                         <div className={styles.cardPrice}>US${props.price}</div>
                         <div className={styles.cardDetails}>{props.date}</div>
                         <button className={styles.cardButton} onClick={openModal}>
-                            {props.buttonLabel || 'View Deal'}
+                            {isBooked ? 'Cancel' : 'Book'}
                         </button>
                     </div>
                 </div>
