@@ -10,6 +10,7 @@ export default function PackagesBody({ packageData }) {
       {packageData.map((pkg, index) => (
         <PackageCard
           key={index}
+          id={pkg.id}
           destination={pkg.destination}
           startDate={pkg.startDate}
           endDate={pkg.endDate}
@@ -19,6 +20,7 @@ export default function PackagesBody({ packageData }) {
           travelers={pkg.travelers}
           features={pkg.features}
           imageUrl={pkg.imageUrl}
+          isBooked={pkg.isBooked}
         />
       ))}
 
