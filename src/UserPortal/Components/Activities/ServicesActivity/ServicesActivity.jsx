@@ -5,6 +5,17 @@ import Billing from '../BillingActivity/BillingActivity';
 
 export default function ServicesActivity() {
     const [hotelListings, setHotelListings] = useState([]);
+    const [filters, setFilters] = useState({
+        hotelName: '',
+        hotelChain: '',
+        starRating: [],
+        roomTypes: [],
+        minPrice: '',
+        maxPrice: '',
+        amenities: [],
+        mealPlan: '',
+      });
+      
 
     const hardcodedData = {
         services: [
@@ -101,23 +112,53 @@ export default function ServicesActivity() {
         ]
     };
 
-    const fetchServiceData = () => {
-        const stored = localStorage.getItem('hotelListings');
-        if (stored) {
-            setHotelListings(JSON.parse(stored));
-        } else {
-            localStorage.setItem('hotelListings', JSON.stringify(hardcodedData.services));
-            setHotelListings(hardcodedData.services);
-        }
-    };
+    const filterHotels = (hotels, filters) => {
+        return hotels.filter(hotel => {
+          const {
+            hotelName, hotelChain, starRating,
+            roomTypes, minPrice, maxPrice,
+            amenities, mealPlan
+          } = filters;
+      
+          const matchesName = hotelName === '' || hotel.hotelName.toLowerCase().includes(hotelName.toLowerCase());
+          const matchesChain = hotelChain === '' || hotel.hotelChain.toLowerCase().includes(hotelChain.toLowerCase());
+          const matchesRating = starRating.length === 0 || starRating.includes(Math.floor(hotel.rating));
+          const matchesRoomType = roomTypes.length === 0 || roomTypes.includes(hotel.roomType);
+          const matchesMinPrice = minPrice === '' || hotel.pricePerNight >= parseFloat(minPrice);
+          const matchesMaxPrice = maxPrice === '' || hotel.pricePerNight <= parseFloat(maxPrice);
+          const matchesAmenities = amenities.length === 0 || amenities.every(a => hotel.amenities.includes(a));
+          const matchesMealPlan = mealPlan === '' || hotel.mealPlan === mealPlan;
+      
+          return (
+            matchesName &&
+            matchesChain &&
+            matchesRating &&
+            matchesRoomType &&
+            matchesMinPrice &&
+            matchesMaxPrice &&
+            matchesAmenities &&
+            matchesMealPlan
+          );
+        });
+      };
+      
 
-    useEffect(() => {
-        fetchServiceData();
-    }, []);
+      useEffect(() => {
+        const stored = localStorage.getItem('hotelListings');
+        const hotels = stored ? JSON.parse(stored) : hardcodedData.services;
+      
+        if (!stored) {
+          localStorage.setItem('hotelListings', JSON.stringify(hotels));
+        }
+      
+        const filtered = filterHotels(hotels, filters);
+        setHotelListings(filtered);
+      }, [filters]);
+      
 
     return (
         <>
-            <HotelSidebar setHotelFilters={fetchServiceData} />
+            <HotelSidebar setHotelFilters={setFilters} />
             <ServicesBody serviceData={hotelListings} />
             <Billing id="billingModal" />
         </>
