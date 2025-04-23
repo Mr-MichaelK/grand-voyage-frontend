@@ -6,24 +6,20 @@ import ExpandedCreateHousingCard from '../ExpandedCards/ExpandedCreateHousingCar
 import ExpandedService from '../ExpandedCards/ExpandedServices';
 
 export default function ServicesBody() {
+    const [allServices, setAllServices] = useState([]);
     const [services, setServices] = useState([]);
     const [editingService, setEditingService] = useState(null);
 
-    // Replace this with actual user email from your auth context or similar
-    const loggedInEmail = localStorage.getItem("email"); // Example SP email
+    const loggedInEmail = localStorage.getItem("email");
 
     useEffect(() => {
-        const fetchServices = () => {
-            const storedServices = localStorage.getItem('hotelListings');
-            if (storedServices) {
-                const parsedServices = JSON.parse(storedServices);
-                // Filter services by provider's email
-                const filteredServices = parsedServices.filter(service => service.providerEmail === loggedInEmail);
-                setServices(filteredServices);
-            }
-        };
-        fetchServices();
-    }, [loggedInEmail]); // Only fetch when the SP email changes
+        const storedServices = localStorage.getItem('hotelListings');
+        if (storedServices) {
+            const parsedServices = JSON.parse(storedServices);
+            setAllServices(parsedServices);
+            setServices(parsedServices.filter(service => service.providerEmail === loggedInEmail));
+        }
+    }, [loggedInEmail]);
 
     useEffect(() => {
         if (editingService) {
@@ -39,7 +35,10 @@ export default function ServicesBody() {
     }
 
     const handleDeleteService = (serviceId) => {
-        setServices(services.filter(service => service.id !== serviceId));
+        const updatedAllServices = allServices.filter(service => service.id !== serviceId);
+        setAllServices(updatedAllServices);
+        setServices(updatedAllServices.filter(service => service.providerEmail === loggedInEmail));
+        localStorage.setItem('hotelListings', JSON.stringify(updatedAllServices));
     };
 
     const handleEdit = (service) => {
@@ -47,16 +46,31 @@ export default function ServicesBody() {
     };
 
     const handleSaveEdit = (updatedService) => {
-        setServices(services.map(service => service.id === updatedService.id ? updatedService : service));
+        const updatedAllServices = allServices.map(service =>
+            service.id === updatedService.id ? updatedService : service
+        );
+        setAllServices(updatedAllServices);
+        setServices(updatedAllServices.filter(service => service.providerEmail === loggedInEmail));
+        localStorage.setItem('hotelListings', JSON.stringify(updatedAllServices));
         setEditingService(null);
     };
 
     const handleAddService = (newService) => {
         if (!hasContract()) {
-            console.error("No contract found. Cannot add service.");
+            alert("You need to sign a contract before adding services.");
             return;
         }
-        setServices([...services, { ...newService, id: services.length + 1 }]);
+
+        const newServiceWithEmail = {
+            ...newService,
+            providerEmail: loggedInEmail,
+            id: Date.now()
+        };
+
+        const updatedAllServices = [...allServices, newServiceWithEmail];
+        setAllServices(updatedAllServices);
+        setServices(updatedAllServices.filter(service => service.providerEmail === loggedInEmail));
+        localStorage.setItem('hotelListings', JSON.stringify(updatedAllServices));
     };
 
     return (
@@ -64,7 +78,7 @@ export default function ServicesBody() {
             <div className={style.gridContainer}>
                 <div className={style.cardGrid}>
                     <div onClick={() => document.getElementById("createHousingCard").showModal()}>
-                        <CreateCard type="housing"/>
+                        <CreateCard type="housing" />
                     </div>
                     {services.map(service => (
                         <ServiceCard

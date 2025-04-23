@@ -6,24 +6,20 @@ import ExpandedCreateFlightCard from '../ExpandedCards/ExpandedCreateFlightCard'
 import ExpandedFlight from '../ExpandedCards/ExpandedFlight';
 
 export default function FlightBody() {
+    const [allFlights, setAllFlights] = useState([]);
     const [flights, setFlights] = useState([]);
     const [editingFlight, setEditingFlight] = useState(null);
 
-    // Replace this with actual user email from your auth context or similar
-    const loggedInEmail = localStorage.getItem("email"); // Example SP email
+    const loggedInEmail = localStorage.getItem("email");
 
     useEffect(() => {
-        const fetchFlights = () => {
-            const storedFlights = localStorage.getItem('flightListings');
-            if (storedFlights) {
-                const parsedFlights = JSON.parse(storedFlights);
-                // Filter flights by provider's email
-                const filteredFlights = parsedFlights.filter(flight => flight.providerEmail === loggedInEmail);
-                setFlights(filteredFlights);
-            }
-        };
-        fetchFlights();
-    }, [loggedInEmail]); // Only fetch when the SP email changes
+        const storedFlights = localStorage.getItem('flightListings');
+        if (storedFlights) {
+            const parsedFlights = JSON.parse(storedFlights);
+            setAllFlights(parsedFlights);
+            setFlights(parsedFlights.filter(flight => flight.providerEmail === loggedInEmail));
+        }
+    }, [loggedInEmail]);
 
     useEffect(() => {
         if (editingFlight) {
@@ -35,18 +31,32 @@ export default function FlightBody() {
     }, [editingFlight]);
 
     function hasContract() {
-        return true; // TODO: Implement contract check logic
+        return true;
     }
 
     function handleCreateFlight(newFlight) {
-        if (hasContract()) {
-            console.log('Creating a new flight...');
-            setFlights([...flights, { ...newFlight, id: flights.length + 1 }]);
+        if (!hasContract()) {
+            alert("You need to sign a contract before adding flights.");
+            return;
         }
+
+        const newFlightWithEmail = {
+            ...newFlight,
+            providerEmail: loggedInEmail,
+            id: Date.now() // or UUID for better uniqueness
+        };
+
+        const updatedAllFlights = [...allFlights, newFlightWithEmail];
+        setAllFlights(updatedAllFlights);
+        setFlights(updatedAllFlights.filter(flight => flight.providerEmail === loggedInEmail));
+        localStorage.setItem('flightListings', JSON.stringify(updatedAllFlights));
     }
 
     const handleDeleteFlight = (flightId) => {
-        setFlights(flights.filter(flight => flight.id !== flightId));
+        const updatedAllFlights = allFlights.filter(flight => flight.id !== flightId);
+        setAllFlights(updatedAllFlights);
+        setFlights(updatedAllFlights.filter(flight => flight.providerEmail === loggedInEmail));
+        localStorage.setItem('flightListings', JSON.stringify(updatedAllFlights));
     };
 
     const handleEdit = (flight) => {
@@ -54,7 +64,12 @@ export default function FlightBody() {
     };
 
     const handleSaveEdit = (updatedFlight) => {
-        setFlights(flights.map(flight => flight.id === updatedFlight.id ? updatedFlight : flight));
+        const updatedAllFlights = allFlights.map(flight =>
+            flight.id === updatedFlight.id ? updatedFlight : flight
+        );
+        setAllFlights(updatedAllFlights);
+        setFlights(updatedAllFlights.filter(flight => flight.providerEmail === loggedInEmail));
+        localStorage.setItem('flightListings', JSON.stringify(updatedAllFlights));
         setEditingFlight(null);
     };
 

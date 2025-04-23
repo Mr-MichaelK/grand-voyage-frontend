@@ -3,27 +3,23 @@ import style from './ActivitiesBody.module.css';
 import CreateCard from '../Cards/CreateCard';
 import CruiseCard from '../Cards/CruiseCard';
 import ExpandedCruise from '../ExpandedCards/ExpandedCruise';
-import ExpandedCreateCruiseCard from '../ExpandedCards/ExpandedCreateFlightCard';
+import ExpandedCreateCruiseCard from '../ExpandedCards/ExpandedCreateFlightCard'; // Assuming it's correct name
 
 export default function CruiseBody() {
+    const [allCruises, setAllCruises] = useState([]);
     const [cruises, setCruises] = useState([]);
     const [editingCruise, setEditingCruise] = useState(null);
 
-    // Replace this with actual user email from your auth context or similar
-    const loggedInEmail = localStorage.getItem("email"); // Example SP email
+    const loggedInEmail = localStorage.getItem("email");
 
     useEffect(() => {
-        const fetchCruises = () => {
-            const storedCruises = localStorage.getItem('cruiseListings');
-            if (storedCruises) {
-                const parsedCruises = JSON.parse(storedCruises);
-                // Filter cruises by provider's email
-                const filteredCruises = parsedCruises.filter(cruise => cruise.providerEmail === loggedInEmail);
-                setCruises(filteredCruises);
-            }
-        };
-        fetchCruises();
-    }, [loggedInEmail]); // Only fetch when the SP email changes
+        const storedCruises = localStorage.getItem('cruiseListings');
+        if (storedCruises) {
+            const parsedCruises = JSON.parse(storedCruises);
+            setAllCruises(parsedCruises);
+            setCruises(parsedCruises.filter(cruise => cruise.providerEmail === loggedInEmail));
+        }
+    }, [loggedInEmail]);
 
     useEffect(() => {
         if (editingCruise) {
@@ -35,18 +31,32 @@ export default function CruiseBody() {
     }, [editingCruise]);
 
     function hasContract() {
-        return true; // TODO: Implement contract check logic
+        return true;
     }
 
     function handleCreateCruise(newCruise) {
-        if (hasContract()) {
-            console.log('Creating a new cruise...');
-            setCruises([...cruises, { ...newCruise, id: cruises.length + 1 }]);
+        if (!hasContract()) {
+            alert("You need to sign a contract before adding cruises.");
+            return;
         }
+
+        const newCruiseWithEmail = {
+            ...newCruise,
+            providerEmail: loggedInEmail,
+            id: Date.now()
+        };
+
+        const updatedAllCruises = [...allCruises, newCruiseWithEmail];
+        setAllCruises(updatedAllCruises);
+        setCruises(updatedAllCruises.filter(cruise => cruise.providerEmail === loggedInEmail));
+        localStorage.setItem('cruiseListings', JSON.stringify(updatedAllCruises));
     }
 
     const handleDelete = (id) => {
-        setCruises(cruises.filter(cruise => cruise.id !== id));
+        const updatedAllCruises = allCruises.filter(cruise => cruise.id !== id);
+        setAllCruises(updatedAllCruises);
+        setCruises(updatedAllCruises.filter(cruise => cruise.providerEmail === loggedInEmail));
+        localStorage.setItem('cruiseListings', JSON.stringify(updatedAllCruises));
     };
 
     const handleEdit = (cruise) => {
@@ -54,7 +64,12 @@ export default function CruiseBody() {
     };
 
     const handleSaveEdit = (updatedCruise) => {
-        setCruises(cruises.map(cruise => cruise.id === updatedCruise.id ? updatedCruise : cruise));
+        const updatedAllCruises = allCruises.map(cruise =>
+            cruise.id === updatedCruise.id ? updatedCruise : cruise
+        );
+        setAllCruises(updatedAllCruises);
+        setCruises(updatedAllCruises.filter(cruise => cruise.providerEmail === loggedInEmail));
+        localStorage.setItem('cruiseListings', JSON.stringify(updatedAllCruises));
         setEditingCruise(null);
     };
 
