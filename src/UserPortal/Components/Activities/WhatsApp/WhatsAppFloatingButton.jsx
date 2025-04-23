@@ -4,8 +4,9 @@ import styles from './WhatsAppFloatingButton.module.css';
 import { FaWhatsapp } from 'react-icons/fa'; // Install react-icons package first
 
 const WhatsAppFloatingButton = () => {
-  const phoneNumber = '1234567890'; 
-  const message = 'Hello! I need assistance with your services.'; 
+  // Replace with your actual business WhatsApp number (include country code)
+  const phoneNumber = '+1234567890'; 
+  const message = 'Hi! I would like to inquire about travel services.'; 
 
   const openWhatsApp = () => {
     window.open(
@@ -20,6 +21,7 @@ const WhatsAppFloatingButton = () => {
         className={styles.whatsappButton}
         onClick={openWhatsApp}
         aria-label="Contact us via WhatsApp"
+        title="Chat with us on WhatsApp"
       >
         <FaWhatsapp className={styles.icon} />
       </button>
