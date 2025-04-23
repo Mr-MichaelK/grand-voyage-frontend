@@ -24,7 +24,7 @@ export default function FlightsActivity() {
               mealsIncluded: true,
               noLayover: true,
               flightNumber: "EK958",
-              imageUrl: "https://example.com/emirates-plane.jpg",
+              imageUrl: "https://images.unsplash.com/photo-1569154941061-e231b4725ef1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
               isBooked: false
             },
             {
@@ -40,7 +40,7 @@ export default function FlightsActivity() {
               mealsIncluded: false,
               noLayover: true,
               flightNumber: "QR421",
-              imageUrl: "https://example.com/qatar-plane.jpg",
+              imageUrl: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
               isBooked: false
             },
             {
@@ -56,7 +56,7 @@ export default function FlightsActivity() {
               mealsIncluded: true,
               noLayover: true,
               flightNumber: "TK827",
-              imageUrl: "https://example.com/turkish-airlines.jpg",
+              imageUrl: "https://images.unsplash.com/photo-1556388158-158ea5ccacbd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
               isBooked: false
             },
             {
@@ -72,7 +72,7 @@ export default function FlightsActivity() {
               mealsIncluded: true,
               noLayover: false,
               flightNumber: "LH1301",
-              imageUrl: "https://example.com/lufthansa-plane.jpg",
+              imageUrl: "https://images.unsplash.com/photo-1570710891163-6d3b5c47248b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
               isBooked: false
             },
             {
@@ -88,7 +88,7 @@ export default function FlightsActivity() {
               mealsIncluded: true,
               noLayover: true,
               flightNumber: "ME211",
-              imageUrl: "https://example.com/mea-plane.jpg",
+              imageUrl: "https://images.unsplash.com/photo-1544016768-982d1554f0b9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
               isBooked: false
             },
             {
@@ -104,7 +104,7 @@ export default function FlightsActivity() {
               mealsIncluded: true,
               noLayover: false,
               flightNumber: "BA148",
-              imageUrl: "https://example.com/british-airways.jpg",
+              imageUrl: "https://images.unsplash.com/photo-1592985684811-6c0f98adb014?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
               isBooked: false
             }            
           ]
