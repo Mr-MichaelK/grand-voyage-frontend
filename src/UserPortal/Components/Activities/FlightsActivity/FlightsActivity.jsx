@@ -78,7 +78,7 @@ export default function FlightsActivity() {
             {
               id: 5,
               airline: "Middle East Airlines",
-              departureAirport: "Beirut–Rafic Hariri International Airport",
+              departureAirport: "Rafic Hariri International Airport",
               arrivalAirport: "Paris Charles de Gaulle Airport",
               flightDurationHours: 5,
               price: 475,

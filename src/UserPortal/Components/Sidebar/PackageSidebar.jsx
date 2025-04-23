@@ -54,23 +54,6 @@ export default function PackageFilterSidebar({ setPackageFilters }) {
         </div>
 
         <div className={styles.filterGroup}>
-          <label>Travel Dates</label>
-          <div className={styles.priceRange}>
-            <input
-              type="date"
-              value={filters.startDate}
-              onChange={(e) => handleChange('startDate', e.target.value)}
-            />
-            <span>-</span>
-            <input
-              type="date"
-              value={filters.endDate}
-              onChange={(e) => handleChange('endDate', e.target.value)}
-            />
-          </div>
-        </div>
-
-        <div className={styles.filterGroup}>
           <label>Package Type</label>
           <select
             className={styles.filterSelect}
