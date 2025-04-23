@@ -1,31 +1,66 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import style from './Contract.module.css';
 
 export default function Contract({ id }) {
-    function getInputs() {
-        return {
-            companyName: getCompanyName(),
-            serviceType: getServiceType(),
-            startDate: getStartDate(),
-            endDate: getEndDate(),
-            pricePerListing: getPricePerListing(),
-            commissionRate: getCommissionRate()
-        };
-    }
+    const [contract, setContract] = useState({
+        companyName: "",
+        serviceType: "",
+        startDate: "",
+        endDate: "",
+        pricePerListing: "",
+        commissionRate: ""
+    });
 
-    function clearInputs() {
-        const form = document.querySelector("form");
-        const inputs = form.querySelectorAll("input, select");
+    const email = localStorage.getItem("email");
 
-        inputs.forEach(input => {
-            if (input.type === "checkbox" || input.type === "radio") {
-                input.checked = false;
+    // Load existing contract on mount (or when modal opens)
+    useEffect(() => {
+        const modal = document.getElementById(id);
+        if (!modal) return;
+
+        const handleOpen = () => {
+            const storedContracts = JSON.parse(localStorage.getItem("contracts")) || {};
+            const saved = storedContracts[email];
+
+            if (saved) {
+                setContract(saved);
             } else {
-                input.value = "";
+                setContract({
+                    companyName: "",
+                    serviceType: "",
+                    startDate: "",
+                    endDate: "",
+                    pricePerListing: "",
+                    commissionRate: ""
+                });
             }
-        });
+        };
+
+        modal.addEventListener('show', handleOpen); // use 'show' to hook into the modal opening
+        return () => modal.removeEventListener('show', handleOpen);
+    }, [email, id]);
+
+    function updateField(e) {
+        setContract(prev => ({ ...prev, [e.target.name]: e.target.value }));
     }
 
+    function closeModal() {
+        document.getElementById(id).close();
+    }
+
+    function addContract(event) {
+        if (!isValidInputs(event)) {
+            return;
+        }
+
+        const storedContracts = JSON.parse(localStorage.getItem("contracts")) || {};
+        storedContracts[email] = contract;
+        localStorage.setItem("contracts", JSON.stringify(storedContracts));
+
+        closeModal();
+    }
+
+    // Keep your existing validation methods (you can still use getElementById for them)
     function getCompanyName() {
         return document.getElementById("companyName").value;
     }
@@ -152,62 +187,47 @@ export default function Contract({ id }) {
         return true;
     }
 
-    function closeModal() {
-        document.getElementById(id).close();
-    }
-
-    function addContract(event) {
-        if (!isValidInputs(event)) {
-            return;
-        }
-        const inputs = JSON.stringify(getInputs());
-
-        // send input to db
-
-        clearInputs();
-        closeModal();
-    }
-
     return (
         <dialog className={style.contractContainer} id={id}>
             <h1 className={style.contractTitle}>Contract Form</h1>
-            <form className={style.inputs} onSubmit={addContract}>
+            <form className={style.inputs}>
                 <div className={style.input}>
                     <label htmlFor='companyName'>Company Name:</label>
-                    <input onInput={setNameError} type='text' id='companyName' name='companyName'></input>
+                    <input value={contract.companyName} onInput={setNameError} onChange={updateField} type='text' id='companyName' name='companyName' />
                 </div>
                 <div className={style.input}>
                     <label htmlFor='serviceType'>Service Type:</label>
-                    <select onChange={setTypeError} id='serviceType' name='serviceType'>
+                    <select value={contract.serviceType} onChange={(e) => { updateField(e); setTypeError(); }} id='serviceType' name='serviceType'>
                         <option value="">--SELECT--</option>
-                        <option value={"housing"}>Housing</option>
-                        <option value={"flights"}>Flight Services</option>
-                        <option value={"cruises"}>Cruise Services</option>
+                        <option value="all">All</option>
+                        <option value="housing">Housing</option>
+                        <option value="flights">Flight Services</option>
+                        <option value="cruises">Cruise Services</option>
                     </select>
                 </div>
                 <div className={style.dateInputs}>
                     <div className={style.dateInput}>
                         <label htmlFor="startDate">Start Date:</label>
-                        <input onChange={setStartDateError} type="date" id='startDate' name='startDate'/>
+                        <input value={contract.startDate} onChange={(e) => { updateField(e); setStartDateError(); }} type="date" id='startDate' name='startDate' />
                     </div>
                     <div className={style.dateInput}>
                         <label htmlFor="endDate">End Date:</label>
-                        <input onChange={setEndDateError} type="date" id='endDate' name='endDate'/>
+                        <input value={contract.endDate} onChange={(e) => { updateField(e); setEndDateError(); }} type="date" id='endDate' name='endDate' />
                     </div>
                 </div>
                 <div className={style.priceInputs}>
                     <div className={style.priceInput}>
                         <label htmlFor="pricePerListing">Price Per Listing:</label>
-                        <input onInput={setPriceError} type="number" name='pricePerListing' id='pricePerListing' min={0} max={30000}/>
+                        <input value={contract.pricePerListing} onInput={setPriceError} onChange={updateField} type="number" name='pricePerListing' id='pricePerListing' min={0} max={30000} />
                     </div>
                     <div className={style.priceInput}>
                         <label htmlFor="commissionRate">Commission Rate (in %):</label>
-                        <input onInput={setCommissionRateError} type="number" id='commissionRate' name='commissionRate' min={5} max={100}/>
+                        <input value={contract.commissionRate} onInput={setCommissionRateError} onChange={updateField} type="number" id='commissionRate' name='commissionRate' min={5} max={100} />
                     </div>
                 </div>
                 <div className={style.buttons}>
                     <button type='button' onClick={closeModal}>Cancel</button>
-                    <button type='submit'>Submit</button>
+                    <button type='button' onClick={addContract}>Submit</button>
                 </div>
             </form>
         </dialog>

@@ -31,7 +31,8 @@ export default function FlightBody() {
     }, [editingFlight]);
 
     function hasContract() {
-        return true;
+        const contracts = JSON.parse(localStorage.getItem("contracts")) || {};
+        return contracts.hasOwnProperty(loggedInEmail);
     }
 
     function handleCreateFlight(newFlight) {

@@ -16,19 +16,19 @@ export default function ExpandedCreateCruiseCard({ id, onAddCard }) {
     }
 
     function submit() {
-        const title = document.getElementById("title").value;
+        const cruiseName = document.getElementById("title").value;
         const departurePort = document.getElementById("departurePlace").value;
         const arrivalPort = document.getElementById("arrivalPlace").value;
-        const departureDate = document.getElementById("departureDate").value;
+        const embarkationDate = document.getElementById("departureDate").value;
         const arrivalDate = document.getElementById("arrivalDate").value;
         const price = document.getElementById("price").value;
         const description = document.getElementById("description").value;
 
         const newCruise = {
-            title,
+            cruiseName,
             departurePort,
             arrivalPort,
-            departureDate,
+            embarkationDate,
             arrivalDate,
             price,
             description,

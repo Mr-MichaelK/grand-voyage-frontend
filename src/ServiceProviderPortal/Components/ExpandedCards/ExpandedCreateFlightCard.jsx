@@ -1,7 +1,7 @@
 import React from "react";
 import style from './ExpandedCreateTravelCard.module.css';
 
-export default function ExpandedCreateCruiseCard({ id, onAddCard }) {
+export default function ExpandedCreateFlightCard({ id, onAddCard }) {
 
     function cancel() {
         clearInputs();
@@ -16,16 +16,16 @@ export default function ExpandedCreateCruiseCard({ id, onAddCard }) {
     }
 
     function submit() {
-        const title = document.getElementById("title").value;
-        const departureAirport = document.getElementById("departurePlace").value;
-        const arrivalAirport = document.getElementById("arrivalPlace").value;
-        const departureDate = document.getElementById("departureDate").value;
-        const arrivalDate = document.getElementById("arrivalDate").value;
-        const price = document.getElementById("price").value;
-        const description = document.getElementById("description").value;
+        const airline = document.getElementById("Ftitle").value;
+        const departureAirport = document.getElementById("FdeparturePlace").value;
+        const arrivalAirport = document.getElementById("FarrivalPlace").value;
+        const departureDate = document.getElementById("FdepartureDate").value;
+        const arrivalDate = document.getElementById("FarrivalDate").value;
+        const price = document.getElementById("Fprice").value;
+        const description = document.getElementById("Fdescription").value;
 
         const newCruise = {
-            title,
+            airline,
             departureAirport,
             arrivalAirport,
             departureDate,
@@ -53,31 +53,31 @@ export default function ExpandedCreateCruiseCard({ id, onAddCard }) {
             <form className={style.form}>
                 <div className={style.inputGroup}>
                     <label htmlFor="title" className={style.label}>Title:</label>
-                    <input id="title" name="title" type="text" className={style.input} />
+                    <input id="Ftitle" name="title" type="text" className={style.input} />
                 </div>
                 <div className={style.inputGroup}>
                     <label htmlFor="departurePlace" className={style.label}>Departure Port:</label>
-                    <input id="departurePlace" name="departurePlace" type="text" className={style.input} />
+                    <input id="FdeparturePlace" name="departurePlace" type="text" className={style.input} />
                 </div>
                 <div className={style.inputGroup}>
                     <label htmlFor="arrivalPlace" className={style.label}>Destination:</label>
-                    <input id="arrivalPlace" name="arrivalPlace" type="text" className={style.input} />
+                    <input id="FarrivalPlace" name="arrivalPlace" type="text" className={style.input} />
                 </div>
                 <div className={style.inputGroup}>
                     <label htmlFor="departureDate" className={style.label}>Departure Date:</label>
-                    <input id="departureDate" name="departureDate" type="date" className={style.input} />
+                    <input id="FdepartureDate" name="departureDate" type="date" className={style.input} />
                 </div>
                 <div className={style.inputGroup}>
                     <label htmlFor="arrivalDate" className={style.label}>Arrival Date:</label>
-                    <input id="arrivalDate" name="arrivalDate" type="date" className={style.input} />
+                    <input id="FarrivalDate" name="arrivalDate" type="date" className={style.input} />
                 </div>
                 <div className={style.inputGroup}>
                     <label htmlFor="price" className={style.label}>Price:</label>
-                    <input id="price" name="price" type="number" className={style.input} />
+                    <input id="Fprice" name="price" type="number" className={style.input} />
                 </div>
                 <div className={style.inputGroup}>
                     <label htmlFor="description" className={style.label}>Description:</label>
-                    <textarea id="description" name="description" className={style.textarea}></textarea>
+                    <textarea id="Fdescription" name="description" className={style.textarea}></textarea>
                 </div>
                 <div className={style.buttonContainer}>
                     <button onClick={cancel} type="button" className={style.cancelButton}>Cancel</button>

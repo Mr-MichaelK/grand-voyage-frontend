@@ -31,7 +31,8 @@ export default function CruiseBody() {
     }, [editingCruise]);
 
     function hasContract() {
-        return true;
+        const contracts = JSON.parse(localStorage.getItem("contracts")) || {};
+        return contracts.hasOwnProperty(loggedInEmail);
     }
 
     function handleCreateCruise(newCruise) {

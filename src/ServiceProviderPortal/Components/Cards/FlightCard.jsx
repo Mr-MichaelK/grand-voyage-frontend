@@ -14,13 +14,13 @@ export default function FlightCard({ flight, onDelete, onEdit }) {
             
             <div className={styles.cardContent}>
                 <div className={styles.cardInfo}>
-                    <h3 className={styles.cardTitle}>{flight.title}</h3>
+                    <h3 className={styles.cardTitle}>{flight.airline}</h3>
                     <p className={styles.cardSubtitle}>
                         {flight.departureAirport} → {flight.arrivalAirport}
                     </p>
                     <div className={styles.cardMeta}>
-                        <span className={styles.cardMetaMain}>{flight.duration}</span>
-                        <span className={styles.cardMetaSecondary}>{flight.class}</span>
+                        <span className={styles.cardMetaMain}>{flight.flightDurationHours}</span>
+                        <span className={styles.cardMetaSecondary}>{flight.cabinClass}</span>
                     </div>
                 </div>
 

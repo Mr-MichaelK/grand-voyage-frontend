@@ -31,7 +31,8 @@ export default function ServicesBody() {
     }, [editingService]);
 
     function hasContract() {
-        return true; // TODO: Implement contract check logic
+        const contracts = JSON.parse(localStorage.getItem("contracts")) || {};
+        return contracts.hasOwnProperty(loggedInEmail);
     }
 
     const handleDeleteService = (serviceId) => {

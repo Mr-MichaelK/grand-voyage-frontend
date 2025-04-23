@@ -14,7 +14,7 @@ export default function CruiseCard({ cruise, onDelete, onEdit }) {
             
             <div className={styles.cardContent}>
                 <div className={styles.cardInfo}>
-                    <h3 className={styles.cardTitle}>{cruise.title}</h3>
+                    <h3 className={styles.cardTitle}>{cruise.cruiseName}</h3>
                     <p className={styles.cardSubtitle}>
                         {cruise.departurePort} → {cruise.destination}
                     </p>
