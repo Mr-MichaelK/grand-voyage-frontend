@@ -54,21 +54,6 @@ export default function HotelSidebar({ setHotelFilters }) {
         </div>
 
         <div className={styles.filterGroup}>
-          <label>Hotel Chain</label>
-          <select
-            className={styles.filterSelect}
-            name="hotelChain"
-            value={filters.hotelChain}
-            onChange={handleInputChange}
-          >
-            <option value="">Any Chain</option>
-            <option value="Hilton">Hilton</option>
-            <option value="Marriott">Marriott</option>
-            <option value="Hyatt">Hyatt</option>
-          </select>
-        </div>
-
-        <div className={styles.filterGroup}>
           <label>Star Rating</label>
           <div className={styles.checkboxGroup}>
             {[1, 2, 3, 4, 5].map(star => (
@@ -80,23 +65,6 @@ export default function HotelSidebar({ setHotelFilters }) {
                   onChange={(e) => handleCheckboxChange(e, 'starRating')}
                 />
                 {star} Star{star !== 1 ? 's' : ''}
-              </label>
-            ))}
-          </div>
-        </div>
-
-        <div className={styles.filterGroup}>
-          <label>Room Type</label>
-          <div className={styles.checkboxGroup}>
-            {['Single', 'Double', 'Suite'].map(type => (
-              <label key={type}>
-                <input
-                  type="checkbox"
-                  value={type}
-                  checked={filters.roomTypes.includes(type)}
-                  onChange={(e) => handleCheckboxChange(e, 'roomTypes')}
-                />
-                {type}
               </label>
             ))}
           </div>

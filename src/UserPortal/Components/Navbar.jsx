@@ -16,7 +16,7 @@ export default function Navbar({ switchActivity }) {
             </div>
             <div className={style.buttonContainer}>
                 <button onClick={() => switchActivity("aboutUs")}>About Us</button>
-                <button onClick={() => switchActivity("services")}>Services</button>
+                <button onClick={() => switchActivity("services")}>Housing</button>
                 <button onClick={() => switchActivity("packages")}>Packages</button>
                 <button onClick={() => switchActivity("flights")}>Flights</button>
                 <button onClick={() => switchActivity("cruises")}>Cruises</button>

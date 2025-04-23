@@ -53,8 +53,10 @@ export default function FlightSidebar({ onApplyFilters }) {
                         <option value="">Any Airline</option>
                         <option>Emirates</option>
                         <option>Qatar Airways</option>
-                        <option>Delta</option>
+                        <option>Turkish Airlines</option>
                         <option>Lufthansa</option>
+                        <option>Middle East Airlines</option>
+                        <option>British Airways</option>
                     </select>
                 </div>
 

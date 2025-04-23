@@ -18,7 +18,7 @@ const hardcodedData = {
       price: 2999,
       travelers: 2,
       features: ["Free Cancellation", "Airport Transfers"],
-      imageUrl: "https://example.com/images/maldives-package.jpg"
+      imageUrl: "https://images.unsplash.com/photo-1573843981267-be1999ff37cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
     },
     {
       id: 2,
@@ -32,7 +32,7 @@ const hardcodedData = {
       price: 4590,
       travelers: 4,
       features: ["Guided Tours", "Free Cancellation"],
-      imageUrl: "https://example.com/images/europe-package.jpg"
+      imageUrl: "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
     },
     {
       id: 3,
@@ -46,7 +46,7 @@ const hardcodedData = {
       price: 890,
       travelers: 1,
       features: ["Free Cancellation"],
-      imageUrl: "https://example.com/images/nyc-package.jpg"
+      imageUrl: "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
     },
     {
       id: 4,
@@ -60,7 +60,7 @@ const hardcodedData = {
       price: 3290,
       travelers: 2,
       features: ["Guided Safari", "All Meals Included"],
-      imageUrl: "https://images.unsplash.com/photo-1583132333692-2a9125bbd82b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
+      imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPIeHDVEAX0bUGqg3GYmlbS6l5fQfuFKkjXA&s"
     },
     {
       id: 5,
@@ -74,7 +74,7 @@ const hardcodedData = {
       price: 3850,
       travelers: 2,
       features: ["Ski Pass Included", "Spa Access"],
-      imageUrl: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
+      imageUrl: "https://www.travelandleisure.com/thmb/F3V1ei2YrUH4Qd_fvSgkAneZ4R8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/TAL-header-zermatt-switzerland-ZERMATT0123-08b7127082434b9f83db57251c051c1b.jpg"
     },
     {
       id: 6,
@@ -88,7 +88,7 @@ const hardcodedData = {
       price: 2475,
       travelers: 2,
       features: ["Yoga Classes", "Nature Hikes", "Organic Meals"],
-      imageUrl: "https://images.unsplash.com/photo-1593032465175-4be24e04ed24?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
+      imageUrl: "https://b1088268.smushcdn.com/1088268/wp-content/uploads/2023/03/costa-rica-beach-Cahuita-National-Park.jpg?lossy=2&strip=1&webp=1"
     }    
   ]
 };
