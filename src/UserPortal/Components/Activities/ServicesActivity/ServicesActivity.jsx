@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import HotelSidebar from '../../Sidebar/HotelSidebar';
 import ServicesBody from '../../ActivityBodies/ServicesBody';
 import Billing from '../BillingActivity/BillingActivity';
+import WhatsAppFloatingButton from '../WhatsApp/WhatsAppFloatingButton';
 
 export default function ServicesActivity() {
     const [hotelListings, setHotelListings] = useState([]);
@@ -161,6 +162,7 @@ export default function ServicesActivity() {
             <HotelSidebar setHotelFilters={setFilters} />
             <ServicesBody serviceData={hotelListings} />
             <Billing id="billingModal" />
+            <WhatsAppFloatingButton />
         </>
     );
 }

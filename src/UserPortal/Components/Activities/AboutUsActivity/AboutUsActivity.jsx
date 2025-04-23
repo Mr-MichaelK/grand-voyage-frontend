@@ -1,6 +1,7 @@
 import React from 'react';
 import Billing from '../BillingActivity/BillingActivity';
 import styles from './AboutUsActivity.module.css';
+import WhatsAppFloatingButton from '../WhatsApp/WhatsAppFloatingButton';
 
 export default function AboutUsPage() {
   return (
@@ -74,6 +75,7 @@ export default function AboutUsPage() {
       </section>
     </div>
     <Billing id="billingModal" />
+    <WhatsAppFloatingButton />
     </>
   );
 };

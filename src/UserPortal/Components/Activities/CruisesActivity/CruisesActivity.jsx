@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import CruiseSidebar from '../../Sidebar/CruiseSidebar';
 import CruisesBody from '../../ActivityBodies/CruisesBody';
 import Billing from '../BillingActivity/BillingActivity';
+import WhatsAppFloatingButton from '../WhatsApp/WhatsAppFloatingButton';
 
 const hardcodedData = {
   cruises: [
@@ -197,6 +198,7 @@ export default function CruisesActivity() {
       <CruiseSidebar onFilterChange={setFilters} />
       <CruisesBody cruiseData={filteredCruises} />
       <Billing id="billingModal" />
+      <WhatsAppFloatingButton />
     </>
   );
 }
