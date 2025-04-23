@@ -21,19 +21,48 @@ export default function Billing({ id }) {
     // Handle form field change
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData(prev => ({ ...prev, [name]: value }));
+
+        // Special logic when changing paymentType
+        if (name === "paymentType") {
+            if (value === "cash") {
+                setFormData(prev => ({
+                    ...prev,
+                    [name]: value,
+                    cardNumber: "" // Clear card number if cash
+                }));
+            } else {
+                setFormData(prev => ({ ...prev, [name]: value }));
+            }
+        } else {
+            setFormData(prev => ({ ...prev, [name]: value }));
+        }
     };
 
     // Save to localStorage
     const handleSave = () => {
-        localStorage.setItem("billingInfo", JSON.stringify(formData));
-        document.getElementById(id).close()
+        const dataToSave = { ...formData };
+        if (dataToSave.paymentType === "cash") {
+            dataToSave.cardNumber = ""; // Ensure it's empty
+        }
+
+        localStorage.setItem("billingInfo", JSON.stringify(dataToSave));
+        document.getElementById(id).close();
         alert("Saved ✅");
     };
+
+    const handleCancel = () => {
+        const stored = localStorage.getItem("billingInfo");
+        if (stored) {
+            setFormData(JSON.parse(stored));
+        }
+        document.getElementById(id).close();
+    };
+    
 
     return (
         <dialog id={id} className={style.dialog}>
             <form className={style.form}>
+                {/* Payment Type */}
                 <div className={style.inputGroup}>
                     <label htmlFor="paymentType" className={style.label}>Payment Type:</label>
                     <select
@@ -49,6 +78,7 @@ export default function Billing({ id }) {
                     </select>
                 </div>
 
+                {/* Currency */}
                 <div className={style.inputGroup}>
                     <label className={style.label}>Currency:</label>
                     <div className={style.radioGroup}>
@@ -75,6 +105,7 @@ export default function Billing({ id }) {
                     </div>
                 </div>
 
+                {/* Payer Name */}
                 <div className={style.inputGroup}>
                     <label htmlFor="payerName" className={style.label}>Payer Name:</label>
                     <input
@@ -87,6 +118,7 @@ export default function Billing({ id }) {
                     />
                 </div>
 
+                {/* Card Number */}
                 <div className={style.inputGroup}>
                     <label htmlFor="cardNumber" className={style.label}>Card Number:</label>
                     <input
@@ -96,9 +128,12 @@ export default function Billing({ id }) {
                         value={formData.cardNumber}
                         onChange={handleChange}
                         className={style.input}
+                        disabled={formData.paymentType === "cash"}
+                        placeholder={formData.paymentType === "cash" ? "Disabled for cash payment" : ""}
                     />
                 </div>
 
+                {/* Billing Address */}
                 <div className={style.inputGroup}>
                     <label htmlFor="billingAddress" className={style.label}>Billing Address:</label>
                     <input
@@ -111,10 +146,11 @@ export default function Billing({ id }) {
                     />
                 </div>
 
+                {/* Buttons */}
                 <div className={style.buttonContainer}>
                     <button 
                         type="button"
-                        onClick={() => document.getElementById(id).close()} 
+                        onClick={handleCancel} 
                         className={style.cancelButton}
                     >
                         Cancel
