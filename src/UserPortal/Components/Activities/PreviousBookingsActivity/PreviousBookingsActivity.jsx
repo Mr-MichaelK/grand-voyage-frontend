@@ -6,6 +6,7 @@ import PackageCard from '../../Cards/PackageCard';
 import styles from './PreviousBookingsActivity.module.css';
 import ExpandedService from '../ExpandedCards/ExpandedService';
 import Billing from '../BillingActivity/BillingActivity';
+import WhatsAppFloatingButton from '../WhatsApp/WhatsAppFloatingButton';
 
 export default function PreviousBookingsActivity(props) {
   const [hotelBookings, setHotelBookings] = useState([]);
@@ -127,6 +128,7 @@ export default function PreviousBookingsActivity(props) {
         </div>
       </div>
       <Billing id="billingModal" />
+      <WhatsAppFloatingButton />
     </>
   );
 }

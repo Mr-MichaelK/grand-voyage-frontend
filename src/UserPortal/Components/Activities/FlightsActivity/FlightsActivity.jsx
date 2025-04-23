@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import FlightSidebar from '../../Sidebar/FlightSidebar'
 import FlightsBody from '../../ActivityBodies/FlightsBody'
 import Billing from '../BillingActivity/BillingActivity'
+import WhatsAppFloatingButton from '../WhatsApp/WhatsAppFloatingButton'
 
 export default function FlightsActivity() {
     const [flightListings, setFlightListings] = useState([])
@@ -184,6 +185,7 @@ export default function FlightsActivity() {
             <FlightSidebar onApplyFilters={handleApplyFilters}></FlightSidebar>
             <FlightsBody flightData={filteredFlights}></FlightsBody>
             <Billing id="billingModal" />
+            <WhatsAppFloatingButton />
         </>
     )
 }

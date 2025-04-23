@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PackageSidebar from '../../Sidebar/PackageSidebar';
 import PackagesBody from '../../ActivityBodies/PackagesBody';
 import Billing from '../BillingActivity/BillingActivity';
+import WhatsAppFloatingButton from '../WhatsApp/WhatsAppFloatingButton';
 
 const hardcodedData = {
   packages: [
@@ -171,6 +172,7 @@ export default function PackagesActivity() {
       <PackageSidebar setPackageFilters={handleApplyFilters} />
       <PackagesBody packageData={filteredPackages} />
       <Billing id="billingModal" />
+      <WhatsAppFloatingButton />
     </>
   );
 }
