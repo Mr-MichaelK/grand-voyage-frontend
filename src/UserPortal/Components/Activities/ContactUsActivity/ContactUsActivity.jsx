@@ -5,6 +5,7 @@ import InstagramIcon from '../../../../assets/instagram.svg'
 import FacebookIcon from '../../../../assets/facebook.svg'
 import LinkedInIcon from '../../../../assets/linkedin.svg'
 import Billing from '../BillingActivity/BillingActivity'
+import WhatsAppFloatingButton from './Components/Activities/WhatsApp/WhatsAppFloatingButton'
 
 export default function ContactUsActivity() {
     const formRef = useRef();
@@ -62,6 +63,7 @@ export default function ContactUsActivity() {
             </div>
         </div>
         <Billing id="billingModal" />
+        <WhatsAppFloatingButton />
         </>
     )
 }
