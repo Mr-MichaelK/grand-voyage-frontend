@@ -30,11 +30,40 @@ const PackageCard = (props) => {
   };
 
   const handleSubmit = () => {
+    const stored = localStorage.getItem("billingInfo");
+    if (!stored) {
+        alert("Please fill in your billing information first.");
+        return;
+    }
+
+    const billingInfo = JSON.parse(stored);
+    const { paymentType, currency, payerName, cardNumber, billingAddress } = billingInfo;
+
+    if (
+        !paymentType ||
+        !currency ||
+        !payerName.trim() ||
+        !billingAddress.trim() ||
+        (paymentType !== "cash" && !cardNumber.trim())
+    ) {
+        alert("Please complete all billing details before booking.");
+        return;
+    }
+
     const newBookingStatus = !isBooked;
     setIsBooked(newBookingStatus);
     updateLocalStorageBooking(props.id, newBookingStatus);
     closeModal();
-  };
+    if (!isBooked && paymentType !== "cash") {
+      alert("Booking successful! Your card will be charged.");
+    }
+    else if (!isBooked && paymentType === "cash") {
+      alert("Booking successful! Please pay in cash at the nearest OMT or Whish within the next 7 days.");
+    }
+    else {
+      alert("Booking successfully cancelled! You are eligible for a full refund.");    
+    }
+};
 
   return (
     <>
@@ -61,7 +90,7 @@ const PackageCard = (props) => {
             <div className={styles.cardPrice}>US${props.price}</div>
             <div className={styles.cardDetails}>
               <div>{props.travelers} travelers</div>
-              <div>Includes: {props.features.join(', ')}</div>
+              <div>Includes: {(props.features) ? props.features.join(', ') : ""}</div>
             </div>
             <button className={styles.cardButton} onClick={openModal}>
               {isBooked ? 'Cancel' : 'Book'}

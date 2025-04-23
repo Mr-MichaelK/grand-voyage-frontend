@@ -5,7 +5,7 @@ import styles from './ActivitiesBody.module.css';
 export default function HotelsBody({ serviceData }) {
   return (
     <div className={styles.gridContainer}>
-      <h2 className={styles.gridTitle}>Available Hotels</h2>
+      <h2 className={styles.gridTitle}>Available Housing Services</h2>
       <div className={styles.cardGrid}>
       {serviceData.map((hotel, index) => (
         <HotelCard

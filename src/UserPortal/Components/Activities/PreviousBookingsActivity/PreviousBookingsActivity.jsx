@@ -20,68 +20,30 @@ export default function PreviousBookingsActivity(props) {
     fetchPackageBookings();
   }, []);
 
-  const email = localStorage.getItem("email");
-  const password = localStorage.getItem("password");
-
   function fetchHotelBookings() {
-    /*
-    fetch("http://localhost:8080/api/bookings/hotels", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ email, password })
-    })
-      .then(res => res.json())
-      .then(data => setHotelBookings(data))
-      .catch(err => console.error("Error fetching hotel bookings:", err));
-      */
+    const storedHotels = JSON.parse(localStorage.getItem("hotelListings")) || [];
+    const bookedHotels = storedHotels.filter(hotel => hotel.isBooked);
+    setHotelBookings(bookedHotels);
   }
-
+  
   function fetchFlightBookings() {
-    /*
-    fetch("http://localhost:8080/api/bookings/flights", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ email, password })
-    })
-      .then(res => res.json())
-      .then(data => setFlightBookings(data))
-      .catch(err => console.error("Error fetching flight bookings:", err));
-      */
+    const storedFlights = JSON.parse(localStorage.getItem("flightListings")) || [];
+    const bookedFlights = storedFlights.filter(flight => flight.isBooked);
+    setFlightBookings(bookedFlights);
   }
-
+  
   function fetchCruiseBookings() {
-    /*
-    fetch("http://localhost:8080/api/bookings/cruises", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ email, password })
-    })
-      .then(res => res.json())
-      .then(data => setCruiseBookings(data))
-      .catch(err => console.error("Error fetching cruise bookings:", err));
-      */
+    const storedCruises = JSON.parse(localStorage.getItem("cruiseListings")) || [];
+    const bookedCruises = storedCruises.filter(cruise => cruise.isBooked);
+    setCruiseBookings(bookedCruises);
   }
-
+  
   function fetchPackageBookings() {
-    /*
-    fetch("http://localhost:8080/api/bookings/packages", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ email, password })
-    })
-      .then(res => res.json())
-      .then(data => setPackageBookings(data))
-      .catch(err => console.error("Error fetching package bookings:", err));
-      */
+    const storedPackages = JSON.parse(localStorage.getItem("packageListings")) || [];
+    const bookedPackages = storedPackages.filter(pkg => pkg.isBooked);
+    setPackageBookings(bookedPackages);
   }
+  
 
   return (
     <>
@@ -104,8 +66,7 @@ export default function PreviousBookingsActivity(props) {
               mealPlan={hotel.mealPlan}
               imageUrl={hotel.imageUrl}
               location={hotel.location}
-              isBooked={true}
-              buttonLabel="Booked"
+              isBooked={hotel.isBooked}
             />
           ))}
 
@@ -113,15 +74,19 @@ export default function PreviousBookingsActivity(props) {
             <FlightCard
               key={`flight-${index}`}
               id={flight.id}
-              departure={flight.departure}
-              arrival={flight.arrival}
-              date={flight.date}
               airline={flight.airline}
-              seatClass={flight.seatClass}
-              duration={flight.duration}
+              departureAirport={flight.departureAirport}
+              arrivalAirport={flight.arrivalAirport}
+              duration={flight.flightDurationHours}
+              cabinClass={flight.cabinClass}
+              price={flight.price}
+              date={flight.departureDate}
               imageUrl={flight.imageUrl}
-              isBooked={true}
-              buttonLabel="Booked"
+              baggage={flight.baggageAllowance}
+              mealsIncluded={flight.mealsIncluded}
+              noLayover={flight.noLayover}
+              flightNumber={flight.flightNumber}
+              isBooked={flight.isBooked}
             />
           ))}
 
@@ -129,15 +94,16 @@ export default function PreviousBookingsActivity(props) {
             <CruiseCard
               key={`cruise-${index}`}
               id={cruise.id}
-              cruiseLine={cruise.cruiseLine}
-              destination={cruise.destination}
+              cruiseName={cruise.cruiseName}
               departurePort={cruise.departurePort}
+              arrivalPort={cruise.arrivalPort}
               nights={cruise.nights}
-              roomType={cruise.roomType}
+              cabinType={cruise.cabinType}
+              price={cruise.price}
+              embarkationDate={cruise.embarkationDate}
               amenities={cruise.amenities}
               imageUrl={cruise.imageUrl}
-              isBooked={true}
-              buttonLabel="Booked"
+              isBooked={cruise.isBooked}
             />
           ))}
 
@@ -145,16 +111,16 @@ export default function PreviousBookingsActivity(props) {
             <PackageCard
               key={`package-${index}`}
               id={pkg.id}
-              packageName={pkg.packageName}
               destination={pkg.destination}
-              nights={pkg.nights}
-              hotelName={pkg.hotelName}
-              flightInfo={pkg.flightInfo}
-              cruiseInfo={pkg.cruiseInfo}
+              startDate={pkg.startDate}
+              endDate={pkg.endDate}
+              packageType={pkg.packageType}
+              duration={pkg.duration}
               price={pkg.price}
+              travelers={pkg.travelers}
+              features={pkg.features}
               imageUrl={pkg.imageUrl}
-              isBooked={true}
-              buttonLabel="Booked"
+              isBooked={pkg.isBooked}
             />
           ))}
 

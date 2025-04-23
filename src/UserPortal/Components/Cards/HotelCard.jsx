@@ -27,11 +27,40 @@ const HotelCard = (props) => {
   };
 
   const handleSubmit = () => {
+    const stored = localStorage.getItem("billingInfo");
+    if (!stored) {
+        alert("Please fill in your billing information first.");
+        return;
+    }
+
+    const billingInfo = JSON.parse(stored);
+    const { paymentType, currency, payerName, cardNumber, billingAddress } = billingInfo;
+
+    if (
+        !paymentType ||
+        !currency ||
+        !payerName.trim() ||
+        !billingAddress.trim() ||
+        (paymentType !== "cash" && !cardNumber.trim())
+    ) {
+        alert("Please complete all billing details before booking.");
+        return;
+    }
+
     const newBookingStatus = !isBooked;
-    updateLocalStorageBooking(props.id, newBookingStatus);
     setIsBooked(newBookingStatus);
+    updateLocalStorageBooking(props.id, newBookingStatus);
     closeModal();
-  };
+    if (!isBooked && paymentType !== "cash") {
+      alert("Booking successful! Your card will be charged.");
+    }
+    else if (!isBooked && paymentType === "cash") {
+      alert("Booking successful! Please pay in cash at the nearest OMT or Whish within the next 7 days.");
+    }
+    else {
+      alert("Booking successfully cancelled! You are eligible for a full refund.");    
+    }
+};
 
   return (
     <>
@@ -42,7 +71,7 @@ const HotelCard = (props) => {
         
         <div className={styles.cardContent}>
           <div className={styles.cardInfo}>
-            <h3 className={styles.cardTitle}>{props.title}</h3>
+            <h3 className={styles.cardTitle}>{props.hotelName} - {props.hotelChain}</h3>
             <p className={styles.cardSubtitle}>{props.location}</p>
             <div className={styles.cardMeta}>
               <span className={styles.cardMetaMain}>{props.rating} Excellent</span>
@@ -51,7 +80,7 @@ const HotelCard = (props) => {
           </div>
 
           <div className={styles.cardFooter}>
-            <div className={styles.cardPrice}>US${props.price}</div>
+            <div className={styles.cardPrice}>US${props.pricePerNight}</div>
             <div className={styles.cardDetails}>{props.nights} nights</div>
             <button className={styles.cardButton} onClick={openModal}>
               {isBooked ? 'Cancel' : 'Book'}

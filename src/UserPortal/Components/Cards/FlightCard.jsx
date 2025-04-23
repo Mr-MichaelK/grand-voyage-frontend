@@ -27,10 +27,39 @@ const FlightCard = (props) => {
     };
 
     const handleSubmit = () => {
-      const newBookingStatus = !isBooked;
-      updateLocalStorageBooking(props.id, newBookingStatus);
-      setIsBooked(newBookingStatus);
-      closeModal();
+        const stored = localStorage.getItem("billingInfo");
+        if (!stored) {
+            alert("Please fill in your billing information first.");
+            return;
+        }
+    
+        const billingInfo = JSON.parse(stored);
+        const { paymentType, currency, payerName, cardNumber, billingAddress } = billingInfo;
+    
+        if (
+            !paymentType ||
+            !currency ||
+            !payerName.trim() ||
+            !billingAddress.trim() ||
+            (paymentType !== "cash" && !cardNumber.trim())
+        ) {
+            alert("Please complete all billing details before booking.");
+            return;
+        }
+    
+        const newBookingStatus = !isBooked;
+        setIsBooked(newBookingStatus);
+        updateLocalStorageBooking(props.id, newBookingStatus);
+        closeModal();
+        if (!isBooked && paymentType !== "cash") {
+            alert("Booking successful! Your card will be charged.");
+        }
+        else if (!isBooked && paymentType === "cash") {
+            alert("Booking successful! Please pay in cash at the nearest OMT or Whish within the next 7 days.");
+        }
+        else {
+            alert("Booking successfully cancelled! You are eligible for a full refund.");    
+        }
     };
 
     return (
@@ -44,11 +73,11 @@ const FlightCard = (props) => {
                     <div className={styles.cardInfo}>
                         <h3 className={styles.cardTitle}>{props.airline}</h3>
                         <p className={styles.cardSubtitle}>
-                            {props.departure} → {props.arrival}
+                            {props.departureAirport} → {props.arrivalAirport}
                         </p>
                         <div className={styles.cardMeta}>
                             <span className={styles.cardMetaMain}>{props.duration}</span>
-                            <span className={styles.cardMetaSecondary}>{props.class}</span>
+                            <span className={styles.cardMetaSecondary}>{props.cabinClass}</span>
                         </div>
                     </div>
 

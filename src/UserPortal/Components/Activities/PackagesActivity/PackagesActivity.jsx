@@ -46,7 +46,49 @@ const hardcodedData = {
       travelers: 1,
       features: ["Free Cancellation"],
       imageUrl: "https://example.com/images/nyc-package.jpg"
-    }
+    },
+    {
+      id: 4,
+      isBooked: false,
+      packageName: "Safari Serenity",
+      destination: "Maasai Mara, Kenya",
+      startDate: "2025-08-20",
+      endDate: "2025-08-27",
+      packageType: "Wildlife Adventure",
+      duration: "1 Week",
+      price: 3290,
+      travelers: 2,
+      features: ["Guided Safari", "All Meals Included"],
+      imageUrl: "https://images.unsplash.com/photo-1583132333692-2a9125bbd82b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
+    },
+    {
+      id: 5,
+      isBooked: false,
+      packageName: "Alpine Chill Retreat",
+      destination: "Zermatt, Switzerland",
+      startDate: "2025-12-19",
+      endDate: "2025-12-26",
+      packageType: "Ski Resort Package",
+      duration: "1 Week",
+      price: 3850,
+      travelers: 2,
+      features: ["Ski Pass Included", "Spa Access"],
+      imageUrl: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
+    },
+    {
+      id: 6,
+      isBooked: false,
+      packageName: "Rainforest Rejuvenation",
+      destination: "Costa Rica",
+      startDate: "2025-09-05",
+      endDate: "2025-09-12",
+      packageType: "Eco Wellness Retreat",
+      duration: "1 Week",
+      price: 2475,
+      travelers: 2,
+      features: ["Yoga Classes", "Nature Hikes", "Organic Meals"],
+      imageUrl: "https://images.unsplash.com/photo-1593032465175-4be24e04ed24?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
+    }    
   ]
 };
 
