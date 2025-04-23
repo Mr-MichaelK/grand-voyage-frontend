@@ -24,7 +24,8 @@ export default function FlightsActivity() {
               noLayover: true,
               flightNumber: "EK958",
               imageUrl: "https://example.com/emirates-plane.jpg",
-              isBooked: false
+              isBooked: false,
+              providerEmail: "mike@gmail.com"
             },
             {
               id: 2,
@@ -40,7 +41,8 @@ export default function FlightsActivity() {
               noLayover: true,
               flightNumber: "QR421",
               imageUrl: "https://example.com/qatar-plane.jpg",
-              isBooked: false
+              isBooked: false,
+              providerEmail: "mike@gmail.com"
             },
             {
               id: 3,
@@ -56,7 +58,8 @@ export default function FlightsActivity() {
               noLayover: true,
               flightNumber: "TK827",
               imageUrl: "https://example.com/turkish-airlines.jpg",
-              isBooked: false
+              isBooked: false,
+              providerEmail: "mike@gmail.com"
             },
             {
               id: 4,

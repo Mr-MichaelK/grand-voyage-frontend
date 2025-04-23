@@ -6,30 +6,33 @@ import ExpandedCruise from '../ExpandedCards/ExpandedCruise';
 import ExpandedCreateCruiseCard from '../ExpandedCards/ExpandedCreateFlightCard';
 
 export default function CruiseBody() {
-    const [cruises, setCruises] = useState([
-        {
-            id: 1,
-            title: "Mediterranean Dream",
-            departurePort: "Barcelona",
-            destination: "Rome",
-            duration: 7,
-            cabinType: "Luxury Suite",
-            price: 2499,
-            description: "Experience the beauty of the Mediterranean with our luxury cruise package.",
-            image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-        }
-    ]);
-
+    const [cruises, setCruises] = useState([]);
     const [editingCruise, setEditingCruise] = useState(null);
 
+    // Replace this with actual user email from your auth context or similar
+    const loggedInEmail = localStorage.getItem("email"); // Example SP email
+
     useEffect(() => {
-            if (editingCruise) {
-                const modal = document.getElementById("editCruiseModal");
-                if (modal) {
-                    modal.showModal();
-                }
+        const fetchCruises = () => {
+            const storedCruises = localStorage.getItem('cruiseListings');
+            if (storedCruises) {
+                const parsedCruises = JSON.parse(storedCruises);
+                // Filter cruises by provider's email
+                const filteredCruises = parsedCruises.filter(cruise => cruise.providerEmail === loggedInEmail);
+                setCruises(filteredCruises);
             }
-        }, [editingCruise]);
+        };
+        fetchCruises();
+    }, [loggedInEmail]); // Only fetch when the SP email changes
+
+    useEffect(() => {
+        if (editingCruise) {
+            const modal = document.getElementById("editCruiseModal");
+            if (modal) {
+                modal.showModal();
+            }
+        }
+    }, [editingCruise]);
 
     function hasContract() {
         return true; // TODO: Implement contract check logic

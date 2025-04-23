@@ -6,33 +6,24 @@ import ExpandedCreateFlightCard from '../ExpandedCards/ExpandedCreateFlightCard'
 import ExpandedFlight from '../ExpandedCards/ExpandedFlight';
 
 export default function FlightBody() {
-
-    const [flights, setFlights] = useState([
-        {
-            id: 1,
-            title: "Direct Flight to Paris",
-            departureAirport: "JFK",
-            arrivalAirport: "CDG",
-            duration: "7h 25m",
-            class: "Business",
-            price: 1299.99,
-            description: "Experience luxury travel with our direct business class flight to Paris",
-            image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
-        },
-        {
-            id: 2,
-            title: "London Express",
-            departureAirport: "LAX",
-            arrivalAirport: "LHR",
-            duration: "10h 45m",
-            class: "First Class",
-            price: 2499.99,
-            description: "Premium first-class service on our non-stop flight to London",
-            image: "https://images.unsplash.com/photo-1544016768-982d3a5c421d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
-        }
-    ]);
-
+    const [flights, setFlights] = useState([]);
     const [editingFlight, setEditingFlight] = useState(null);
+
+    // Replace this with actual user email from your auth context or similar
+    const loggedInEmail = localStorage.getItem("email"); // Example SP email
+
+    useEffect(() => {
+        const fetchFlights = () => {
+            const storedFlights = localStorage.getItem('flightListings');
+            if (storedFlights) {
+                const parsedFlights = JSON.parse(storedFlights);
+                // Filter flights by provider's email
+                const filteredFlights = parsedFlights.filter(flight => flight.providerEmail === loggedInEmail);
+                setFlights(filteredFlights);
+            }
+        };
+        fetchFlights();
+    }, [loggedInEmail]); // Only fetch when the SP email changes
 
     useEffect(() => {
         if (editingFlight) {
@@ -72,7 +63,7 @@ export default function FlightBody() {
             <div className={style.gridContainer}>
                 <div className={style.cardGrid}>
                     <div onClick={() => document.getElementById("createFlightCard").showModal()}>
-                        <CreateCard type="flight"/>
+                        <CreateCard type="flight" />
                     </div>
                     {flights.map(flight => (
                         <FlightCard
@@ -94,6 +85,5 @@ export default function FlightBody() {
                 />
             )}
         </>
-        
     );
 }
