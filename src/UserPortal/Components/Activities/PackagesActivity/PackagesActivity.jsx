@@ -94,39 +94,82 @@ const hardcodedData = {
 
 export default function PackagesActivity() {
   const [packageListings, setPackageListings] = useState([]);
+  const [filteredPackages, setFilteredPackages] = useState([]);
+  const [filters, setFilters] = useState(null);
+
+  function applyPackageFilters(packages, filters) {
+    return packages.filter(pkg => {
+      const {
+        destination,
+        startDate,
+        endDate,
+        packageType,
+        durations,
+        minPrice,
+        maxPrice,
+        travelers,
+        features
+      } = filters;
+  
+      if (destination && !pkg.destination.toLowerCase().includes(destination.toLowerCase())) return false;
+  
+      if (startDate && new Date(pkg.startDate) < new Date(startDate)) return false;
+      if (endDate && new Date(pkg.endDate) > new Date(endDate)) return false;
+  
+      if (packageType && pkg.packageType !== packageType) return false;
+  
+      if (durations.length > 0 && !durations.includes(pkg.duration)) return false;
+  
+      if (minPrice && pkg.price < Number(minPrice)) return false;
+      if (maxPrice && pkg.price > Number(maxPrice)) return false;
+  
+      if (travelers && pkg.travelers !== Number(travelers)) return false;
+  
+      if (features.length > 0 && !features.every(f => pkg.features.includes(f))) return false;
+  
+      return true;
+    });
+  }
 
   const fetchPackageData = () => {
     const stored = localStorage.getItem('packageListings');
-    if (stored) {
-      setPackageListings(JSON.parse(stored));
+    const data = stored ? JSON.parse(stored) : hardcodedData.packages;
+
+    if (!stored) {
+      localStorage.setItem('packageListings', JSON.stringify(data));
+    }
+
+    setPackageListings(data);
+    if (filters) {
+      const filtered = applyPackageFilters(data, filters);
+      setFilteredPackages(filtered);
     } else {
-      localStorage.setItem('packageListings', JSON.stringify(hardcodedData.packages));
-      setPackageListings(hardcodedData.packages);
+      setFilteredPackages(data);
     }
   };
 
   useEffect(() => {
     fetchPackageData();
-    
-    // Add event listener for storage changes
     const handleStorageChange = (e) => {
       if (e.key === 'packageListings' || e.type === 'storage') {
         fetchPackageData();
       }
     };
-    
     window.addEventListener('storage', handleStorageChange);
-    
-    // Clean up event listener on unmount
-    return () => {
-      window.removeEventListener('storage', handleStorageChange);
-    };
+    return () => window.removeEventListener('storage', handleStorageChange);
   }, []);
+
+  const handleApplyFilters = (newFilters) => {
+    setFilters(newFilters);
+    const data = JSON.parse(localStorage.getItem('packageListings')) || hardcodedData.packages;
+    const filtered = applyPackageFilters(data, newFilters);
+    setFilteredPackages(filtered);
+  };
 
   return (
     <>
-      <PackageSidebar setPackageFilters={fetchPackageData} />
-      <PackagesBody packageData={packageListings} />
+      <PackageSidebar setPackageFilters={handleApplyFilters} />
+      <PackagesBody packageData={filteredPackages} />
       <Billing id="billingModal" />
     </>
   );

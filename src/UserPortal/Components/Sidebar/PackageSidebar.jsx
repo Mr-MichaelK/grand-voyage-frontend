@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './Sidebar.module.css';
 
-export default function PackageFilterSidebar({ onFilterChange }) {
+export default function PackageFilterSidebar({ setPackageFilters }) {
   const [filters, setFilters] = useState({
     destination: '',
     startDate: '',
@@ -34,7 +34,7 @@ export default function PackageFilterSidebar({ onFilterChange }) {
 
   const applyFilters = () => {
     console.log('Filters applied:', filters); // Debugging line to check filter values
-    onFilterChange(filters);
+    setPackageFilters(filters);
   };
 
   return (
