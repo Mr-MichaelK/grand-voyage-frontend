@@ -20,27 +20,35 @@ export default function UserPortal() {
 
     if (currentActivity === "aboutUs") {
         activity = <AboutUsActivity></AboutUsActivity>
+        document.title = 'User Portal - About Us'
     }
     else if (currentActivity === "services") {
         activity = <ServicesActivity></ServicesActivity>
+        document.title = 'User Portal - Services'
     }
     else if (currentActivity === "packages") {
         activity = <PackagesActivity></PackagesActivity>
+        document.title = 'User Portal - Packages'
     }
     else if (currentActivity === "flights") {
         activity = <FlightsActivity></FlightsActivity>
+        document.title = 'User Portal - Flights'
     }
     else if (currentActivity === "cruises") {
         activity =<CruisesActivity></CruisesActivity>
+        document.title = 'User Portal - Cruises'
     }
     else if (currentActivity === "contactUs") {
         activity = <ContactUsActivity></ContactUsActivity>
+        document.title = 'User Portal - Contact Us'
     }
     else if (currentActivity === "previousBookings") {
         activity = <PreviousBookingsActivity></PreviousBookingsActivity>
+        document.title = 'User Portal - Previous Bookings'
     }
     else if (currentActivity === "profile") {
         activity = <ProfileActivity></ProfileActivity>
+        document.title = 'User Portal - Profile'
     }
     else {
         activity = <AboutUsActivity></AboutUsActivity>

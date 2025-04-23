@@ -14,15 +14,19 @@ export default function ServiceProviderPortal() {
 
     if (currentActivity === "services") {
         activity = <ServicesActivity></ServicesActivity>
+        document.title = 'Service Provider Portal - Services'
     }
     else if (currentActivity === "flights") {
         activity = <FlightsActivity></FlightsActivity>
+        document.title = 'Service Provider Portal - Flights'
     }
     else if (currentActivity === "cruises") {
         activity = <CruisesActivity></CruisesActivity>
+        document.title = 'Service Provider Portal - Cruises'
     }
     else if (currentActivity === "contactUs") {
         activity = <ContactUsActivity></ContactUsActivity>
+        document.title = 'Service Provider Portal - Contact Us'
     }
 
     return (
