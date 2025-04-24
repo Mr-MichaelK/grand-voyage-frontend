@@ -16,7 +16,7 @@ const hardcodedData = {
       cabinType: "Suite",
       price: 2499,
       embarkationDate: "August 15, 2025",
-      amenities: "Pool, Spa, Fine Dining",
+      amenities: ["Pool", "Spa"],
       imageUrl: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
     },
     {
@@ -29,7 +29,7 @@ const hardcodedData = {
       cabinType: "Balcony",
       price: 1899,
       embarkationDate: "September 1, 2025",
-      amenities: "Casino, Theater, Kids Club",
+      amenities: ["Casino, Theater"],
       imageUrl: "https://images.unsplash.com/photo-1519046904884-53103b34b206?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
     },
     {
@@ -42,7 +42,7 @@ const hardcodedData = {
       cabinType: "Suite",
       price: 2999,
       embarkationDate: "October 5, 2025",
-      amenities: "Sky Deck, Hot Tubs, Northern Lights Viewing",
+      amenities: ["Spa"],
       imageUrl: "https://images.unsplash.com/photo-1511895426328-dc8714191300?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
     },
     {
@@ -55,7 +55,7 @@ const hardcodedData = {
       cabinType: "Interior",
       price: 3399,
       embarkationDate: "November 12, 2025",
-      amenities: "Sushi Bar, Onsen, Cultural Workshops",
+      amenities: ["Pool", "Spa", "Casino"],
       imageUrl: "https://images.unsplash.com/photo-1548574505-5e239809ee19?ixlib=rb-4.0.3&auto=format&fit=crop&w=1471&q=80"
     },
     {
@@ -68,7 +68,7 @@ const hardcodedData = {
       cabinType: "Ocean View",
       price: 2299,
       embarkationDate: "July 10, 2025",
-      amenities: "Glacier Tours, Wildlife Excursions, Fine Dining",
+      amenities: [],
       imageUrl: "https://images.unsplash.com/photo-1505118380757-91f5f5632de0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
     },
     {
@@ -81,7 +81,7 @@ const hardcodedData = {
       cabinType: "Interior",
       price: 1699,
       embarkationDate: "December 20, 2025",
-      amenities: "Hookah Lounge, Desert Excursions, Infinity Pool",
+      amenities: ["Pool", "Spa"],
       imageUrl: "https://cdn.travelwings.com/assets/images/04%20Nights%20Arabian%20Gulf%20Cruising%2001.jpg"
     }
     
@@ -98,7 +98,6 @@ export default function CruisesActivity() {
     arrivalPort: '',
     startDate: '',
     endDate: '',
-    cruiseDuration: [],
     cabinType: '',
     amenities: [],
     priceRange: { min: 0, max: 10000 },
@@ -139,13 +138,6 @@ export default function CruisesActivity() {
       );
     }
 
-    // Filter by cruise duration
-    if (filters.cruiseDuration.length) {
-      filteredData = filteredData.filter(cruise =>
-        cruise.nights >= filters.cruiseDuration[0] && cruise.nights <= filters.cruiseDuration[1]
-      );
-    }
-
     // Filter by cabin type
     if (filters.cabinType) {
       filteredData = filteredData.filter(cruise =>
@@ -156,7 +148,9 @@ export default function CruisesActivity() {
     // Filter by amenities
     if (filters.amenities.length) {
       filteredData = filteredData.filter(cruise =>
-        filters.amenities.every(amenity => cruise.amenities.toLowerCase().includes(amenity.toLowerCase()))
+        filters.amenities.every(amenity =>
+          cruise.amenities.some(a => a.toLowerCase() === amenity.toLowerCase())
+        )
       );
     }
 

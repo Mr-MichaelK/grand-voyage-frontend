@@ -28,7 +28,7 @@ export default function ExpandedFlight({ id, flight, onSave, onCancel }) {
                         id="title"
                         name="title"
                         type="text"
-                        value={formData.title}
+                        value={formData.airline}
                         onChange={handleChange}
                         className={styles.input}
                     />
@@ -39,7 +39,7 @@ export default function ExpandedFlight({ id, flight, onSave, onCancel }) {
                         id="departurePort"
                         name="departurePort"
                         type="text"
-                        value={formData.departurePort}
+                        value={formData.departureAirport}
                         onChange={handleChange}
                         className={styles.input}
                     />
@@ -50,7 +50,7 @@ export default function ExpandedFlight({ id, flight, onSave, onCancel }) {
                         id="destination"
                         name="destination"
                         type="text"
-                        value={formData.destination}
+                        value={formData.arrivalAirport}
                         onChange={handleChange}
                         className={styles.input}
                     />
@@ -67,15 +67,14 @@ export default function ExpandedFlight({ id, flight, onSave, onCancel }) {
                     />
                 </div>
                 <div className={styles.inputGroup}>
-                    <label htmlFor="flightClass" className={styles.label}>Class:</label>
-                    <input
-                        id="flightClass"
-                        name="flightClass"
-                        type="text"
-                        value={formData.flightClass}
-                        onChange={handleChange}
-                        className={styles.input}
-                    />
+                    <label htmlFor="cabinClass" className={styles.label}>Class:</label>
+                    <select name="cabinClass" value={formData.cabinClass || ''} onChange={handleChange} className={styles.filterSelect}>
+                        <option value="">Any Class</option>
+                        <option value="Economy">Economy</option>
+                        <option value="Premium Economy">Premium Economy</option>
+                        <option value="Business">Business</option>
+                        <option value="First Class">First Class</option>
+                    </select>
                 </div>
                 <div className={styles.inputGroup}>
                     <label htmlFor="price" className={styles.label}>Price:</label>

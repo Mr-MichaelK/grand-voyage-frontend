@@ -76,7 +76,7 @@ const CruiseCard = (props) => {
       <div className={styles.card}>
         <div className={styles.cardImageContainer}>
           <img 
-            src={props.imageUrl} 
+            src={props.image} 
             alt={props.cruiseName} 
             className={styles.cardImage} 
           />
@@ -98,7 +98,7 @@ const CruiseCard = (props) => {
             <div className={styles.cardPrice}>US${props.price}</div>
             <div className={styles.cardDetails}>
               <div>Departs: {props.embarkationDate}</div>
-              <div>Amenities: {props.amenities}</div>
+              <div>Amenities: {props.amenities.join(" | ")}</div>
             </div>
             <button className={styles.cardButton} onClick={openModal}>
               {isBooked ? 'Cancel' : 'Book'}

@@ -103,7 +103,7 @@ export default function PreviousBookingsActivity(props) {
               price={cruise.price}
               embarkationDate={cruise.embarkationDate}
               amenities={cruise.amenities}
-              imageUrl={cruise.imageUrl}
+              image={cruise.image}
               isBooked={cruise.isBooked}
             />
           ))}

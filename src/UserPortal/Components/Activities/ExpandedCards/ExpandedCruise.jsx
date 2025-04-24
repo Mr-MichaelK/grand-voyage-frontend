@@ -34,7 +34,7 @@ export default function ExpandedCruise({ cruiseData, onClose, onSubmit, isBooked
                         <div className={styles.detailRow}>
                             <span className={styles.detailLabel}>Amenities:</span>
                             <div className={styles.amenitiesList}>
-                                {cruiseData.amenities.split(',').map((amenity, index) => (
+                                {cruiseData.amenities.map((amenity, index) => (
                                     <span key={index} className={styles.amenityBadge}>
                                         {amenity.trim()}
                                     </span>
