@@ -27,62 +27,42 @@ const ServiceProviderSidebar = () => {
     }
   }, [monthlyViews, lastMonthViews]);
   
-
   function getTotalListings() {
-    // Logic to fetch total listings
-    /*const email = localStorage.getItem("email");
-  const password = localStorage.getItem("password");
-
-  fetch("http://localhost:8080/api/listings/total-count", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({ email, password })
-  })
-    .then(res => {
-      if (!res.ok) {
-        throw new Error("Failed to fetch total listing count");
-      }
-      return res.json();
-    })
-    .then(data => {
-      console.log("Total number of listings:", data.count);
-      // You can also set it into state if you want to display it in your component
-      // setTotalCount(data.count);
-    })
-    .catch(err => console.error("Error fetching total listing count:", err)); */
-    setTotalListings(245); // Placeholder value
-  }
-
-  function getMonthlyViews() {
-    // Logic to fetch monthly views
-    setMonthlyViews(12456); // Placeholder value
-  }
-
-  function getLastMonthViews() {
-    // Logic to fetch last month views
-    setLastMonthViews(10556); // Placeholder value
+    const email = localStorage.getItem("email");
+  
+    const hotelListings = JSON.parse(localStorage.getItem("hotelListings")) || [];
+    const cruiseListings = JSON.parse(localStorage.getItem("cruiseListings")) || [];
+    const flightListings = JSON.parse(localStorage.getItem("flightListings")) || [];
+  
+    const hotelCount = hotelListings.filter(listing => listing.providerEmail === email).length;
+    const cruiseCount = cruiseListings.filter(listing => listing.providerEmail === email).length;
+    const flightCount = flightListings.filter(listing => listing.providerEmail === email).length;
+  
+    const total = hotelCount + cruiseCount + flightCount;
+  
+    setTotalListings(total);
   }
   
 
+  function getMonthlyViews() {
+    setMonthlyViews(0);
+  }
+  
+  function getLastMonthViews() {
+    setLastMonthViews(0);
+  }
+  
   function getConversionRate() {
-    // Logic to fetch conversion rate
-    setConversionRate(64); // Placeholder value
+    setConversionRate(0);
   }
-
-  function getTotalRevenue() {
-    // Logic to fetch total revenue
-    return revenueBreakdown.bookings + revenueBreakdown.commissions; 
-  }
-
+  
   function getRevenueBreakdown() {
-    // Logic to fetch revenue breakdown
     setRevenueBreakdown({
-      bookings: 38200,
-      commissions: 7470,
-    }); // Placeholder values
+      bookings: 0,
+      commissions: 0,
+    });
   }
+  
 
   return (
     <div className={styles.sidebar}>

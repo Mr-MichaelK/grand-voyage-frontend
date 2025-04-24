@@ -9,6 +9,22 @@ export default function ExpandedCruise({ id, cruise, onSave, onCancel }) {
         setFormData({ ...formData, [name]: value });
     };
 
+    const handleAmenitiesChange = (e) => {
+        const value = e.target.value;
+        const isChecked = e.target.checked;
+      
+        setFormData(prevFormData => {
+          const amenities = prevFormData.amenities || [];
+          return {
+            ...prevFormData,
+            amenities: isChecked
+              ? [...amenities, value]
+              : amenities.filter(item => item !== value),
+          };
+        });
+      };
+      
+
     const handleSave = () => {
         onSave(formData);
         document.getElementById(id).close();
@@ -28,7 +44,7 @@ export default function ExpandedCruise({ id, cruise, onSave, onCancel }) {
                         id="title"
                         name="title"
                         type="text"
-                        value={formData.title}
+                        value={formData.cruiseName}
                         onChange={handleChange}
                         className={styles.input}
                     />
@@ -50,32 +66,95 @@ export default function ExpandedCruise({ id, cruise, onSave, onCancel }) {
                         id="destination"
                         name="destination"
                         type="text"
-                        value={formData.destination}
+                        value={formData.arrivalPort}
                         onChange={handleChange}
                         className={styles.input}
                     />
                 </div>
                 <div className={styles.inputGroup}>
-                    <label htmlFor="duration" className={styles.label}>Duration (days):</label>
+                    <label htmlFor="embarkationDate" className={styles.label}>Embarkation Date:</label>
                     <input
-                        id="duration"
-                        name="duration"
-                        type="number"
-                        value={formData.duration}
+                        id="embarkationDate"
+                        name="embarkationDate"
+                        type="date"
+                        value={formData.embarkationDate}
                         onChange={handleChange}
                         className={styles.input}
                     />
                 </div>
                 <div className={styles.inputGroup}>
-                    <label htmlFor="cabinType" className={styles.label}>Cabin Type:</label>
+                    <label htmlFor="arrivalDate" className={styles.label}>Arrival Date:</label>
                     <input
+                        id="arrivalDate"
+                        name="arrivalDate"
+                        type="date"
+                        value={formData.arrivalDate}
+                        onChange={handleChange}
+                        className={styles.input}
+                    />
+                </div>
+                <div className={styles.filterGroup}>
+                    <label>Cabin Type</label>
+                    <select
+                        className={styles.filterSelect}
                         id="cabinType"
                         name="cabinType"
-                        type="text"
-                        value={formData.cabinType}
+                        value={formData.cabinType || ''}
                         onChange={handleChange}
-                        className={styles.input}
-                    />
+                        >
+                        <option value="">SELECT CABIN TYPE</option>
+                        <option value="Interior">Interior</option>
+                        <option value="Ocean View">Ocean View</option>
+                        <option value="Balcony">Balcony</option>
+                        <option value="Suite">Suite</option>
+                    </select>
+                </div>
+                <div className={styles.filterGroup}>
+                    <label>Amenities</label>
+                    <div className={styles.checkboxGroup}>
+                        <label>
+                        <input
+                            type="checkbox"
+                            value="Pool"
+                            name="amenities"
+                            checked={formData.amenities?.includes("Pool") || false}
+                            onChange={handleAmenitiesChange}
+                            />
+                                Pool
+                        </label>
+                        <label>
+                        <input
+                            type="checkbox"
+                            value="Spa"
+                            name="amenities"
+                            checked={formData.amenities?.includes("Spa") || false}
+                            onChange={handleAmenitiesChange}
+                            />
+
+                            Spa
+                        </label>
+                        <label>
+                        <input
+                            type="checkbox"
+                            value="Casino"
+                            name="amenities"
+                            checked={formData.amenities?.includes("Casino") || false}
+                            onChange={handleAmenitiesChange}
+                            />
+
+                                Casino
+                        </label>
+                        <label>
+                        <input
+                            type="checkbox"
+                            value="Theater"
+                            name="amenities"
+                            checked={formData.amenities?.includes("Theater") || false}
+                            onChange={handleAmenitiesChange}
+                            />
+                                Theater
+                        </label>
+                    </div>
                 </div>
                 <div className={styles.inputGroup}>
                     <label htmlFor="price" className={styles.label}>Price:</label>

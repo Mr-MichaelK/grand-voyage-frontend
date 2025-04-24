@@ -9,6 +9,8 @@
     overflow: hidden;
     font-family: Arial, sans-serif;
     background-color: #fff;
+    max-height: 90vh; /* Limit the height to 90% of the viewport */
+    overflow-y: auto;
 }
 
 .form {

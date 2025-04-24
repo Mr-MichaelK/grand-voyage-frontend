@@ -7,7 +7,6 @@ export default function Contract({ id }) {
         serviceType: "",
         startDate: "",
         endDate: "",
-        pricePerListing: "",
         commissionRate: ""
     });
 
@@ -30,7 +29,6 @@ export default function Contract({ id }) {
                     serviceType: "",
                     startDate: "",
                     endDate: "",
-                    pricePerListing: "",
                     commissionRate: ""
                 });
             }
@@ -77,10 +75,6 @@ export default function Contract({ id }) {
         return document.getElementById("endDate").value;
     }
 
-    function getPricePerListing() {
-        return document.getElementById("pricePerListing").value;
-    }
-
     function getCommissionRate() {
         return document.getElementById("commissionRate").value;
     }
@@ -94,7 +88,6 @@ export default function Contract({ id }) {
             setTypeError() &&
             setStartDateError() &&
             setEndDateError() &&
-            setPriceError() &&
             setCommissionRateError()
         );
     }
@@ -159,18 +152,6 @@ export default function Contract({ id }) {
         return true;
     }
 
-    function setPriceError() {
-        const price = getPricePerListing();
-        const priceField = document.getElementById("pricePerListing");
-        if (price <= 0) {
-            priceField.setCustomValidity("Price per listing must be positive!");
-            priceField.reportValidity();
-            return false;
-        }
-        priceField.setCustomValidity("");
-        return true;
-    }
-
     function setCommissionRateError() {
         const commissionRate = getCommissionRate();
         const commissionRateField = document.getElementById("commissionRate");
@@ -216,10 +197,6 @@ export default function Contract({ id }) {
                     </div>
                 </div>
                 <div className={style.priceInputs}>
-                    <div className={style.priceInput}>
-                        <label htmlFor="pricePerListing">Price Per Listing:</label>
-                        <input value={contract.pricePerListing} onInput={setPriceError} onChange={updateField} type="number" name='pricePerListing' id='pricePerListing' min={0} max={30000} />
-                    </div>
                     <div className={style.priceInput}>
                         <label htmlFor="commissionRate">Commission Rate (in %):</label>
                         <input value={contract.commissionRate} onInput={setCommissionRateError} onChange={updateField} type="number" id='commissionRate' name='commissionRate' min={5} max={100} />

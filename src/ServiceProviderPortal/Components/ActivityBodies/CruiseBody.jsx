@@ -3,7 +3,7 @@ import style from './ActivitiesBody.module.css';
 import CreateCard from '../Cards/CreateCard';
 import CruiseCard from '../Cards/CruiseCard';
 import ExpandedCruise from '../ExpandedCards/ExpandedCruise';
-import ExpandedCreateCruiseCard from '../ExpandedCards/ExpandedCreateFlightCard'; // Assuming it's correct name
+import ExpandedCreateCruiseCard from '../ExpandedCards/ExpandedCreateCruiseCard'; // Assuming it's correct name
 
 export default function CruiseBody() {
     const [allCruises, setAllCruises] = useState([]);
