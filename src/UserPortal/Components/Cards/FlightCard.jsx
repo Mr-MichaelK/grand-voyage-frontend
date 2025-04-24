@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styles from './Card.module.css';
 import ExpandedFlight from '../Activities/ExpandedCards/ExpandedFlight';
+import { generateBookingPDF } from './generateBooking';
+
 
 const FlightCard = (props) => {
     const [showModal, setShowModal] = useState(false);
@@ -53,9 +55,21 @@ const FlightCard = (props) => {
         closeModal();
         if (!isBooked && paymentType !== "cash") {
             alert("Booking successful! Your card will be charged.");
+            generateBookingPDF(
+                    props.airport,
+                    payerName,
+                    "Flight",
+                    props.price
+                  );
         }
         else if (!isBooked && paymentType === "cash") {
             alert("Booking successful! Please pay in cash at the nearest OMT or Whish within the next 7 days.");
+            generateBookingPDF(
+                props.airport,
+                payerName,
+                "Flight",
+                props.price
+              );
         }
         else {
             alert("Booking successfully cancelled! You are eligible for a full refund.");    

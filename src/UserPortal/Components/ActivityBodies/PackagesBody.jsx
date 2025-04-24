@@ -14,6 +14,7 @@ export default function PackagesBody({ packageData }) {
           destination={pkg.destination}
           startDate={pkg.startDate}
           endDate={pkg.endDate}
+          packageName={pkg.packageName}
           packageType={pkg.packageType}
           duration={pkg.duration}
           price={pkg.price}

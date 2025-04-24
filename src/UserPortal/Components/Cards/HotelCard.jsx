@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './Card.module.css';
 import ExpandedService from '../Activities/ExpandedCards/ExpandedService';
+import { generateBookingPDF } from './generateBooking';
 
 const HotelCard = (props) => {
   const [showModal, setShowModal] = useState(false);
@@ -53,9 +54,21 @@ const HotelCard = (props) => {
     closeModal();
     if (!isBooked && paymentType !== "cash") {
       alert("Booking successful! Your card will be charged.");
+      generateBookingPDF(
+                          props.hotelName,
+                          payerName,
+                          "Housing",
+                          props.pricePerNight
+                        );
     }
     else if (!isBooked && paymentType === "cash") {
       alert("Booking successful! Please pay in cash at the nearest OMT or Whish within the next 7 days.");
+      generateBookingPDF(
+        props.hotelName,
+        payerName,
+        "Housing",
+        props.pricePerNight
+      );
     }
     else {
       alert("Booking successfully cancelled! You are eligible for a full refund.");    

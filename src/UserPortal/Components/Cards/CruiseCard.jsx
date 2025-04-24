@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './Card.module.css';
 import ExpandedCruise from '../Activities/ExpandedCards/ExpandedCruise';
+import { generateBookingPDF } from './generateBooking';
 
 const CruiseCard = (props) => {
   const [showModal, setShowModal] = useState(false);
@@ -61,9 +62,21 @@ const CruiseCard = (props) => {
     closeModal();
     if (!isBooked && paymentType !== "cash") {
       alert("Booking successful! Your card will be charged.");
+      generateBookingPDF(
+        props.cruiseName,
+        payerName,
+        "Cruise",
+        props.price
+      );
     }
     else if (!isBooked && paymentType === "cash") {
       alert("Booking successful! Please pay in cash at the nearest OMT or Whish within the next 7 days.");
+      generateBookingPDF(
+        props.cruiseName,
+        payerName,
+        "Cruise",
+        props.price
+      );
     }
     else {
       alert("Booking successfully cancelled! You are eligible for a full refund.");    
