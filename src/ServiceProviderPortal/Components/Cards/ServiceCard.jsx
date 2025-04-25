@@ -6,7 +6,7 @@ const ServiceCard = ({ service, onDelete, onEdit }) => {
         <div className={styles.card}>
             <div className={styles.cardImageContainer}>
                 <img 
-                    src={service.image} 
+                    src={service.imageUrl} 
                     alt={service.title} 
                     className={styles.cardImage}
                 />
@@ -21,7 +21,7 @@ const ServiceCard = ({ service, onDelete, onEdit }) => {
                     </div>
                 </div>
                 <div className={styles.cardFooter}>
-                    <div className={styles.cardPrice}>${service.price}</div>
+                    <div className={styles.cardPrice}>${service.pricePerNight}</div>
                     <p className={styles.cardDetails}>{service.description}</p>
                     <div className={styles.cardActions}>
                         <button 

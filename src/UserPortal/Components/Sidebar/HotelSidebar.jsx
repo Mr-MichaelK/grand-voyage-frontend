@@ -3,7 +3,7 @@ import styles from './Sidebar.module.css';
 
 export default function HotelSidebar({ setHotelFilters }) {
   const [filters, setFilters] = useState({
-    hotelName: '',
+    title: '',
     hotelChain: '',
     starRating: [],
     roomTypes: [],
@@ -47,8 +47,8 @@ export default function HotelSidebar({ setHotelFilters }) {
             type="text"
             className={styles.filterInput}
             placeholder="Search by name..."
-            name="hotelName"
-            value={filters.hotelName}
+            name="title"
+            value={filters.title}
             onChange={handleInputChange}
           />
         </div>

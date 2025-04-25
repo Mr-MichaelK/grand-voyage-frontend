@@ -84,7 +84,7 @@ const HotelCard = (props) => {
         
         <div className={styles.cardContent}>
           <div className={styles.cardInfo}>
-            <h3 className={styles.cardTitle}>{props.hotelName} - {props.hotelChain}</h3>
+            <h3 className={styles.cardTitle}>{props.title}</h3>
             <p className={styles.cardSubtitle}>{props.location}</p>
             <div className={styles.cardMeta}>
               <span className={styles.cardMetaMain}>{props.rating} Excellent</span>
@@ -94,7 +94,7 @@ const HotelCard = (props) => {
 
           <div className={styles.cardFooter}>
             <div className={styles.cardPrice}>US${props.pricePerNight}</div>
-            <div className={styles.cardDetails}>{props.nights} nights</div>
+            <div className={styles.cardDetails}>{props.nights || "4"} nights</div>
             <button className={styles.cardButton} onClick={openModal}>
               {isBooked ? 'Cancel' : 'Book'}
             </button>

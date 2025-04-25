@@ -12,7 +12,7 @@ export default function CruiseCard({ cruise, onDelete, onEdit }) {
         <div className={styles.card}>
             <div className={styles.cardImageContainer}>
                 <img 
-                    src={cruise.image} 
+                    src={cruise.imageUrl} 
                     alt={cruise.title} 
                     className={styles.cardImage} 
                 />

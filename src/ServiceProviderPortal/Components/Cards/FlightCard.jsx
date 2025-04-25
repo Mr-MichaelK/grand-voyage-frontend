@@ -6,7 +6,7 @@ export default function FlightCard({ flight, onDelete, onEdit }) {
         <div className={styles.card}>
             <div className={styles.cardImageContainer}>
                 <img 
-                    src={flight.image} 
+                    src={flight.imageUrl} 
                     alt={flight.title} 
                     className={styles.cardImage} 
                 />

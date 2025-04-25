@@ -17,23 +17,23 @@ export default function ExpandedCreateHousingCard({ id, onAddCard }) {
 
     function submit() {
         const title = document.getElementById("title").value;
-        const price = document.getElementById("price").value;
+        const pricePerNight = document.getElementById("price").value;
         const roomNb = document.getElementById("roomNb").value;
         const location = document.getElementById("location").value;
         const serviceType = document.querySelector("input[name='serviceType']:checked").value;
         const description = document.getElementById("description").value;
 
         // Add your submit logic here
-        console.log({ title, price, roomNb, location, serviceType });
+        console.log({ title, pricePerNight, roomNb, location, serviceType });
 
         const newHousing = {
             title,
-            price,
+            pricePerNight,
             roomNb,
             location,
             serviceType,
             description,
-            image: "https://ik.imagekit.io/tvlk/image/imageResource/2024/06/21/1718957715688-26316a3442d27400e8a6919f75237573.jpeg?tr=q-75"
+            imageUrl: "https://ik.imagekit.io/tvlk/image/imageResource/2024/06/21/1718957715688-26316a3442d27400e8a6919f75237573.jpeg?tr=q-75"
         }
 
         onAddCard(newHousing);

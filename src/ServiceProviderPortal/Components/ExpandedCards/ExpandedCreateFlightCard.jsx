@@ -1,5 +1,6 @@
 import React from "react";
 import style from './ExpandedCreateTravelCard.module.css';
+import f22 from '../../../assets/f22.jpg';
 
 export default function ExpandedCreateFlightCard({ id, onAddCard }) {
 
@@ -32,8 +33,12 @@ export default function ExpandedCreateFlightCard({ id, onAddCard }) {
             arrivalDate,
             price,
             description,
-            image: "https://i.abcnewsfe.com/a/29ad17e0-4dec-488a-9c27-bdc2424ba5a5/electric-plane-ht-ml-240110_1704902584341_hpMain_16x9.jpg?w=992" // Default placeholder image
+            imageUrl: "https://i.abcnewsfe.com/a/29ad17e0-4dec-488a-9c27-bdc2424ba5a5/electric-plane-ht-ml-240110_1704902584341_hpMain_16x9.jpg?w=992" // Default placeholder image
         };
+
+        if (newCruise.airline === "F22") {
+            newCruise.imageUrl = f22; // Use the imported image if airline is F22
+        }
 
         onAddCard(newCruise);
 

@@ -8,7 +8,7 @@ export default function ExpandedService({ serviceData, onClose, onSubmit, isBook
     return (
         <div className={styles.modalContainer}>
             <dialog className={styles.contractContainer} open>
-                <h1 className={styles.contractTitle}>{serviceData.hotelName} - {serviceData.hotelChain}</h1>
+                <h1 className={styles.contractTitle}>{serviceData.title}</h1>
 
                 <div className={styles.modalContent}>
                     <div className={styles.detailsSection}>
@@ -24,23 +24,12 @@ export default function ExpandedService({ serviceData, onClose, onSubmit, isBook
 
                         <div className={styles.detailRow}>
                             <span className={styles.detailLabel}>Duration:</span>
-                            <span>{serviceData.nights} Nights</span>
+                            <span>{serviceData.nights || 4} Nights</span>
                         </div>
 
                         <div className={styles.detailRow}>
                             <span className={styles.detailLabel}>Room Type:</span>
                             <span>{serviceData.roomType || 'Standard Room'}</span>
-                        </div>
-
-                        <div className={styles.detailRow}>
-                            <span className={styles.detailLabel}>Amenities:</span>
-                            <div className={styles.amenitiesList}>
-                                {serviceData.amenities.map((amenity, index) => (
-                                <span key={index} className={styles.amenityBadge}>
-                                    {amenity}
-                                </span>
-                                ))}
-                            </div>
                         </div>
 
                         <form className={styles.bookingForm}>

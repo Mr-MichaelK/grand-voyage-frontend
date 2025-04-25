@@ -7,7 +7,7 @@ import WhatsAppFloatingButton from '../WhatsApp/WhatsAppFloatingButton';
 export default function ServicesActivity() {
     const [hotelListings, setHotelListings] = useState([]);
     const [filters, setFilters] = useState({
-        hotelName: '',
+        title: '',
         hotelChain: '',
         starRating: [],
         roomTypes: [],
@@ -22,7 +22,7 @@ export default function ServicesActivity() {
         services: [
             {
                 id: 1,
-                hotelName: "The Grand Horizon",
+                title: "The Grand Horizon",
                 hotelChain: "LuxuryStays",
                 rating: 4,
                 reviewCount: 1287,
@@ -37,7 +37,7 @@ export default function ServicesActivity() {
             },
             {
                 id: 2,
-                hotelName: "Seaside Escape",
+                title: "Seaside Escape",
                 hotelChain: "OceanView Resorts",
                 rating: 4,
                 reviewCount: 842,
@@ -52,7 +52,7 @@ export default function ServicesActivity() {
             },
             {
               id: 3,
-              hotelName: "Alcatraz Prison",
+              title: "Alcatraz Prison",
               hotelChain: "American Correctional Association",
               rating: 5,
               reviewCount: 1864,
@@ -67,7 +67,7 @@ export default function ServicesActivity() {
           },
           {
             id: 4,
-            hotelName: "Skyline Serenity",
+            title: "Skyline Serenity",
             hotelChain: "UrbanElite Hotels",
             rating: 4,
             reviewCount: 993,
@@ -82,7 +82,7 @@ export default function ServicesActivity() {
           },
           {
             id: 5,
-            hotelName: "Mountain Whisper Lodge",
+            title: "Mountain Whisper Lodge",
             hotelChain: "EverPeak Retreats",
             rating: 4,
             reviewCount: 657,
@@ -97,7 +97,7 @@ export default function ServicesActivity() {
           },
           {
             id: 6,
-            hotelName: "Desert Bloom Resort",
+            title: "Desert Bloom Resort",
             hotelChain: "SaharaLux",
             rating: 3,
             reviewCount: 431,
@@ -116,12 +116,12 @@ export default function ServicesActivity() {
     const filterHotels = (hotels, filters) => {
         return hotels.filter(hotel => {
           const {
-            hotelName, hotelChain, starRating,
+            title, hotelChain, starRating,
             roomTypes, minPrice, maxPrice,
             amenities, mealPlan
           } = filters;
       
-          const matchesName = hotelName === '' || hotel.hotelName.toLowerCase().includes(hotelName.toLowerCase());
+          const matchesName = title === '' || hotel.title.toLowerCase().includes(title.toLowerCase());
           const matchesChain = hotelChain === '' || hotel.hotelChain.toLowerCase().includes(hotelChain.toLowerCase());
           const matchesRating = starRating.length === 0 || starRating.includes(Math.floor(hotel.rating));
           const matchesRoomType = roomTypes.length === 0 || roomTypes.includes(hotel.roomType);

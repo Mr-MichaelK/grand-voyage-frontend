@@ -19,7 +19,7 @@ export default function CruisesBody({ cruiseData }) {
             price={cruise.price}
             embarkationDate={cruise.embarkationDate}
             amenities={cruise.amenities}
-            image={cruise.image}
+            image={cruise.imageUrl}
             isBooked={cruise.isBooked}
           />
         ))}
