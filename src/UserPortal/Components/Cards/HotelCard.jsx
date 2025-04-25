@@ -55,7 +55,7 @@ const HotelCard = (props) => {
     if (!isBooked && paymentType !== "cash") {
       alert("Booking successful! Your card will be charged.");
       generateBookingPDF(
-                          props.hotelName,
+                          props.title,
                           payerName,
                           "Housing",
                           props.pricePerNight

@@ -56,7 +56,7 @@ const FlightCard = (props) => {
         if (!isBooked && paymentType !== "cash") {
             alert("Booking successful! Your card will be charged.");
             generateBookingPDF(
-                    props.airport,
+                    props.airline,
                     payerName,
                     "Flight",
                     props.price
@@ -65,7 +65,7 @@ const FlightCard = (props) => {
         else if (!isBooked && paymentType === "cash") {
             alert("Booking successful! Please pay in cash at the nearest OMT or Whish within the next 7 days.");
             generateBookingPDF(
-                props.airport,
+                props.airline,
                 payerName,
                 "Flight",
                 props.price
